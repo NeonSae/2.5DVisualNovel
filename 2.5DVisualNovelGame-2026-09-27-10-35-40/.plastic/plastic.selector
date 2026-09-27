@@ -1,0 +1,4 @@
+repository "2.5DVisualNovelGame/2.5DVisualNovelGame@11270622258784@cloud"
+  path "/"
+    br "/main"
+    co "/main"
