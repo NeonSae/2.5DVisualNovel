@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private CharacterController controller;
-    private string currentState="";
+        private string currentState = "";
 
     // 0=Front, 1=FrontRight, 2=Right ,3=Back, 4=BackRight
     //Front means facing the camera, Back means facing away from the camera
@@ -20,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
     private int facingDirection = 0;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
 
-        forward.y= 0f;
+        forward.y = 0f;
         right.y = 0f;
 
         forward.Normalize();
@@ -51,7 +51,7 @@ public class CharacterMovement : MonoBehaviour
         // Move and apply gravity
         controller.SimpleMove(movement * moveSpeed);
 
-        if (movement.sqrMagnitude > 0.1f) 
+        if (movement.sqrMagnitude > 0.01f)
         {
             UpdateFacing(movement);
             PlayAnimation("Walk");
@@ -120,7 +120,8 @@ public class CharacterMovement : MonoBehaviour
 
         string state = action + "_" + directions[facingDirection];
 
-        Debug.Log("Requested animation: " + state);
+        if (state == currentState)
+            return;
 
         if (animator == null)
         {
@@ -131,12 +132,12 @@ public class CharacterMovement : MonoBehaviour
         if (animator.HasState(0, Animator.StringToHash(state)))
         {
             animator.Play(state, 0, 0f);
-            Debug.Log("Playing: " + state);
             currentState = state;
+            Debug.Log("Playing: " + state);
         }
         else
         {
-            Debug.LogError("Animator state not found: " + state); 
+            Debug.LogError("Animator state not found: " + state);
         }
     }
 }
