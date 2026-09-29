@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 2022470192}
-  smoothTime: 0.2
+  smoothTime: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
