@@ -26,7 +26,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log("PlayerMovement is running!");
+        //Debug.Log("PlayerMovement is running!");
 
         // Read WASD input
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -125,7 +125,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (animator == null)
         {
-            Debug.LogError("Animator is not assigned!");
+            //Debug.LogError("Animator is not assigned!");
             return;
         }
 
@@ -133,11 +133,11 @@ public class CharacterMovement : MonoBehaviour
         {
             animator.Play(state, 0, 0f);
             currentState = state;
-            Debug.Log("Playing: " + state);
+            //Debug.Log("Playing: " + state);
         }
         else
         {
-            Debug.LogError("Animator state not found: " + state);
+            //Debug.LogError("Animator state not found: " + state);
         }
     }
 }
