@@ -15,7 +15,7 @@ public class Iinteractable : MonoBehaviour
     }
     public interface IInteractable
     {
-        string InteractionName { get; }
+        string InteractionPrompt { get; }
         void Interact();
     }
 }

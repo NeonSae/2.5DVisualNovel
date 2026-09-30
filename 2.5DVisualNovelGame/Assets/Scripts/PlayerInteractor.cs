@@ -3,8 +3,10 @@ using static Iinteractable;
 
 public class PlayerInteractor : MonoBehaviour
 {
+
     [SerializeField] private float interactionRange = 1.5f;
     [SerializeField] private Transform interactionPoint;
+    [SerializeField] private InteractionUI interactionUI;
 
     private IInteractable currentInteractable;
 
@@ -48,20 +50,20 @@ public class PlayerInteractor : MonoBehaviour
             );
 
             if (distance < closestDistance)
-            {   
+            {
                 closestDistance = distance;
                 currentInteractable = interactable;
             }
         }
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        Vector3 origin = interactionPoint != null
-            ? interactionPoint.position
-            : transform.position;
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(origin, interactionRange);
+        // Update the UI
+        if (currentInteractable != null)
+        {
+            interactionUI.Show(currentInteractable.InteractionPrompt);
+        }
+        else
+        {
+            interactionUI.Hide();
+        }
     }
 }
