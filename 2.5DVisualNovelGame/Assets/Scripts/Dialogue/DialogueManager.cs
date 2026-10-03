@@ -1,11 +1,14 @@
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
+
 {
     [SerializeField] private DialogueUI dialogueUI;
 
     private DialogueNode currentNode;
     private bool isDialogueActive;
+
+    public bool IsDialogueActive => isDialogueActive;
 
     private void Update()
     {
@@ -18,14 +21,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(DialogueNode[] dialogue)
+    public void StartDialogue(DialogueNode startingNode)
     {
-        if (dialogue == null || dialogue.Length == 0)
+        if (startingNode == null)
             return;
 
         isDialogueActive = true;
 
-        ShowNode(dialogue[0]);
+        ShowNode(startingNode);
     }
 
     private void ShowNode(DialogueNode node)

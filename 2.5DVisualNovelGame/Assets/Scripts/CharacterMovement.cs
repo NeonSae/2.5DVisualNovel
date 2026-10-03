@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private DialogueManager dialogueManager;
 
     private CharacterController controller;
         private string currentState = "";
@@ -26,6 +27,11 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (dialogueManager != null && dialogueManager.IsDialogueActive)
+        {
+            PlayAnimation("Idle");
+            return;
+        }
         //Debug.Log("PlayerMovement is running!");
 
         // Read WASD input

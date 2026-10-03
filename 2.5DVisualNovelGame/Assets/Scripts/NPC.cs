@@ -5,16 +5,16 @@ public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interactionPrompt = "Talk";
 
-    [SerializeField] private DialogueNode[] dialogue;
+    [SerializeField] private DialogueNode startingNode;
 
     [SerializeField] private DialogueManager dialogueManager;
 
     public string InteractionPrompt => interactionPrompt;
 
-    public DialogueNode[] Dialogue => dialogue;
+    public DialogueNode StartingNode => startingNode;
 
     public void Interact()
     {
-        dialogueManager.StartDialogue(dialogue);
+        dialogueManager.StartDialogue(startingNode);
     }
 }

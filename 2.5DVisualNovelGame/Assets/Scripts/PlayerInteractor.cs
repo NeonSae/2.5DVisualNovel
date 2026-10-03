@@ -7,19 +7,43 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private float interactionRange = 1.5f;
     [SerializeField] private Transform interactionPoint;
     [SerializeField] private InteractionUI interactionUI;
+    [SerializeField] private DialogueManager dialogueManager;
 
     private IInteractable currentInteractable;
+    private bool waitingForERelease;
 
     private void Update()
+{
+    if (dialogueManager != null &&
+        dialogueManager.IsDialogueActive)
     {
-        FindInteractable();
+        currentInteractable = null;
+        interactionUI.Hide();
 
-        if (currentInteractable != null &&
-            Input.GetKeyDown(KeyCode.E))
-        {
-            currentInteractable.Interact();
-        }
+        waitingForERelease = true;
+
+        return;
     }
+
+    // Wait until the player releases E
+    if (waitingForERelease)
+    {
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            waitingForERelease = false;
+        }
+
+        return;
+    }
+
+    FindInteractable();
+
+    if (currentInteractable != null &&
+        Input.GetKeyDown(KeyCode.E))
+    {
+        currentInteractable.Interact();
+    }
+}
 
     private void FindInteractable()
     {

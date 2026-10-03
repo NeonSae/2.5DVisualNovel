@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[System.Serializable]
-public class DialogueNode
+[CreateAssetMenu(
+    fileName = "DialogueNode",
+    menuName = "Dialogue/Dialogue Node"
+)]
+public class DialogueNode : ScriptableObject
 {
     public string speaker;
 
