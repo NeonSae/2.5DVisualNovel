@@ -15,13 +15,5 @@ MonoBehaviour:
   speaker: Rando
   text: Wsg bro how u doinggg , i had cake a while back it was spicyyy hehee , anyways
     what brings u by ?:))??
-  nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
-  choices:
-  - choiceText: 'Testing me code >:'
-    nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
-  - choiceText: Spicy cake ??
-    nextNode: {fileID: 11400000, guid: 6c180b89a3b2b6444b052512aac74596, type: 2}
-  - choiceText: (Say nothing)
-    nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
-  - choiceText: (Also say nothing but with a judgemental look)
-    nextNode: {fileID: 11400000, guid: 6c180b89a3b2b6444b052512aac74596, type: 2}
+  nextNode: {fileID: 11400000, guid: eef4069cc6953b8439220bd2b444b431, type: 2}
+  choices: []
