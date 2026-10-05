@@ -4,11 +4,12 @@ public class DialogueManager : MonoBehaviour
 
 {
     [SerializeField] private DialogueUI dialogueUI;
-
+    [SerializeField] private GameState gameState;
     private DialogueNode currentNode;
     private bool isDialogueActive;
 
     public bool IsDialogueActive => isDialogueActive;
+
 
     private void Update()
     {
@@ -38,10 +39,31 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.Show();
         dialogueUI.DisplayLine(currentNode);
 
+        DialogueChoice[] availableChoices =
+            GetAvailableChoices(currentNode.choices);
+
         dialogueUI.DisplayChoices(
-            currentNode.choices,
+            availableChoices,
             SelectChoice
         );
+    }
+    private DialogueChoice[] GetAvailableChoices(DialogueChoice[] choices)
+    {
+        if (choices == null || choices.Length == 0)
+            return null;
+
+        System.Collections.Generic.List<DialogueChoice> availableChoices =
+            new System.Collections.Generic.List<DialogueChoice>();
+
+        foreach (DialogueChoice choice in choices)
+        {
+            if (AreConditionsMet(choice.conditions))
+            {
+                availableChoices.Add(choice);
+            }
+        }
+
+        return availableChoices.ToArray();
     }
 
     private void ContinueDialogue()
@@ -70,10 +92,9 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.Hide();
     }
 
-    private void SelectChoice(int choiceIndex)
+    private void SelectChoice(DialogueChoice choice)
     {
-        DialogueChoice choice =
-            currentNode.choices[choiceIndex];
+        ApplyEffects(choice.effects);
 
         if (choice.nextNode != null)
         {
@@ -83,5 +104,37 @@ public class DialogueManager : MonoBehaviour
         {
             EndDialogue();
         }
+    }
+    private void ApplyEffects(DialogueEffect[] effects)
+    {
+        if (effects == null)
+            return;
+
+        foreach (DialogueEffect effect in effects)
+        {
+            switch (effect.effectType)
+            {
+                case EffectType.ToldTruthToStranger:
+                    gameState.SetToldTruthToStranger();
+                    break;
+
+                case EffectType.LiedToStranger:
+                    gameState.SetLiedToStranger();
+                    break;
+            }
+        }
+    }
+    private bool AreConditionsMet(DialogueCondition[] conditions)
+    {
+        if (conditions == null || conditions.Length == 0)
+            return true;
+
+        foreach (DialogueCondition condition in conditions)
+        {
+            if (!gameState.CheckCondition(condition))
+                return false;
+        }
+
+        return true;
     }
 }

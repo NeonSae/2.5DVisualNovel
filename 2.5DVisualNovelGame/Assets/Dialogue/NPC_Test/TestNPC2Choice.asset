@@ -18,9 +18,17 @@ MonoBehaviour:
   choices:
   - choiceText: 'Testing me code >:'
     nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
+    effects:
+    - effectType: 0
   - choiceText: Spicy cake ??
     nextNode: {fileID: 11400000, guid: 6c180b89a3b2b6444b052512aac74596, type: 2}
+    effects:
+    - effectType: 1
   - choiceText: (Say nothing)
     nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
+    effects:
+    - effectType: 1
   - choiceText: (Also say nothing but with a judgemental look)
     nextNode: {fileID: 11400000, guid: 6c180b89a3b2b6444b052512aac74596, type: 2}
+    effects:
+    - effectType: 1

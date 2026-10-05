@@ -30,8 +30,8 @@ public class DialogueUI : MonoBehaviour
     }
 
     public void DisplayChoices(
-        DialogueChoice[] choices,
-        System.Action<int> onChoiceSelected)
+    DialogueChoice[] choices,
+    System.Action<DialogueChoice> onChoiceSelected)
     {
         ClearChoices();
 
@@ -45,7 +45,7 @@ public class DialogueUI : MonoBehaviour
 
         for (int i = 0; i < choices.Length; i++)
         {
-            int choiceIndex = i;
+            DialogueChoice selectedChoice = choices[i];
 
             Button button = Instantiate(
                 choiceButtonPrefab,
@@ -55,10 +55,10 @@ public class DialogueUI : MonoBehaviour
             TMP_Text buttonText =
                 button.GetComponentInChildren<TMP_Text>();
 
-            buttonText.text = choices[i].choiceText;
+            buttonText.text = selectedChoice.choiceText;
 
             button.onClick.AddListener(
-                () => onChoiceSelected(choiceIndex)
+                () => onChoiceSelected(selectedChoice)
             );
         }
     }

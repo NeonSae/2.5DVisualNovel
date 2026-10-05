@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: TestNPC5
+  m_Name: TestNPCdenial
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Rando
-  text: ' OOOoooOOor!!.. maybe dont and i can be a fun character in your game Tehe
-    :P)))) ? '
-  nextNode: {fileID: 11400000, guid: fd0339d0890b8014fa1fd30a6f8ff6c0, type: 2}
+  text: nope not a thing :D im such a good code test subject
+  nextNode: {fileID: 0}
   choices: []
