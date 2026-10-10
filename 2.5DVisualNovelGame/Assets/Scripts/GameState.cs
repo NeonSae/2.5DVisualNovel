@@ -1,9 +1,12 @@
+
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
     public bool ToldTruthToStranger { get; private set; }
     public bool LiedToStranger { get; private set; }
+
+    public int NPCTestTrust { get; private set; }
 
     public void SetToldTruthToStranger()
     {
@@ -16,16 +19,13 @@ public class GameState : MonoBehaviour
         LiedToStranger = true;
         ToldTruthToStranger = false;
     }
-    private void Update()
+
+    public void ChangeNPCTestTrust(int amount)
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log(
-                "Told Truth: " + ToldTruthToStranger +
-                " | Lied: " + LiedToStranger
-            );
-        }
+        NPCTestTrust += amount;
+        Debug.Log("NPCTest Trust: " + NPCTestTrust);
     }
+
     public bool CheckCondition(DialogueCondition condition)
     {
         switch (condition.conditionType)
@@ -36,9 +36,14 @@ public class GameState : MonoBehaviour
             case ConditionType.LiedToStranger:
                 return LiedToStranger;
 
+            case ConditionType.NPCTestTrustAtLeast:
+                return NPCTestTrust >= condition.value;
+
+            case ConditionType.NPCTestTrustAtMost:
+                return NPCTestTrust <= condition.value;
+
             default:
                 return false;
         }
     }
-
-}   
+}

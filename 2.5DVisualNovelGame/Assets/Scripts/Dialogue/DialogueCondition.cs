@@ -1,14 +1,18 @@
-using UnityEngine;
+
 using System;
 
 [Serializable]
 public class DialogueCondition
 {
     public ConditionType conditionType;
+
+    public int value;
 }
 
 public enum ConditionType
 {
     ToldTruthToStranger,
-    LiedToStranger
-}
+    LiedToStranger,
+    NPCTestTrustAtLeast,
+    NPCTestTrustAtMost
+}       

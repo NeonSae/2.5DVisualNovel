@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (DialogueChoice choice in choices)
         {
-            if (AreConditionsMet(choice.conditions))
+            if (AreConditionsMet(choice.conditions,choice.conditionMode))
             {
                 availableChoices.Add(choice);
             }
@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
         return availableChoices.ToArray();
     }
-
+            
     private void ContinueDialogue()
     {
         if (currentNode.choices != null &&
@@ -105,6 +105,7 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
+
     private void ApplyEffects(DialogueEffect[] effects)
     {
         if (effects == null)
@@ -121,20 +122,44 @@ public class DialogueManager : MonoBehaviour
                 case EffectType.LiedToStranger:
                     gameState.SetLiedToStranger();
                     break;
+
+                case EffectType.ChangeNPCTestTrust:
+                    gameState.ChangeNPCTestTrust(effect.value);
+                    break;
             }
         }
     }
-    private bool AreConditionsMet(DialogueCondition[] conditions)
+
+
+    private bool AreConditionsMet(
+        DialogueCondition[] conditions,
+        ConditionMode conditionMode)
     {
         if (conditions == null || conditions.Length == 0)
             return true;
 
-        foreach (DialogueCondition condition in conditions)
+        if (conditionMode == ConditionMode.All)
         {
-            if (!gameState.CheckCondition(condition))
-                return false;
+            foreach (DialogueCondition condition in conditions)
+            {
+                if (!gameState.CheckCondition(condition))
+                    return false;
+            }
+
+            return true;
         }
 
-        return true;
+        if (conditionMode == ConditionMode.Any)
+        {
+            foreach (DialogueCondition condition in conditions)
+            {
+                if (gameState.CheckCondition(condition))
+                    return true;
+            }
+
+            return false;
+        }
+
+        return false;
     }
 }

@@ -18,11 +18,15 @@ MonoBehaviour:
   choices:
   - choiceText: You remembered that I told the truth?
     nextNode: {fileID: 11400000, guid: 6c4d0fe0630076d4793d156210f4bdc8, type: 2}
-    conditions:
-    - conditionType: 0
-    effects: []
+    conditionMode: 0
+    conditions: []
+    effects:
+    - effectType: 2
+      value: 2
   - choiceText: You remembered that I lied ?
     nextNode: {fileID: 11400000, guid: 6c4d0fe0630076d4793d156210f4bdc8, type: 2}
-    conditions:
-    - conditionType: 1
-    effects: []
+    conditionMode: 1
+    conditions: []
+    effects:
+    - effectType: 2
+      value: -2
