@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
         return availableChoices.ToArray();
     }
-            
+
     private void ContinueDialogue()
     {
         if (currentNode.choices != null &&
