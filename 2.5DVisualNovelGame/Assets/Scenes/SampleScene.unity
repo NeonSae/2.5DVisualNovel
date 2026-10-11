@@ -4266,7 +4266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InspectableObject
   interactionPrompt: Read Note
   inspectionUI: {fileID: 900261597}
-  inspectionType: 0
+  inspectionType: 1
   objectTitle: LETTER
   description: THIS PAPER IS VERY MYSTERIOUS AND DARK AND MYSTERIOUS ,, UHHHHHHHHHHH
     YEAH MYSTERIOUS TYPE SHI
