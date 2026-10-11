@@ -1,49 +1,69 @@
+
 using UnityEngine;
 using static Iinteractable;
 
 public class PlayerInteractor : MonoBehaviour
 {
-
     [SerializeField] private float interactionRange = 1.5f;
     [SerializeField] private Transform interactionPoint;
     [SerializeField] private InteractionUI interactionUI;
     [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private InspectionUI inspectionUI;
 
     private IInteractable currentInteractable;
     private bool waitingForERelease;
+    private bool inspectionWasOpen;
 
     private void Update()
-{
-    if (dialogueManager != null &&
-        dialogueManager.IsDialogueActive)
     {
-        currentInteractable = null;
-        interactionUI.Hide();
-
-        waitingForERelease = true;
-
-        return;
-    }
-
-    // Wait until the player releases E
-    if (waitingForERelease)
-    {
-        if (Input.GetKeyUp(KeyCode.E))
+        // Inspection is active: lock normal interactions.
+        if (inspectionUI != null && inspectionUI.IsOpen)
         {
-            waitingForERelease = false;
+            currentInteractable = null;
+            interactionUI.Hide();
+
+            inspectionWasOpen = true;
+            waitingForERelease = true;
+            return;
         }
 
-        return;
-    }
+        // Inspection just closed: don't reuse the same E press.
+        if (inspectionWasOpen)
+        {
+            inspectionWasOpen = false;
+            waitingForERelease = true;
+        }
 
-    FindInteractable();
+        // Preserve the existing dialogue lock.
+        if (dialogueManager != null &&
+            dialogueManager.IsDialogueActive)
+        {
+            currentInteractable = null;
+            interactionUI.Hide();
 
-    if (currentInteractable != null &&
-        Input.GetKeyDown(KeyCode.E))
-    {
-        currentInteractable.Interact();
+            waitingForERelease = true;
+            return;
+        }
+
+        // Wait until E has been released.
+        if (waitingForERelease)
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                waitingForERelease = false;
+            }
+
+            return;
+        }
+
+        FindInteractable();
+
+        if (currentInteractable != null &&
+            Input.GetKeyDown(KeyCode.E))
+        {
+            currentInteractable.Interact();
+        }
     }
-}
 
     private void FindInteractable()
     {
@@ -80,10 +100,11 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
 
-        // Update the UI
         if (currentInteractable != null)
         {
-            interactionUI.Show(currentInteractable.InteractionPrompt);
+            interactionUI.Show(
+                currentInteractable.InteractionPrompt
+            );
         }
         else
         {
