@@ -1,4 +1,3 @@
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +9,7 @@ public class InspectionUI : MonoBehaviour
     [SerializeField] private TMP_Text inspectionText;
 
     [Header("Close-Up Inspection")]
+    [SerializeField] private GameObject closeUpOverlay;
     [SerializeField] private GameObject closeUpPanel;
     [SerializeField] private Image closeUpImage;
     [SerializeField] private TMP_Text closeUpTitle;
@@ -31,6 +31,7 @@ public class InspectionUI : MonoBehaviour
 
     public void ShowTextInspection(string title, string description)
     {
+        closeUpOverlay.SetActive(false);
         closeUpPanel.SetActive(false);
         inspectionPanel.SetActive(true);
 
@@ -47,6 +48,7 @@ public class InspectionUI : MonoBehaviour
         Sprite image)
     {
         inspectionPanel.SetActive(false);
+        closeUpOverlay.SetActive(true);
         closeUpPanel.SetActive(true);
 
         closeUpTitle.text = title;
@@ -61,6 +63,7 @@ public class InspectionUI : MonoBehaviour
     public void Hide()
     {
         inspectionPanel.SetActive(false);
+        closeUpOverlay.SetActive(false);
         closeUpPanel.SetActive(false);
 
         IsOpen = false;
