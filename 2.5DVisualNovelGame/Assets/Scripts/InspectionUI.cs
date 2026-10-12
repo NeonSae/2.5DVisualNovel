@@ -68,4 +68,4 @@ public class InspectionUI : MonoBehaviour
 
         IsOpen = false;
     }
-}
+}           

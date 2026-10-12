@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private HashSet<string> itemIDs = new HashSet<string>();
+    private readonly Dictionary<string, InventoryItem> items =
+        new Dictionary<string, InventoryItem>();
+
+    public IReadOnlyCollection<InventoryItem> Items => items.Values;
 
     public bool HasItem(string itemID)
     {
-        return itemIDs.Contains(itemID);
+        return items.ContainsKey(itemID);
+    }
+
+    public bool AddItem(InventoryItem item)
+    {
+        if (item == null || string.IsNullOrWhiteSpace(item.itemID))
+            return false;
+
+        if (items.ContainsKey(item.itemID))
+            return false;
+
+        items.Add(item.itemID, item);
+        return true;
     }
 
     public bool AddItem(string itemID)
     {
-        if (string.IsNullOrWhiteSpace(itemID))
-            return false;
+        Debug.LogWarning(
+            "AddItem(string) was called for '" + itemID +
+            "'. Use AddItem(InventoryItem) instead."
+        );
 
-        return itemIDs.Add(itemID);
+        return false;
     }
 
     public bool RemoveItem(string itemID)
     {
-        return itemIDs.Remove(itemID);
+        return items.Remove(itemID);
     }
 }
