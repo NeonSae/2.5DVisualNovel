@@ -5701,6 +5701,9 @@ MonoBehaviour:
   screenFader: {fileID: 1896639110}
   player: {fileID: 2022470192}
   characterController: {fileID: 2022470191}
+  leaveRoomSound: {fileID: 8300000, guid: 929b3e04e0e9a8745a535f3510ee8b63, type: 3}
+  enterRoomSound: {fileID: 8300000, guid: 929b3e04e0e9a8745a535f3510ee8b63, type: 3}
+  transitionVolume: 1
 --- !u!4 &1844092459
 Transform:
   m_ObjectHideFlags: 0
@@ -6212,9 +6215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
   footstepClips:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: e1377fa3630cec4468efbb55c3beeffb, type: 3}
   footstepInterval: 0.45
   footstepVolume: 1
+  footstepSource: {fileID: 505020263}
   moveSpeed: 3
   cameraTransform: {fileID: 330585546}
   animator: {fileID: 664612977}

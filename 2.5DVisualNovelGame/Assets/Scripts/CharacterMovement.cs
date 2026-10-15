@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private AudioClip[] footstepClips;
     [SerializeField] private float footstepInterval = 0.45f;
     [SerializeField, Range(0f, 1f)] private float footstepVolume = 1f;
+    [SerializeField] private AudioSource footstepSource;
 
     private float footstepTimer;
 
@@ -161,11 +162,18 @@ public class CharacterMovement : MonoBehaviour
     }
 
 
+
     private void HandleFootsteps(bool isMoving)
     {
         if (!isMoving || footstepClips == null || footstepClips.Length == 0)
         {
             footstepTimer = 0f;
+
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+
             return;
         }
 
@@ -173,14 +181,23 @@ public class CharacterMovement : MonoBehaviour
 
         if (footstepTimer <= 0f)
         {
-            AudioClip clip = footstepClips[
-                UnityEngine.Random.Range(0, footstepClips.Length)
-            ];
+            // Don't start another clip while the previous footstep is playing.
+            if (footstepSource != null && !footstepSource.isPlaying)
+            {
+                AudioClip clip = footstepClips[
+                    UnityEngine.Random.Range(0, footstepClips.Length)
+                ];
 
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(clip, footstepVolume);
+                if (clip != null)
+                {
+                    footstepSource.clip = clip;
+                    footstepSource.volume = footstepVolume;
+                    footstepSource.Play();
+                }
+            }
 
             footstepTimer = footstepInterval;
         }
     }
+
 }
