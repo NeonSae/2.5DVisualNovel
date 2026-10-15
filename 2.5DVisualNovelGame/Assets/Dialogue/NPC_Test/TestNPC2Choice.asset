@@ -19,7 +19,9 @@ MonoBehaviour:
   - choiceText: 'Testing me code >:'
     nextNode: {fileID: 11400000, guid: a67040221863a314ea493c254041dc90, type: 2}
     conditionMode: 0
-    conditions: []
+    conditions:
+    - conditionType: 0
+      value: 0
     effects:
     - effectType: 0
       value: 0

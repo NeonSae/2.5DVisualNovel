@@ -8,6 +8,9 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource musicSource;
+    [Header("Background Music")]
+    [SerializeField] private AudioClip startingMusic;
+    [SerializeField] private bool playMusicOnStart = true;
 
     private void Awake()
     {
