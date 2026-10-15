@@ -3,6 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
+
+
+    [Header("Footstep Audio")]
+    [SerializeField] private AudioClip[] footstepClips;
+    [SerializeField] private float footstepInterval = 0.45f;
+    [SerializeField, Range(0f, 1f)] private float footstepVolume = 1f;
+
+    private float footstepTimer;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private Transform cameraTransform;
@@ -57,7 +66,11 @@ public class CharacterMovement : MonoBehaviour
         // Move and apply gravity
         controller.SimpleMove(movement * moveSpeed);
 
-        if (movement.sqrMagnitude > 0.01f)
+        bool isMoving = movement.sqrMagnitude > 0.01f;
+
+        HandleFootsteps(isMoving);
+
+        if (isMoving)
         {
             UpdateFacing(movement);
             PlayAnimation("Walk");
@@ -144,6 +157,30 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             //Debug.LogError("Animator state not found: " + state);
+        }
+    }
+
+
+    private void HandleFootsteps(bool isMoving)
+    {
+        if (!isMoving || footstepClips == null || footstepClips.Length == 0)
+        {
+            footstepTimer = 0f;
+            return;
+        }
+
+        footstepTimer -= Time.deltaTime;
+
+        if (footstepTimer <= 0f)
+        {
+            AudioClip clip = footstepClips[
+                UnityEngine.Random.Range(0, footstepClips.Length)
+            ];
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(clip, footstepVolume);
+
+            footstepTimer = footstepInterval;
         }
     }
 }
