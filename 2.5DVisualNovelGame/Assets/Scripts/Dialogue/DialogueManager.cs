@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 
@@ -37,23 +38,22 @@ public class DialogueManager : MonoBehaviour
         currentNode = node;
 
         dialogueUI.Show();
-        dialogueUI.DisplayLine(currentNode);
 
-        DialogueChoice[] availableChoices =
-            GetAvailableChoices(currentNode.choices);
+        bool canContinueWithE = currentNode.choices == null || currentNode.choices.Length == 0;
 
-        dialogueUI.DisplayChoices(
-            availableChoices,
-            SelectChoice
-        );
+        dialogueUI.DisplayLine(currentNode, canContinueWithE);
+
+        DialogueChoice[] availableChoices = GetAvailableChoices(currentNode.choices);
+
+        dialogueUI.DisplayChoices(availableChoices,SelectChoice);
     }
     private DialogueChoice[] GetAvailableChoices(DialogueChoice[] choices)
     {
         if (choices == null || choices.Length == 0)
             return null;
 
-        System.Collections.Generic.List<DialogueChoice> availableChoices =
-            new System.Collections.Generic.List<DialogueChoice>();
+        List<DialogueChoice> availableChoices =
+            new List<DialogueChoice>();
 
         foreach (DialogueChoice choice in choices)
         {
@@ -66,14 +66,22 @@ public class DialogueManager : MonoBehaviour
         return availableChoices.ToArray();
     }
 
+
     private void ContinueDialogue()
     {
-        if (currentNode.choices != null &&
-            currentNode.choices.Length > 0)
+        // First E press: reveal the entire current line.
+        if (dialogueUI.IsTyping)
         {
+            dialogueUI.CompleteTyping();
             return;
         }
 
+        // keeps the existing choice behavior.
+        if (currentNode.choices != null && currentNode.choices.Length > 0)
+        {
+            return;
+        }
+            
         if (currentNode.nextNode != null)
         {
             ShowNode(currentNode.nextNode);
@@ -83,6 +91,7 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
+
 
     private void EndDialogue()
     {
@@ -131,9 +140,7 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    private bool AreConditionsMet(
-        DialogueCondition[] conditions,
-        ConditionMode conditionMode)
+    private bool AreConditionsMet(DialogueCondition[] conditions,ConditionMode conditionMode)
     {
         if (conditions == null || conditions.Length == 0)
             return true;

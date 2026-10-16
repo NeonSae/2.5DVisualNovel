@@ -4,6 +4,7 @@ using static Iinteractable;
 
 public class LockedRoomDoor : MonoBehaviour, IInteractable
 {
+    [SerializeField] private InteractionUI interactionUI;
     [Header("Door Settings")]
     [SerializeField] private string requiredKeyID = "BasementKey";
     [SerializeField] private string doorName = "Basement Door";
@@ -24,10 +25,13 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
             Debug.LogWarning("No Inventory assigned to " + gameObject.name);
             return;
         }
-
         if (!inventory.HasItem(requiredKeyID))
         {
             Debug.Log(lockedMessage);
+
+            if (interactionUI != null)
+                interactionUI.ShowLockedMessage();
+
             return;
         }
 

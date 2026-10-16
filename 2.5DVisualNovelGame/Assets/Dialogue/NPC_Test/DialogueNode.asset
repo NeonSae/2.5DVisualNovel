@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
   m_Name: DialogueNode
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: 
-  text: 
+  speaker: dhfhgmf
+  text: tweyrutkyiyi;ylyet
   nextNode: {fileID: 0}
-  choices: []
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 0}
+    conditionMode: 0
+    conditions:
+    - conditionType: 0
+      value: 0
+    - conditionType: 0
+      value: 0
+    effects:
+    - effectType: 0
+      value: 0
+    - effectType: 0
+      value: 0
+  - choiceText: 
+    nextNode: {fileID: 0}
+    conditionMode: 0
+    conditions: []
+    effects: []
