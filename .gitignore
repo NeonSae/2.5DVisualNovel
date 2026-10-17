@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+MoteurDesJeux/Assets/scripts/PlayerController.cs
+MoteurDesJeux/Assets/scripts/Interactions.cs
+MoteurDesJeux/Assets/Scenes/SampleScene.unity
