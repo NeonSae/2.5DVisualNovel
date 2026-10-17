@@ -107,3 +107,6 @@ InitTestScene*.unity*
 MoteurDesJeux/Assets/scripts/PlayerController.cs
 MoteurDesJeux/Assets/scripts/Interactions.cs
 MoteurDesJeux/Assets/Scenes/SampleScene.unity
+MoteurDesJeux/Assets/Scenes/SampleScene.unity
+MoteurDesJeux/Assets/scripts/Interactions.cs
+MoteurDesJeux/Assets/scripts/PlayerController.cs
