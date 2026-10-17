@@ -35,7 +35,7 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
             return;
         }
 
-        if (transitionManager == null || destination == null)
+        if (transitionManager == null || destination == null)   
         {
             Debug.LogWarning(
                 "Missing transition manager or destination on " + gameObject.name

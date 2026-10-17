@@ -136,6 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!224 &2275680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -527,6 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70a7ff195b7c4546ab188560ccdebb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LockedRoomDoor
+  interactionUI: {fileID: 1137522896}
   requiredKeyID: BasementKey
   doorName: Basement Door
   inventory: {fileID: 2022470195}
@@ -3997,7 +3999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1137522892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4100,6 +4102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ui
   prompt: {fileID: 505539198}
   interactionText: {fileID: 1134329713}
+  lockedMessageDuration: 1.5
 --- !u!114 &1137522897
 MonoBehaviour:
   m_ObjectHideFlags: 0
