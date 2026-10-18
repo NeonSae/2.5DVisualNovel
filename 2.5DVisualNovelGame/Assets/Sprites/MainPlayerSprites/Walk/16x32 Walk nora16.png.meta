@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 48d3cd5a702bf7c4694104a63d90a86e
+guid: 4011e605140e9784c82d19f84cb98a3d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7154388428832792660
-    second: Walk nora16_0
+      213: 7011555802081790217
+    second: 16x32 Walk nora16_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk nora16_0
+      name: 16x32 Walk nora16_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4506eb5de5e794360800000000000000
-      internalID: 7154388428832792660
+      spriteID: 9090ae96adc0e4160800000000000000
+      internalID: 7011555802081790217
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Walk nora16_0: 7154388428832792660
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
