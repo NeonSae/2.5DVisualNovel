@@ -15,5 +15,7 @@ MonoBehaviour:
   speaker: Rando
   text: 'Whatever bro i already know im an NPC in your project made for testing your
     poorly coded poor code , WELL IT WORKS ALRIGHT!!!1F!!!Grrrr '
+  leftPortrait: {fileID: 1452943393, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  rightPortrait: {fileID: 749236350, guid: 0fcbb5392e6df0942b14649c9ec99b77, type: 3}
   nextNode: {fileID: 11400000, guid: c42d7feead1db14438d2679ac4ae0d8a, type: 2}
   choices: []

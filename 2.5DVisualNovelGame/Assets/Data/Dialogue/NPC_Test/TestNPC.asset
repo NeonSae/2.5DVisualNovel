@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Rando
   text: HALLO!!
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 9204437402664373759, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
   nextNode: {fileID: 11400000, guid: ff4b34cf20a4bdd4a86ad14aa3414586, type: 2}
   choices: []

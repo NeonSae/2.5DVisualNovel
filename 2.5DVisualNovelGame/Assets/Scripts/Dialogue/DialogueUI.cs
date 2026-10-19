@@ -12,6 +12,9 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text speakerText;
     [SerializeField] private TMP_Text dialogueText;
+    [Header("Character Portraits")]
+    [SerializeField] private Image leftPortrait;
+    [SerializeField] private Image rightPortrait;
 
     [Header("Choices")]
     [SerializeField] private GameObject choicesPanel;
@@ -27,7 +30,15 @@ public class DialogueUI : MonoBehaviour
     private Coroutine typingCoroutine;
 
     public bool IsTyping { get; private set; }
+    
+    private void UpdatePortraits(DialogueNode node)
+{
+    leftPortrait.sprite = node.leftPortrait;
+    leftPortrait.gameObject.SetActive(node.leftPortrait != null);
 
+    rightPortrait.sprite = node.rightPortrait;
+    rightPortrait.gameObject.SetActive(node.rightPortrait != null);
+}
     public void Show()
     {
         dialoguePanel.SetActive(true);
@@ -50,6 +61,8 @@ public class DialogueUI : MonoBehaviour
 
         speakerText.text = node.speaker;
         dialogueText.text = node.text;
+
+        UpdatePortraits(node);
 
         dialogueText.ForceMeshUpdate();
         dialogueText.maxVisibleCharacters = 0;
