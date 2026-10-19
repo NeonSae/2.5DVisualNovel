@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -12,6 +11,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip startingMusic;
     [SerializeField] private bool playMusicOnStart = true;
 
+    // The music volume set in the Inspector, before the player's setting is applied.
+    private float musicBaseVolume = 1f;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,6 +23,23 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
+
+        if (musicSource != null)
+            musicBaseVolume = musicSource.volume;
+
+        ApplyVolumes();
+        GameSettings.VolumeChanged += ApplyVolumes;
+    }
+
+    private void OnDestroy()
+    {
+        GameSettings.VolumeChanged -= ApplyVolumes;
+    }
+
+    private void ApplyVolumes()
+    {
+        if (musicSource != null)
+            musicSource.volume = musicBaseVolume * GameSettings.MusicVolume;
     }
 
     public void PlaySFX(AudioClip clip, float volume = 1f)
@@ -28,7 +47,7 @@ public class AudioManager : MonoBehaviour
         if (clip == null || sfxSource == null)
             return;
 
-        sfxSource.PlayOneShot(clip, volume);
+        sfxSource.PlayOneShot(clip, volume * GameSettings.SfxVolume);
     }
 
 

@@ -191,7 +191,7 @@ public class CharacterMovement : MonoBehaviour
                 if (clip != null)
                 {
                     footstepSource.clip = clip;
-                    footstepSource.volume = footstepVolume;
+                    footstepSource.volume = footstepVolume * GameSettings.SfxVolume;
                     footstepSource.Play();
                 }
             }
