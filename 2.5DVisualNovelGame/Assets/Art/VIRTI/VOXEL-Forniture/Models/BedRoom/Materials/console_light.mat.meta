@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0b1498befa7fbee4e80e702f6ef03486
+timeCreated: 1541888124
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/console_light.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 13124bb7516ef0740b21fc408c88c1e5
+timeCreated: 1541888140
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/sink_up.mat
+  uploadId: 349282

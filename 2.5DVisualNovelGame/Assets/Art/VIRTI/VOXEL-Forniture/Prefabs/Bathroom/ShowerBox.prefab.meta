@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f142d94c886bdf44a9f5c7ab7b647f91
+timeCreated: 1579031949
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Bathroom/ShowerBox.prefab
+  uploadId: 349282

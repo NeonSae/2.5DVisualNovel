@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b136eb10e68f8c542b86de12c5008644
+timeCreated: 1543626744
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/DinnerRoom/Materials/candles_base2.mat
+  uploadId: 349282

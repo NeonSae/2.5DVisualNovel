@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 357dc097e41719540ab56585293b60b2
+timeCreated: 1541888136
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/trashBin_base.mat
+  uploadId: 349282

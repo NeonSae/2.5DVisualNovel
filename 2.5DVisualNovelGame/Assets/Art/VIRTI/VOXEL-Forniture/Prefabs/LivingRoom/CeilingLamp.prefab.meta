@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 17b2c7d3f7ce7d248bf04bb4363bd80e
+timeCreated: 1556281605
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/LivingRoom/CeilingLamp.prefab
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 15380de23edf5ca4280c145388896e87
+timeCreated: 1556282388
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Roads/Hydrant.prefab
+  uploadId: 349282

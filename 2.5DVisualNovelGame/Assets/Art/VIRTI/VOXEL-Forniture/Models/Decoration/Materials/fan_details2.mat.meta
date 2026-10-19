@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 78103633a5594554abfa056b1887b157
+timeCreated: 1541888128
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Decoration/Materials/fan_details2.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ccf44d1ee8a8cb548bb3952625853955
+timeCreated: 1578936458
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Roads/Materials/mailBox_main.mat
+  uploadId: 349282

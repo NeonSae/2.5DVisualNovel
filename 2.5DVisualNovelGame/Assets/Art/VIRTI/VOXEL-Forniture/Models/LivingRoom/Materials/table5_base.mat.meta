@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 602b27bb62239ba4fae69ae583d7a6b5
+timeCreated: 1541888150
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/LivingRoom/Materials/table5_base.mat
+  uploadId: 349282

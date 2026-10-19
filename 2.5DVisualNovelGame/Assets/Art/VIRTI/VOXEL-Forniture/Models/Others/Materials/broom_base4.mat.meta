@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1cf3e33ebe324b148a9599172cb5fbfb
+timeCreated: 1541888146
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Others/Materials/broom_base4.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 00882ca55fad3d849bee491d3cbb2ce7
+timeCreated: 1556281447
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/DinnerRoom/Plate.prefab
+  uploadId: 349282

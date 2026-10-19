@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9e128f5ca4c2b9a4a816a7d89cd445be
+timeCreated: 1543626732
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Others/Materials/electricGuitar_base2.mat
+  uploadId: 349282

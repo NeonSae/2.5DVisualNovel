@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4a5113983a3a87445b5bf92581ea0adc
+timeCreated: 1556281955
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Decoration/Curtain2.prefab
+  uploadId: 349282

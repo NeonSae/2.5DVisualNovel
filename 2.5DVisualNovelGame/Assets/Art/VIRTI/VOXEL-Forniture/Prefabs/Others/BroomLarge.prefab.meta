@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 779c2fd81514dae41b67d42041b263ce
+timeCreated: 1556281894
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Others/BroomLarge.prefab
+  uploadId: 349282

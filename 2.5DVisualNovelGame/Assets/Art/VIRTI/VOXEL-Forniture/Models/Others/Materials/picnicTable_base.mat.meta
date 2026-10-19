@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ff5b859c720b560429ce7384d82192e4
+timeCreated: 1541888137
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Others/Materials/picnicTable_base.mat
+  uploadId: 349282

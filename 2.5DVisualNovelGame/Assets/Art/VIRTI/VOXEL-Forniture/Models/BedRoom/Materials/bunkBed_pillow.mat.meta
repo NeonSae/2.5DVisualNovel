@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 11419b36cc5d6c940b802a02af4b023e
+timeCreated: 1541888150
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/bunkBed_pillow.mat
+  uploadId: 349282

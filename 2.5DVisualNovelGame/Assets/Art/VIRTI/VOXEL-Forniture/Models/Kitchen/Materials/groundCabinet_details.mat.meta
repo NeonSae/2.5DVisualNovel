@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e98a60875d153af4496798354e57252b
+timeCreated: 1541888156
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/groundCabinet_details.mat
+  uploadId: 349282

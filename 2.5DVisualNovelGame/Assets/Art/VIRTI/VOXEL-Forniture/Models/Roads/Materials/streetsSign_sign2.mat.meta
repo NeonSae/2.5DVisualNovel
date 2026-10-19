@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1d45f869c66a9cb4db536a59cd3a5677
+timeCreated: 1555776786
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Roads/Materials/streetsSign_sign2.mat
+  uploadId: 349282

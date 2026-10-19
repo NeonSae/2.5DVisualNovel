@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 64ff23dadda7f1b419d1699047125cbb
+timeCreated: 1541888151
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Others/Materials/umbrellaStand_base.mat
+  uploadId: 349282

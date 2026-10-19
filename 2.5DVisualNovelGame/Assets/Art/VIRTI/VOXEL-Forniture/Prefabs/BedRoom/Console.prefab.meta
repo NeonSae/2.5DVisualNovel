@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 62041aefde3486b47a6545c358f13e19
+timeCreated: 1556281748
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/BedRoom/Console.prefab
+  uploadId: 349282

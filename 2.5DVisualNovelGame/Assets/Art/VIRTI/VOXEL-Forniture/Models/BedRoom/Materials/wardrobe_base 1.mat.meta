@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 43c7174d378199840baa7ca1ae855fc5
+timeCreated: 1541888147
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/wardrobe_base
+    1.mat
+  uploadId: 349282

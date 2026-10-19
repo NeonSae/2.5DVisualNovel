@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d8e6c676ff9397b46b64dfa1598cd182
+timeCreated: 1541888150
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/bunkBed_wood.mat
+  uploadId: 349282

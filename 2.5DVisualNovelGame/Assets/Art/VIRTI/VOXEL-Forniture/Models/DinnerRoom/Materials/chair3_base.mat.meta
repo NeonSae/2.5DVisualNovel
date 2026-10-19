@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bc3f4ef76fb58db45b4f4bd95d607e6d
+timeCreated: 1541888154
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/DinnerRoom/Materials/chair3_base.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a3830e9f529ef594e859b19a8d295a09
+timeCreated: 1556282407
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Extras/World/Building2.prefab
+  uploadId: 349282

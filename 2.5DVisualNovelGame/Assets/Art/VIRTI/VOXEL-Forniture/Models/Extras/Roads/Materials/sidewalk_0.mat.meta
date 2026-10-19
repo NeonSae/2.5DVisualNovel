@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ba6ed83352dbdf54482a0734e5134444
+timeCreated: 1543108530
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Roads/Materials/sidewalk_0.mat
+  uploadId: 349282

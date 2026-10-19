@@ -1,0 +1,239 @@
+fileFormatVersion: 2
+guid: bbdf46cdd1a6cc647b2a89b32f2a0e5d
+timeCreated: 1543062670
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ceiling
+    100002: concept
+    100004: concept2
+    100006: Cube
+    100008: //RootNode
+    100010: Plane
+    100012: Plane.001
+    100014: roof
+    100016: walls
+    100018: wallsUp
+    400000: ceiling
+    400002: concept
+    400004: concept2
+    400006: Cube
+    400008: //RootNode
+    400010: Plane
+    400012: Plane.001
+    400014: roof
+    400016: walls
+    400018: wallsUp
+    2300000: ceiling
+    2300002: concept
+    2300004: concept2
+    2300006: Cube
+    2300008: Plane
+    2300010: Plane.001
+    2300012: roof
+    2300014: walls
+    2300016: wallsUp
+    3300000: ceiling
+    3300002: concept
+    3300004: concept2
+    3300006: Cube
+    3300008: Plane
+    3300010: Plane.001
+    3300012: roof
+    3300014: walls
+    3300016: wallsUp
+    4300000: Plane.001
+    4300002: wallsUp
+    4300004: walls
+    4300006: roof
+    4300008: ceiling
+    4300010: Cube
+    4300012: concept2
+    4300014: concept
+    4300016: Plane
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a893a03f0ad06854aab055c11a7248fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 1d5bd29464ab99841b0e089316350b51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: e3a560a7188664c46a3dac0cdfb3894a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 7e3fd25b5477f1244a13dd98d14eaecf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_ceiling
+    second: {fileID: 2100000, guid: 8bfaad49f7e65f34fa2739fa5fc711d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem1
+    second: {fileID: 2100000, guid: 9a1e575075bac0d49a32e88828d2b5da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem2
+    second: {fileID: 2100000, guid: acfc208fdba11ce448c6760139b03928, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem3
+    second: {fileID: 2100000, guid: ec96efe25e1939c43957f94ac5a9135d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem4
+    second: {fileID: 2100000, guid: 280b994dc2a5160418c7ac43a7e19b59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem5
+    second: {fileID: 2100000, guid: 0f06339a96f06394cab1777fab22ec18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_gardem6
+    second: {fileID: 2100000, guid: 61ed772593f55ed47b1881940bc89705, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_ground1
+    second: {fileID: 2100000, guid: df7770d875cece7498a12c56f222f716, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_ground2
+    second: {fileID: 2100000, guid: 1a32e7f0b76ea824b8eedd395364e2d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_ground3
+    second: {fileID: 2100000, guid: 2790e4ac26b36364ca13390d1073db2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_ground4
+    second: {fileID: 2100000, guid: 271b7a5d260bbbb438eb87ce9ec2e327, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_roof
+    second: {fileID: 2100000, guid: 8ada52170db7e1543b3eab2ee5efeeac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_wall1
+    second: {fileID: 2100000, guid: 2bb1cb9869d9e7a4aa12f47b70d04d53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_wall2
+    second: {fileID: 2100000, guid: 7e6bc8a7fa7479549b746f71e5d5fd83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_wall3
+    second: {fileID: 2100000, guid: 9cf98d27a55ab4f42936518e2eff7794, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house_wall4
+    second: {fileID: 2100000, guid: 4c6f15716edd54c4aa0a91bd0e387a4d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/HOUSE.fbx
+  uploadId: 349282

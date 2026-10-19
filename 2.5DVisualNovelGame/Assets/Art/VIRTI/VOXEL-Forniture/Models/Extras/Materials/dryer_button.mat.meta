@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0a260f38ac6d3fe408741c96ce5621f6
+timeCreated: 1543081533
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Materials/dryer_button.mat
+  uploadId: 349282

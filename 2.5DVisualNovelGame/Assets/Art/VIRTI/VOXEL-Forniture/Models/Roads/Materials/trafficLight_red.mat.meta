@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: eae5a5af9f36f464f8582f2aadeb112f
+timeCreated: 1541888114
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Roads/Materials/trafficLight_red.mat
+  uploadId: 349282

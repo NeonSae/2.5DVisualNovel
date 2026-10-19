@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 746bfc533c60e15439e0df0ce06b8dbe
+timeCreated: 1541888130
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Decoration/Materials/frame_picture
+    1.mat
+  uploadId: 349282

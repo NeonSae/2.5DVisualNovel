@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 06a6f45dcf5157c4c8af5a65ae131af8
+timeCreated: 1543062666
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Yard/Materials/table2_base.mat
+  uploadId: 349282

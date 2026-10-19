@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a9b621da94676c04892cb1cbddcb658a
+timeCreated: 1541888111
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/steelShape_base.mat
+  uploadId: 349282

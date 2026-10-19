@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 93f9ced8c1207f149a175f7fec22ade1
+timeCreated: 1556281814
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Yard/Grill.prefab
+  uploadId: 349282

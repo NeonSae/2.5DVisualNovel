@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2821c7e867fa6c3418fc604dd1d88f7a
+timeCreated: 1541888140
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/sink_interior.mat
+  uploadId: 349282

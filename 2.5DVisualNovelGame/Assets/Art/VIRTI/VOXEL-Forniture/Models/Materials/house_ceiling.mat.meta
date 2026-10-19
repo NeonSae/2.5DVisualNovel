@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8bfaad49f7e65f34fa2739fa5fc711d7
+timeCreated: 1543062670
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Materials/house_ceiling.mat
+  uploadId: 349282

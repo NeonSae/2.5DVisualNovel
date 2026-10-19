@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 956be9fca55378949bd30b7bc4f5ae04
+timeCreated: 1541888138
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/queenBed_pillow.mat
+  uploadId: 349282

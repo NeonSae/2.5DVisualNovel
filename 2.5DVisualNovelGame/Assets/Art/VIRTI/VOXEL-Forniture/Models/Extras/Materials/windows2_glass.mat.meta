@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c190e3f7b3970cd448d927c68f0ab35d
+timeCreated: 1543095737
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Materials/windows2_glass.mat
+  uploadId: 349282

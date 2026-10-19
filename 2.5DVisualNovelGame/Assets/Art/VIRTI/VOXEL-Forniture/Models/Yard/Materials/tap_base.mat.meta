@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0b7e938c1f1543948bece197e25f8a72
+timeCreated: 1541888136
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Yard/Materials/tap_base.mat
+  uploadId: 349282

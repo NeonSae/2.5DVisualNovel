@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0e10f31c6abfafc468586ef5b012d9bf
+timeCreated: 1541888132
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/nightstand_base.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2b1ab68e56742254994b99a6e7cacadb
+timeCreated: 1579032417
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Decoration/Lamp2.prefab
+  uploadId: 349282

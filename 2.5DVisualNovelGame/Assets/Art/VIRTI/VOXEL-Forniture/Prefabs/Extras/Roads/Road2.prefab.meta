@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 44c8931fbfd327b429e25407a0560344
+timeCreated: 1556282308
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Extras/Roads/Road2.prefab
+  uploadId: 349282

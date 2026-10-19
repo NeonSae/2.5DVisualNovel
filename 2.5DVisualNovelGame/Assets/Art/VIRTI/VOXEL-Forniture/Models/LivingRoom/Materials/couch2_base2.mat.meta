@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0b30aaa45a0b5284485cd23b3bb587c9
+timeCreated: 1541888131
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/LivingRoom/Materials/couch2_base2.mat
+  uploadId: 349282

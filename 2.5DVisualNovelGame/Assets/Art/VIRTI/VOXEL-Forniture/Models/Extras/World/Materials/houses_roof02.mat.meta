@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c2f972d1ef734f448b0f556497f8aeaa
+timeCreated: 1543148636
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/World/Materials/houses_roof02.mat
+  uploadId: 349282

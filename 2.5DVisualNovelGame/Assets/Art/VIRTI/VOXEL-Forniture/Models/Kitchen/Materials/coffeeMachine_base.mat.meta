@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d97d60a8bdf4d1b4bb5f4b998db9c3a3
+timeCreated: 1541888135
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/coffeeMachine_base.mat
+  uploadId: 349282

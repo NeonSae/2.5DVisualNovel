@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 21f4088d1490abb4ca5ba0ed6055246c
+timeCreated: 1556282378
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Roads/BusStop.prefab
+  uploadId: 349282

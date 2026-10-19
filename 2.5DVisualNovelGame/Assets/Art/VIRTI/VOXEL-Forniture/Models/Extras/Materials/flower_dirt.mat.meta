@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bc2e0d36781937942b74a48ed37ba342
+timeCreated: 1543081532
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Materials/flower_dirt.mat
+  uploadId: 349282

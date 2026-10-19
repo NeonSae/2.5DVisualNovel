@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e1789b6ba57e45b44b35250570d5fdc5
+timeCreated: 1556281821
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Yard/Bush2.prefab
+  uploadId: 349282

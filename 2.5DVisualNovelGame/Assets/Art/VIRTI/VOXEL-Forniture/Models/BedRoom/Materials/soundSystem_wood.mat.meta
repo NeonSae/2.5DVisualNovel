@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 21bb11f5d063a4d478d274ecbb1c4c63
+timeCreated: 1541888143
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/soundSystem_wood.mat
+  uploadId: 349282

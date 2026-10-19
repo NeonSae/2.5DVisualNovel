@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a46320d86b734b640918a17604bc53f8
+timeCreated: 1541888113
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Bathroom/Materials/bathTube_base.mat
+  uploadId: 349282

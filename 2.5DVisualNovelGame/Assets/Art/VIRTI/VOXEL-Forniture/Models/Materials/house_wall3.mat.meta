@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9cf98d27a55ab4f42936518e2eff7794
+timeCreated: 1543062669
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Materials/house_wall3.mat
+  uploadId: 349282

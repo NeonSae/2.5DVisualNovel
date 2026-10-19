@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 132f91e52128ca141accd6626600b65d
+timeCreated: 1543104906
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Materials/tree_leaves.mat
+  uploadId: 349282

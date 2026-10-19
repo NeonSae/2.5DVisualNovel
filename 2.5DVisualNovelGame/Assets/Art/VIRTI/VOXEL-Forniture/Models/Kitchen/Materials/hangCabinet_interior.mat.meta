@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f9d8a356c90ac4f469ca4fed41334603
+timeCreated: 1541888135
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Kitchen/Materials/hangCabinet_interior.mat
+  uploadId: 349282

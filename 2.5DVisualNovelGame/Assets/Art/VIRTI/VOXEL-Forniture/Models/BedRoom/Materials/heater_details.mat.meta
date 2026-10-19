@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bb2d97ce76a6d2a4eb926e878b3a0ef3
+timeCreated: 1541888151
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/BedRoom/Materials/heater_details.mat
+  uploadId: 349282

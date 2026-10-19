@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: dd2185568217f7841b93ae61b3f1969b
+timeCreated: 1556281567
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Others/Pan2.prefab
+  uploadId: 349282

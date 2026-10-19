@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b50a05226e4379340b22b447fd7c4dfd
+timeCreated: 1541888118
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/DinnerRoom/Materials/cutlery_base.mat
+  uploadId: 349282

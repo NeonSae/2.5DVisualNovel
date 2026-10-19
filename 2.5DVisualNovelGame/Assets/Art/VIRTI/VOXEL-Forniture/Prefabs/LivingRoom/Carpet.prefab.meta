@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cf20909d044f26242b644f32f1b4b9df
+timeCreated: 1556280820
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/LivingRoom/Carpet.prefab
+  uploadId: 349282

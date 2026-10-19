@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c0703feaf5612194384d9dfdffdcbc2a
+timeCreated: 1541888109
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Others/Materials/campfire_rocks.mat
+  uploadId: 349282

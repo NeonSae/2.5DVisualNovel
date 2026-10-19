@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0c9dbe02567bd094899c98693b4d201e
+timeCreated: 1543104907
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Extras/Materials/tree_trunk.mat
+  uploadId: 349282

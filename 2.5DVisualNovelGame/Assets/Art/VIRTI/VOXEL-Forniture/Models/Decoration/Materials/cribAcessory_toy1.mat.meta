@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 21bf5b6c93b0b274bb02aae4a242c192
+timeCreated: 1579005283
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Models/Decoration/Materials/cribAcessory_toy1.mat
+  uploadId: 349282

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a96fa4d32061bfe4ab54960a8dd95a2e
+timeCreated: 1579005706
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161930
+  packageName: VOXEL Furniture
+  packageVersion: 1.0
+  assetPath: Assets/VIRTI/VOXEL-Forniture/Prefabs/Others/GasCanister.prefab
+  uploadId: 349282
