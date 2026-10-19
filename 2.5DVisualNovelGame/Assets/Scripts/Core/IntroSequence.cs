@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-// Starts the game scene on a black screen: sounds + music + dialogue, then fades in.
+// Starts the game scene on a black screen:
+// (optional narration) -> doorbell -> music -> cutscene dialogue -> fade into the house.
 public class IntroSequence : MonoBehaviour
 {
     [Header("References")]
@@ -12,21 +14,27 @@ public class IntroSequence : MonoBehaviour
     [Tooltip("Scripts turned off during the intro (drag CharacterMovement and PlayerInteractor here).")]
     [SerializeField] private MonoBehaviour[] disableDuringIntro;
 
-    [Header("Dialogue")]
-    [SerializeField] private DialogueNode introDialogue;
-    [SerializeField] private float delayBeforeDialogue = 1f;
+    [Header("1. Narration on black (optional)")]
+    [FormerlySerializedAs("introDialogue")]
+    [SerializeField] private DialogueNode narrationDialogue;
+    [SerializeField] private float delayBeforeStart = 1f;
 
-    [Header("Audio")]
-    [Tooltip("Leave empty to keep the AudioManager's normal music.")]
+    [Header("2. Sounds before the cutscene (doorbell, door opening...)")]
+    [Tooltip("Played one after the other, in order.")]
+    [SerializeField] private AudioClip[] soundsBeforeCutscene;
+    [SerializeField, Range(0f, 1f)] private float soundsVolume = 1f;
+    [Tooltip("Wait after each sound before the next step.")]
+    [SerializeField] private float delayAfterEachSound = 1.5f;
+
+    [Header("3. Music")]
+    [Tooltip("e.g. Door Loop. Untick 'Play Music On Start' on the AudioManager when using this.")]
     [SerializeField] private AudioClip introMusic;
-    [Tooltip("Played on the black screen, before the dialogue.")]
-    [SerializeField] private AudioClip[] soundsBeforeDialogue;
-    [Tooltip("Played after the dialogue, before the fade in (e.g. doorbell, door opening).")]
-    [SerializeField] private AudioClip[] soundsAfterDialogue;
-    [SerializeField] private float delayBetweenSounds = 1.2f;
-    [SerializeField, Range(0f, 1f)] private float soundVolume = 1f;
+    [SerializeField] private float delayAfterMusicStarts = 0.5f;
 
-    [Header("Fade In")]
+    [Header("4. Cutscene")]
+    [SerializeField] private DialogueNode cutsceneDialogue;
+
+    [Header("5. Fade In")]
     [SerializeField] private float delayBeforeFadeIn = 0.5f;
     [SerializeField] private float fadeInDuration = 1.5f;
 
@@ -51,21 +59,35 @@ public class IntroSequence : MonoBehaviour
     {
         DrawDialogueAboveFade();
 
-        if (introMusic != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlayMusic(introMusic);
+        yield return new WaitForSeconds(delayBeforeStart);
 
-        yield return PlaySounds(soundsBeforeDialogue);
+        // 1. Narration on the black screen.
+        yield return PlayDialogue(narrationDialogue);
 
-        yield return new WaitForSeconds(delayBeforeDialogue);
-
-        if (introDialogue != null && dialogueManager != null)
+        // 2. Ding dong / door opening.
+        if (soundsBeforeCutscene != null && AudioManager.Instance != null)
         {
-            dialogueManager.StartDialogue(introDialogue);
-            yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
+            foreach (AudioClip clip in soundsBeforeCutscene)
+            {
+                if (clip == null)
+                    continue;
+
+                AudioManager.Instance.PlaySFX(clip, soundsVolume);
+                yield return new WaitForSeconds(delayAfterEachSound);
+            }
         }
 
-        yield return PlaySounds(soundsAfterDialogue);
+        // 3. Music.
+        if (introMusic != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(introMusic);
+            yield return new WaitForSeconds(delayAfterMusicStarts);
+        }
 
+        // 4. Cutscene (pictures + dialogue).
+        yield return PlayDialogue(cutsceneDialogue);
+
+        // 5. Reveal the house.
         yield return new WaitForSeconds(delayBeforeFadeIn);
 
         if (screenFader != null)
@@ -75,21 +97,16 @@ public class IntroSequence : MonoBehaviour
         IsPlaying = false;
     }
 
-    private IEnumerator PlaySounds(AudioClip[] clips)
+    private IEnumerator PlayDialogue(DialogueNode startNode)
     {
-        if (clips == null)
+        if (startNode == null || dialogueManager == null)
             yield break;
 
-        foreach (AudioClip clip in clips)
-        {
-            if (clip == null)
-                continue;
+        dialogueManager.StartDialogue(startNode);
+        yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
 
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(clip, soundVolume);
-
-            yield return new WaitForSeconds(delayBetweenSounds);
-        }
+        // Small pause so the same E press doesn't skip the next part.
+        yield return new WaitForSeconds(0.3f);
     }
 
     private void DrawDialogueAboveFade()
