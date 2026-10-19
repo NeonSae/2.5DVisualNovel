@@ -16,6 +16,16 @@ public class CharacterMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private Transform cameraTransform;
+    [Tooltip("Untick to stop WASD from moving the character (e.g. in the main menu).")]
+    [SerializeField] private bool playerInputEnabled = true;
+
+    // Scripted walking (used by cutscenes / the main menu).
+    private bool hasMoveTarget;
+    private Vector3 moveTarget;
+    private float moveStopDistance = 0.1f;
+    private bool forceWalkBack;
+
+    public bool IsMovingToTarget => hasMoveTarget;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -44,28 +54,61 @@ public class CharacterMovement : MonoBehaviour
         }
         //Debug.Log("PlayerMovement is running!");
 
-        // Read WASD input
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 movement;
 
-        //Get the camera's horizontal directions
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+        if (hasMoveTarget)
+        {
+            // Walk by itself toward the target point.
+            Vector3 toTarget = moveTarget - transform.position;
+            toTarget.y = 0f;
 
-        forward.y = 0f;
-        right.y = 0f;
+            if (toTarget.magnitude <= moveStopDistance)
+            {
+                hasMoveTarget = false;
+                movement = Vector3.zero;
+            }
+            else
+            {
+                movement = toTarget.normalized;
+            }
+        }
+        else if (playerInputEnabled)
+        {
+            // Read WASD input
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
-        forward.Normalize();
-        right.Normalize();
+            //Get the camera's horizontal directions
+            Vector3 forward = cameraTransform.forward;
+            Vector3 right = cameraTransform.right;
 
-        // Calculate movement relative to the camera 
-        Vector3 movement = forward * vertical + right * horizontal;
+            forward.y = 0f;
+            right.y = 0f;
+
+            forward.Normalize();
+            right.Normalize();
+
+            // Calculate movement relative to the camera
+            movement = forward * vertical + right * horizontal;
+        }
+        else
+        {
+            movement = Vector3.zero;
+        }
 
         // Prevent faster diagonal movement
         movement = Vector3.ClampMagnitude(movement, 1f);
 
         // Move and apply gravity
-        controller.SimpleMove(movement * moveSpeed);
+        if (controller.enabled)
+        {
+            controller.SimpleMove(movement * moveSpeed);
+        }
+        else
+        {
+            // No CharacterController (e.g. main menu): just slide the transform.
+            transform.position += movement * moveSpeed * Time.deltaTime;
+        }
 
         bool isMoving = movement.sqrMagnitude > 0.01f;
 
@@ -73,7 +116,16 @@ public class CharacterMovement : MonoBehaviour
 
         if (isMoving)
         {
-            UpdateFacing(movement);
+            if (hasMoveTarget && forceWalkBack)
+            {
+                // Always show the "walking away from the camera" animation.
+                facingDirection = 4;
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                UpdateFacing(movement);
+            }
             PlayAnimation("Walk");
         }
         else
@@ -84,6 +136,21 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+    }
+
+    // Makes the character walk by itself to a point (ignores WASD until it arrives).
+    // walkBack = true always plays the "walking away from the camera" animation.
+    public void MoveTo(Vector3 worldPosition, bool walkBack = false, float stopDistance = 0.1f)
+    {
+        moveTarget = worldPosition;
+        moveStopDistance = stopDistance;
+        forceWalkBack = walkBack;
+        hasMoveTarget = true;
+    }
+
+    public void StopMoveTo()
+    {
+        hasMoveTarget = false;
     }
 
     private void UpdateFacing(Vector3 movement)
