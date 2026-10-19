@@ -17,6 +17,6 @@ MonoBehaviour:
 
 '
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
-  nextNode: {fileID: 0}
+  rightPortrait: {fileID: 993475445, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  nextNode: {fileID: 11400000, guid: 2d44981c277335648b424c38d5d143f8, type: 2}
   choices: []

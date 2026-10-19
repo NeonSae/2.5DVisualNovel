@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
   text: "Oops.. That\u2019s her parents room..!\r\n"
-  leftPortrait: {fileID: 0}
+  leftPortrait: {fileID: -1575137907, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
   nextNode: {fileID: 11400000, guid: c1bd3a8095c79e642a509586e7375b52, type: 2}
   choices: []

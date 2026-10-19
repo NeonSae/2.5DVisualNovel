@@ -15,6 +15,6 @@ MonoBehaviour:
   speaker: Stella
   text: 'Oh okay.. I''m sorry.. Let''s get you somewhere to calm down okay..? '
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
-  nextNode: {fileID: 0}
+  rightPortrait: {fileID: 993475445, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  nextNode: {fileID: 11400000, guid: 38f8a3cce3ab131499b8432a3c9fd887, type: 2}
   choices: []

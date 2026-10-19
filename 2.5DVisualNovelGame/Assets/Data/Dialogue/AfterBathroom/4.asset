@@ -13,8 +13,21 @@ MonoBehaviour:
   m_Name: 4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: "I\u2019m serious!!! It was terrifying!!\r\n\n"
+  text: '
+
+
+'
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   nextNode: {fileID: 0}
-  choices: []
+  choices:
+  - choiceText: "I\u2019m serious!!! It was terrifying!!"
+    nextNode: {fileID: 11400000, guid: b98cdb620111352488c0d563cafd6895, type: 2}
+    conditionMode: 0
+    conditions: []
+    effects: []
+  - choiceText: Haha Very funny....nevermind
+    nextNode: {fileID: 11400000, guid: b98cdb620111352488c0d563cafd6895, type: 2}
+    conditionMode: 0
+    conditions: []
+    effects: []

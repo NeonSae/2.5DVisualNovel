@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
+  m_Name: Choice
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speaker: Nora
+  text: 
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 0}
+  nextNode: {fileID: 0}
+  choices:
+  - choiceText: '''Explore a little longer'''
+    nextNode: {fileID: 11400000, guid: 18f4623495422c54ea71e58b5a2fe98a, type: 2}
+    conditionMode: 0
+    conditions: []
+    effects: []
+  - choiceText: Go with stella
+    nextNode: {fileID: 11400000, guid: 4e9c3bac93efc584d9e4b6eac2fbe1a0, type: 2}
+    conditionMode: 0
+    conditions: []
+    effects: []

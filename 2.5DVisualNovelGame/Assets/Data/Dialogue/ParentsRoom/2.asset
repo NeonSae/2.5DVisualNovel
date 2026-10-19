@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
   text: "\r\n\u2026?\r\n"
-  leftPortrait: {fileID: 0}
+  leftPortrait: {fileID: 1452943393, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
   nextNode: {fileID: 11400000, guid: 3ba3ab9717c60d64bb7e1ffc72c13db4, type: 2}
   choices: []
