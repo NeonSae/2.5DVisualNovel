@@ -1,5 +1,5 @@
-
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class RoomTransitionManager : MonoBehaviour
@@ -8,6 +8,10 @@ public class RoomTransitionManager : MonoBehaviour
     [SerializeField] private ScreenFader screenFader;
     [SerializeField] private Transform player;
     [SerializeField] private CharacterController characterController;
+
+    [Header("Camera")]
+    [SerializeField] private CinemachineCamera cinemachineCamera;
+    [SerializeField] private CinemachineConfiner3D cameraConfiner;
 
     [Header("Room Transition Audio")]
     [SerializeField] private AudioClip leaveRoomSound;
@@ -20,13 +24,18 @@ public class RoomTransitionManager : MonoBehaviour
 
     public void EnterRoom(Transform destination)
     {
+        EnterRoom(destination, null);
+    }
+
+    public void EnterRoom(Transform destination, Collider roomCameraBounds)
+    {
         if (isTransitioning || destination == null)
             return;
 
-        StartCoroutine(TransitionRoutine(destination));
+        StartCoroutine(TransitionRoutine(destination, roomCameraBounds));
     }
 
-    private IEnumerator TransitionRoutine(Transform destination)
+    private IEnumerator TransitionRoutine(Transform destination, Collider roomCameraBounds)
     {
         isTransitioning = true;
 
@@ -43,6 +52,17 @@ public class RoomTransitionManager : MonoBehaviour
             destination.rotation
         );
         characterController.enabled = true;
+
+        // Switch the camera to the new room's bounds.
+        if (cameraConfiner != null && roomCameraBounds != null)
+            cameraConfiner.BoundingVolume = roomCameraBounds;
+
+        // Snap the camera to the player instead of sliding there.
+        if (cinemachineCamera != null)
+            cinemachineCamera.PreviousStateIsValid = false;
+
+        // Give the camera one frame to move while the screen is still black.
+        yield return null;
 
         // Sound of arriving in the destination room.
         PlayTransitionSound(enterRoomSound);

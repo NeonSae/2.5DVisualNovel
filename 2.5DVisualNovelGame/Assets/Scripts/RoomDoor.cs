@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using static Iinteractable;
 
@@ -7,6 +6,9 @@ public class RoomDoor : MonoBehaviour, IInteractable
     [SerializeField] private string prompt = "Enter";
     [SerializeField] private Transform destination;
     [SerializeField] private RoomTransitionManager transitionManager;
+
+    [Tooltip("The camera box of the room this door leads TO.")]
+    [SerializeField] private Collider roomCameraBounds;
 
     public string InteractionPrompt => prompt;
 
@@ -21,6 +23,6 @@ public class RoomDoor : MonoBehaviour, IInteractable
             return;
         }
 
-        transitionManager.EnterRoom(destination);
+        transitionManager.EnterRoom(destination, roomCameraBounds);
     }
 }

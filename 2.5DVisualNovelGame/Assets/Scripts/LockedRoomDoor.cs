@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using static Iinteractable;
 
@@ -11,6 +10,9 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
     [SerializeField] private Inventory inventory;
     [SerializeField] private RoomTransitionManager transitionManager;
     [SerializeField] private Transform destination;
+
+    [Tooltip("The camera box of the room this door leads TO.")]
+    [SerializeField] private Collider roomCameraBounds;
 
     [Header("Messages")]
     [SerializeField] private string lockedMessage = "It's locked.";
@@ -35,7 +37,7 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
             return;
         }
 
-        if (transitionManager == null || destination == null)   
+        if (transitionManager == null || destination == null)
         {
             Debug.LogWarning(
                 "Missing transition manager or destination on " + gameObject.name
@@ -44,6 +46,6 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
         }
 
         Debug.Log(unlockedMessage);
-        transitionManager.EnterRoom(destination);
+        transitionManager.EnterRoom(destination, roomCameraBounds);
     }
 }
