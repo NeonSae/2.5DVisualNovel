@@ -85,7 +85,7 @@ public class DialogueUI : MonoBehaviour
         dialogueText.maxVisibleCharacters = int.MaxValue;
 
         IsTyping = false;   
-        typingCoroutine = null;
+        typingCoroutine = null; 
 
         continueIndicator.SetActive(canContinueWithE);
     }
