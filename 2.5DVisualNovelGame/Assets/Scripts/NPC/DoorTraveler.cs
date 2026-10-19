@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Put this on an NPC so it can follow the player through doors.
-// Follow on + delay 0  = arrives with the player (companion, e.g. Stella).
-// Follow on + delay 2  = bursts through the door 2 seconds later (chaser).
+// - "Follow Player Through Doors" ticked = follows through EVERY door (chasers).
+//   Delay 0 = arrives with the player, delay 2 = bursts in 2 seconds later.
+// - FollowNextDoorOnly() = follows through the next door the player takes, once
+//   (companions like Stella, who then lead the way with an NpcGuide).
 public class DoorTraveler : MonoBehaviour
 {
     public static readonly List<DoorTraveler> All = new List<DoorTraveler>();
@@ -16,7 +18,12 @@ public class DoorTraveler : MonoBehaviour
 
     private NpcMovement npcMovement;
 
+    // Follows through every door.
     public bool FollowPlayer { get; set; }
+
+    // Follows through the next door only.
+    public bool FollowOnce { get; private set; }
+
     public float ArrivalDelay => arrivalDelay;
     public Vector3 ArrivalOffset => arrivalOffset;
 
@@ -36,10 +43,31 @@ public class DoorTraveler : MonoBehaviour
         All.Remove(this);
     }
 
+    public void FollowNextDoorOnly()
+    {
+        FollowOnce = true;
+    }
+
+    // Called by the RoomTransitionManager when the player goes through a door.
+    // Returns true if this NPC should come along this time.
+    public bool ShouldFollowNow()
+    {
+        if (FollowPlayer)
+            return true;
+
+        if (FollowOnce)
+        {
+            FollowOnce = false;
+            return true;
+        }
+
+        return false;
+    }
+
     public void ArriveAt(Vector3 worldPosition)
     {
         if (npcMovement != null)
-            npcMovement.WarpTo(worldPosition);
+            npcMovement.ArriveThroughDoor(worldPosition);
         else
             transform.position = worldPosition;
     }

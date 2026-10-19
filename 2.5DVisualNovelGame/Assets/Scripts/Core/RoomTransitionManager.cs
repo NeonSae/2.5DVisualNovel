@@ -89,7 +89,7 @@ public class RoomTransitionManager : MonoBehaviour
         // Copy the list: travelers may be added/removed while we loop.
         foreach (DoorTraveler traveler in DoorTraveler.All.ToArray())
         {
-            if (traveler == null || !traveler.FollowPlayer)
+            if (traveler == null || !traveler.ShouldFollowNow())
                 continue;
 
             // Keep the NPC's own height compared to the player (different pivots/sizes).
@@ -109,7 +109,7 @@ public class RoomTransitionManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (traveler != null && traveler.FollowPlayer)
+        if (traveler != null)
             traveler.ArriveAt(arrival);
     }
 

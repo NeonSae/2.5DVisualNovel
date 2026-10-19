@@ -9,6 +9,21 @@ public class NpcMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2.5f;
     [SerializeField] private float stopDistance = 0.1f;
+    [Tooltip("When going through a door, appear this far from the player's arrival spot.")]
+    [SerializeField] private Vector3 doorArrivalOffset = new Vector3(0.8f, 0f, 0f);
+
+    // Fired every time this NPC comes out of a door (used by NpcGuide).
+    public event Action ArrivedThroughDoor;
+
+    [Header("Ground")]
+    [Tooltip("Keep the NPC standing on the floor (fixes floating / sinking after doors).")]
+    [SerializeField] private bool snapToGround = true;
+    [Tooltip("How high above the NPC we start looking for the floor.")]
+    [SerializeField] private float groundCheckHeight = 2f;
+
+    // Height of the NPC above the floor, measured where it was placed in the scene.
+    private float groundOffset;
+    private bool hasGroundOffset;
 
     [Header("Sprite")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -34,7 +49,51 @@ public class NpcMovement : MonoBehaviour
 
     private void Start()
     {
+        // Remember how high above the floor the NPC was placed (like Nora's feet).
+        if (TryGetGroundY(transform.position, out float groundY))
+        {
+            groundOffset = transform.position.y - groundY;
+            hasGroundOffset = true;
+        }
+
         ShowIdleFrame();
+    }
+
+    private void SnapToGround()
+    {
+        if (!snapToGround || !hasGroundOffset)
+            return;
+
+        if (TryGetGroundY(transform.position, out float groundY))
+        {
+            Vector3 position = transform.position;
+            position.y = groundY + groundOffset;
+            transform.position = position;
+        }
+    }
+
+    // Finds the floor under a point (ignores triggers, the player and this NPC).
+    private bool TryGetGroundY(Vector3 position, out float groundY)
+    {
+        groundY = 0f;
+        Vector3 origin = position + Vector3.up * groundCheckHeight;
+
+        RaycastHit[] hits = Physics.RaycastAll(origin, Vector3.down, groundCheckHeight + 20f, ~0, QueryTriggerInteraction.Ignore);
+        float closest = float.MaxValue;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider is CharacterController || hit.transform.IsChildOf(transform))
+                continue;
+
+            if (hit.distance < closest)
+            {
+                closest = hit.distance;
+                groundY = hit.point.y;
+            }
+        }
+
+        return closest < float.MaxValue;
     }
 
     // Walk to a point (keeps its own height). onArrived is called when it gets there.
@@ -52,6 +111,7 @@ public class NpcMovement : MonoBehaviour
         hasTarget = false;
         onArrived = null;
         transform.position = worldPosition;
+        SnapToGround();
         ShowIdleFrame();
     }
 
@@ -85,9 +145,26 @@ public class NpcMovement : MonoBehaviour
         if (nearest == null)
             return false;
 
-        // Appear at the door's arrival point (same spot the player would arrive).
-        WarpTo(nearest.Destination.position);
+        return UseDoor(nearest);
+    }
+
+    // Goes through a specific door and appears where it leads
+    // (next to the player's arrival spot, so they don't overlap later).
+    public bool UseDoor(RoomDoor door)
+    {
+        if (door == null || door.Destination == null)
+            return false;
+
+        Transform destination = door.Destination;
+        ArriveThroughDoor(destination.position + destination.rotation * doorArrivalOffset);
         return true;
+    }
+
+    // Appear in a new room through a door (tells NpcGuide "I arrived somewhere new").
+    public void ArriveThroughDoor(Vector3 worldPosition)
+    {
+        WarpTo(worldPosition);
+        ArrivedThroughDoor?.Invoke();
     }
 
     public void FaceTowards(Vector3 worldPosition)
@@ -121,6 +198,7 @@ public class NpcMovement : MonoBehaviour
         Vector3 direction = toTarget.normalized;
         float step = Mathf.Min(moveSpeed * Time.deltaTime, toTarget.magnitude);
         transform.position += direction * step;
+        SnapToGround();
 
         UpdateFacing(direction);
         AnimateWalk();

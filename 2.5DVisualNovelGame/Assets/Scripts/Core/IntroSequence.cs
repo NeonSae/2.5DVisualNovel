@@ -51,7 +51,7 @@ public class IntroSequence : MonoBehaviour
     [Tooltip("NPC that walks somewhere after the follow-up dialogue (e.g. Stella).")]
     [SerializeField] private NpcMovement npcToMove;
     [SerializeField] private Transform npcDestination;
-    [Tooltip("NPCs that start following the player through doors.")]
+    [Tooltip("NPCs that come along through the NEXT door the player takes (once).")]
     [SerializeField] private DoorTraveler[] startFollowingPlayer;
 
     public bool IsPlaying { get; private set; }
@@ -137,7 +137,7 @@ public class IntroSequence : MonoBehaviour
             foreach (DoorTraveler traveler in startFollowingPlayer)
             {
                 if (traveler != null)
-                    traveler.FollowPlayer = true;
+                    traveler.FollowNextDoorOnly();
             }
         }
     }

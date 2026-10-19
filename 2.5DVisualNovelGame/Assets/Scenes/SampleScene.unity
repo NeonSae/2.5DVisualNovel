@@ -3638,7 +3638,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &224210119
 GameObject:
@@ -8327,7 +8327,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &423528443
 GameObject:
@@ -9262,7 +9262,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &483007553 stripped
 Transform:
@@ -9447,8 +9447,8 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 14
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
@@ -9468,7 +9468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.013050891, g: 0.019525284, b: 0.14716971, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13328,7 +13328,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &693607714
 GameObject:
@@ -13885,6 +13885,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4524322512791346, guid: ee5193e7bd710d6419dfd56d2f440b55, type: 3}
   m_PrefabInstance: {fileID: 654102058}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &710348839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 710348840}
+  m_Layer: 0
+  m_Name: StellaPoint_Corridor2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &710348840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710348839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.319984, y: 0.39999995, z: 2.7834392}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &711662906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4958236278002290, guid: a5a37a5c4f5bf6c4ea5718d42b41527e, type: 3}
@@ -16327,7 +16358,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
@@ -17724,7 +17755,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &872881785
 GameObject:
@@ -21970,6 +22001,7 @@ MonoBehaviour:
   cutsceneImage: {fileID: 0}
   cutsceneFadeDuration: 0.3
   cutsceneEndFadeDuration: 2.5
+  cutsceneBoxColor: {r: 0.05, g: 0.13, b: 0.15, a: 0.92}
   voiceSource: {fileID: 0}
   speakerVoices: []
   defaultBlip: {fileID: 0}
@@ -22228,6 +22260,7 @@ MonoBehaviour:
   cutsceneImage: {fileID: 423528445}
   cutsceneFadeDuration: 0.3
   cutsceneEndFadeDuration: 2.5
+  cutsceneBoxColor: {r: 0.05, g: 0.13, b: 0.15, a: 0.92}
   voiceSource: {fileID: 1137522899}
   speakerVoices:
   - speakerName: Nora
@@ -22628,7 +22661,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1163954087
 GameObject:
@@ -24223,37 +24256,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 371400ce2049f0e4595622dbad6e6329, type: 3}
---- !u!1 &1228305554
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1228305555}
-  m_Layer: 0
-  m_Name: StellaDoorPoint_Corridor1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1228305555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228305554}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.840963, y: 0.57691646, z: 4.6034303}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230336788
 GameObject:
   m_ObjectHideFlags: 0
@@ -24922,7 +24924,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1273318646
 GameObject:
@@ -26259,7 +26261,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1350863569 stripped
 Transform:
@@ -29205,7 +29207,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1465874174 stripped
 Transform:
@@ -29498,7 +29500,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1498103082
 GameObject:
@@ -29896,7 +29898,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1505897002
 GameObject:
@@ -31315,8 +31317,8 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 14
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
@@ -31336,7 +31338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.013050891, g: 0.019525284, b: 0.14716971, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31606,6 +31608,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633859646}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1643636386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643636387}
+  m_Layer: 0
+  m_Name: StellaPoint_StellasRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1643636387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643636386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.27705, y: 0.3999998, z: 2.5906346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1647031922
 GameObject:
   m_ObjectHideFlags: 0
@@ -32750,37 +32783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionLock
   lockedAtStart: 1
---- !u!1 &1742027148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1742027149}
-  m_Layer: 0
-  m_Name: StellaTP_LivingRoom_Corridor1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1742027149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742027148}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.840963, y: 0.57691646, z: -0.27}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742732141
 GameObject:
   m_ObjectHideFlags: 0
@@ -35096,15 +35098,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1860961739}
   - component: {fileID: 1860961738}
-  - component: {fileID: 1860961740}
-  - component: {fileID: 1860961741}
   m_Layer: 0
   m_Name: Trigger_Corridor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1860961738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35141,42 +35141,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1860961740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860961737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5700162dc9a480449da004f23da644e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NpcMoveTrigger
-  npc: {fileID: 2062585952}
-  destination: {fileID: 1228305555}
-  onlyOnce: 1
-  delay: 0
-  useNearestDoorAfterArriving: 1
-  doorDelay: 1
-  maxDoorDistance: 2
-  doorSound: {fileID: 8300000, guid: 929b3e04e0e9a8745a535f3510ee8b63, type: 3}
---- !u!114 &1860961741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860961737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c7bc6ba5ee7e8840a559ba96b7a95dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NpcTeleportTrigger
-  npc: {fileID: 2062585953}
-  teleportPoint: {fileID: 1742027149}
-  onlyOnce: 1
-  delay: 0.2
 --- !u!1001 &1865633331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35935,6 +35899,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.111, y: 0.5, z: 2.25556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1899879940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1899879941}
+  m_Layer: 0
+  m_Name: StellaPoint_Corridor1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1899879941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899879940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.727169, y: 0.41, z: 4.6858115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37973,7 +37968,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2001415420
 GameObject:
@@ -40040,6 +40035,7 @@ GameObject:
   - component: {fileID: 2062585952}
   - component: {fileID: 2062585951}
   - component: {fileID: 2062585954}
+  - component: {fileID: 2062585955}
   m_Layer: 0
   m_Name: Stella
   m_TagString: Untagged
@@ -40076,6 +40072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NpcMovement
   moveSpeed: 2.5
   stopDistance: 0.1
+  doorArrivalOffset: {x: 0.8, y: 0, z: 0}
+  snapToGround: 1
+  groundCheckHeight: 2
   spriteRenderer: {fileID: 1434882978}
   framesPerSecond: 8
   walkFront:
@@ -40144,6 +40143,40 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2062585955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062585950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ae688bf18682541ba872dcdea0e607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcGuide
+  steps:
+  - note: Corridor 1
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 1899879941}
+    door: {fileID: 1510866234}
+    waitBeforeDoor: 0.5
+    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+  - note: Corridor 2
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 710348840}
+    door: {fileID: 1414896571}
+    waitBeforeDoor: 0.5
+    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+  - note: Stella's room (end)
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 1643636387}
+    door: {fileID: 0}
+    waitBeforeDoor: 1
+    doorSound: {fileID: 0}
 --- !u!1 &2065744089
 GameObject:
   m_ObjectHideFlags: 0
@@ -40685,7 +40718,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2085602319
 GameObject:
@@ -46207,8 +46240,9 @@ SceneRoots:
   - {fileID: 849615167}
   - {fileID: 19447971}
   - {fileID: 1860961739}
-  - {fileID: 1228305555}
-  - {fileID: 1742027149}
+  - {fileID: 1899879941}
+  - {fileID: 710348840}
+  - {fileID: 1643636387}
   - {fileID: 409048448}
   - {fileID: 1137522895}
   - {fileID: 1134455678}
