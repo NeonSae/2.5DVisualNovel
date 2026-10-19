@@ -22001,7 +22001,6 @@ MonoBehaviour:
   cutsceneImage: {fileID: 0}
   cutsceneFadeDuration: 0.3
   cutsceneEndFadeDuration: 2.5
-  cutsceneBoxColor: {r: 0.05, g: 0.13, b: 0.15, a: 0.92}
   voiceSource: {fileID: 0}
   speakerVoices: []
   defaultBlip: {fileID: 0}
@@ -22260,7 +22259,6 @@ MonoBehaviour:
   cutsceneImage: {fileID: 423528445}
   cutsceneFadeDuration: 0.3
   cutsceneEndFadeDuration: 2.5
-  cutsceneBoxColor: {r: 0.05, g: 0.13, b: 0.15, a: 0.92}
   voiceSource: {fileID: 1137522899}
   speakerVoices:
   - speakerName: Nora
