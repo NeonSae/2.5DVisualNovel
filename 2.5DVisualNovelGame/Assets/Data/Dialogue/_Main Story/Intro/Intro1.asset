@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: Intro3
+  m_Name: Intro1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: 
-  text: 'I was surprised when she invited me to a sleepover during her college break. I can''t wait to see her.'
+  speaker: Nora
+  text: It's been so long since the last time I spoke to Stella.
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
-  nextNode: {fileID: 0}
+  cutsceneImage: {fileID: 0}
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 81e2204353854f0e92f5e4fbe62aa4fd, type: 2}
   choices: []

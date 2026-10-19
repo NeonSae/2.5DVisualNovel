@@ -13,6 +13,8 @@ public class ScreenFader : MonoBehaviour
     // The canvas the fade image is drawn on.
     public Canvas FadeCanvas => fadeImage != null ? fadeImage.canvas : null;
 
+    public Transform FadeImageTransform => fadeImage != null ? fadeImage.transform : null;
+
     public IEnumerator FadeToBlack()
     {
         yield return Fade(0f, 1f, fadeDuration);

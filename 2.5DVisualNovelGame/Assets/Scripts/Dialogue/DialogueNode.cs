@@ -21,6 +21,10 @@ public class DialogueNode : ScriptableObject
     [Tooltip("Full-screen picture shown during this line. Leave empty to keep the previous picture (or no picture at all).")]
     public Sprite cutsceneImage;
 
+    [Header("Audio")]
+    [Tooltip("Music that starts when this line appears. Leave empty to keep the current music.")]
+    public AudioClip startMusic;
+
     [Header("Dialogue Flow")]
     public DialogueNode nextNode;
 

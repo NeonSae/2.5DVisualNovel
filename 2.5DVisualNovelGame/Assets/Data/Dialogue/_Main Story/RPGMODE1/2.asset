@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: Intro1
+  m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: 
-  text: 'It''s been so long since the last time I spoke to Stella.'
+  speaker: Stella
+  text: Cmon! Lets go to my room
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 81e2204353854f0e92f5e4fbe62aa4fd, type: 2}
+  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: a6a9383d065cc5e45a9e98287443a92e, type: 2}
   choices: []

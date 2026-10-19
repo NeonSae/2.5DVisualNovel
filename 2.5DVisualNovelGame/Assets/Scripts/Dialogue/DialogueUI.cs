@@ -27,7 +27,10 @@ public class DialogueUI : MonoBehaviour
     [Header("Cutscene Image")]
     [Tooltip("Full-screen Image placed BEHIND the dialogue box.")]
     [SerializeField] private Image cutsceneImage;
-    [SerializeField] private float cutsceneFadeDuration = 0.3f;
+    [Tooltip("Fade time when switching from one picture to another (fade out + fade in).")]
+    [SerializeField] private float cutsceneFadeDuration = 0.4f;
+    [Tooltip("Fade-out time of the last picture when the dialogue ends.")]
+    [SerializeField] private float cutsceneEndFadeDuration = 1.5f;
 
     [Header("Voice Blips")]
     [SerializeField] private AudioSource voiceSource;
@@ -58,6 +61,16 @@ public class DialogueUI : MonoBehaviour
     private float currentMaxPitch = 1f;
 
     public bool IsTyping { get; private set; }
+
+    private void Awake()
+    {
+        // The cutscene picture always starts hidden (it only shows during a cutscene line).
+        if (cutsceneImage != null)
+        {
+            cutsceneImage.gameObject.SetActive(false);
+            cutsceneImage.sprite = null;
+        }
+    }
 
     private void UpdatePortraits(DialogueNode node)
 {
@@ -206,45 +219,61 @@ public class DialogueUI : MonoBehaviour
         if (cutsceneImage.gameObject.activeSelf && cutsceneImage.sprite == node.cutsceneImage)
             return;
 
-        cutsceneImage.sprite = node.cutsceneImage;
-        cutsceneImage.gameObject.SetActive(true);
-
         if (cutsceneFadeCoroutine != null)
             StopCoroutine(cutsceneFadeCoroutine);
-        cutsceneFadeCoroutine = StartCoroutine(FadeCutsceneImage());
+        cutsceneFadeCoroutine = StartCoroutine(SwitchCutsceneImage(node.cutsceneImage));
     }
 
-    private IEnumerator FadeCutsceneImage()
+    // Fade out the old picture (if any), swap, then fade in the new one.
+    private IEnumerator SwitchCutsceneImage(Sprite newSprite)
+    {
+        bool wasShowing = cutsceneImage.gameObject.activeSelf && cutsceneImage.sprite != null;
+
+        if (wasShowing)
+            yield return FadeCutsceneAlpha(cutsceneImage.color.a, 0f, cutsceneFadeDuration);
+
+        cutsceneImage.sprite = newSprite;
+        cutsceneImage.gameObject.SetActive(true);
+
+        yield return FadeCutsceneAlpha(0f, 1f, cutsceneFadeDuration);
+        cutsceneFadeCoroutine = null;
+    }
+
+    private IEnumerator FadeCutsceneAlpha(float from, float to, float duration)
     {
         Color color = cutsceneImage.color;
         float elapsed = 0f;
 
-        while (elapsed < cutsceneFadeDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
-            color.a = Mathf.Clamp01(elapsed / cutsceneFadeDuration);
+            color.a = Mathf.Lerp(from, to, Mathf.Clamp01(elapsed / duration));
             cutsceneImage.color = color;
             yield return null;
         }
 
-        color.a = 1f;
+        color.a = to;
         cutsceneImage.color = color;
-        cutsceneFadeCoroutine = null;
     }
 
     private void HideCutsceneImage()
     {
-        if (cutsceneImage == null)
+        if (cutsceneImage == null || !cutsceneImage.gameObject.activeSelf)
             return;
 
         if (cutsceneFadeCoroutine != null)
-        {
             StopCoroutine(cutsceneFadeCoroutine);
-            cutsceneFadeCoroutine = null;
-        }
+        cutsceneFadeCoroutine = StartCoroutine(FadeOutCutsceneImage());
+    }
+
+    // Slow fade of the last picture when the dialogue ends.
+    private IEnumerator FadeOutCutsceneImage()
+    {
+        yield return FadeCutsceneAlpha(cutsceneImage.color.a, 0f, cutsceneEndFadeDuration);
 
         cutsceneImage.gameObject.SetActive(false);
         cutsceneImage.sprite = null;
+        cutsceneFadeCoroutine = null;
     }
 
     // ---------- Choices ----------

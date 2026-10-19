@@ -41,6 +41,9 @@ public class DialogueManager : MonoBehaviour
     {
         currentNode = node;
 
+        if (node.startMusic != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlayMusic(node.startMusic);
+
         dialogueUI.Show();
 
         bool canContinueWithE = currentNode.choices == null || currentNode.choices.Length == 0;

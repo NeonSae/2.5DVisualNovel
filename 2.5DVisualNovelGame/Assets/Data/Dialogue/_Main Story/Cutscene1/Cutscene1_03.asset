@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 2
+  m_Name: Cutscene1_03
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Stella
-  text: Cmon! Lets go to my room
+  text: Nora! I'm so glad you're here! I missed you so much!
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  nextNode: {fileID: 0}
+  rightPortrait: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: 71e1ec31c0aa83448ac0358e04de9286, type: 3}
+  startMusic: {fileID: 8300000, guid: 347bc004293b4b94c8c2133fc56d9f43, type: 3}
+  nextNode: {fileID: 11400000, guid: 536ad828379f4d9296d542bf5689bd2d, type: 2}
   choices: []

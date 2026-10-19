@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
+  speaker: Nora
   text: ' -Wow.. her house is sure huge.. actually this is my first time coming over..
 
 '
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  nextNode: {fileID: 0}
+  cutsceneImage: {fileID: 0}
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 23c617099bc6c734fa273f652d165d06, type: 2}
   choices: []
