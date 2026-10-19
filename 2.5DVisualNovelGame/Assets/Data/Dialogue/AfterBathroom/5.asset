@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Nora
-  text: "I\u2019m serious!!! It was terrifying!!\r\n\n"
+  speaker: Stella
+  text: 'Oh okay.. I''m sorry.. Let''s get you somewhere to calm down okay..? '
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   nextNode: {fileID: 0}
