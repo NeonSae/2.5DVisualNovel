@@ -12,6 +12,9 @@ public class RoomDoor : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => prompt;
 
+    // Where this door leads (also used by NPCs going through doors).
+    public Transform Destination => destination;
+
     public void Interact()
     {
         if (destination == null || transitionManager == null)

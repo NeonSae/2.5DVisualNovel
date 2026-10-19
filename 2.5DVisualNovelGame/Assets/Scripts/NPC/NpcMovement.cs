@@ -55,6 +55,41 @@ public class NpcMovement : MonoBehaviour
         ShowIdleFrame();
     }
 
+    // Goes through the closest door (within maxDistance) and appears where it leads.
+    // Returns false if no usable door was close enough.
+    public bool UseNearestDoor(float maxDistance = 5f, bool ignoreLockedDoors = true)
+    {
+        RoomDoor nearest = null;
+        float nearestDistance = maxDistance;
+
+        foreach (RoomDoor door in FindObjectsByType<RoomDoor>(FindObjectsSortMode.None))
+        {
+            if (door.Destination == null)
+                continue;
+
+            if (ignoreLockedDoors)
+            {
+                InteractionLock doorLock = door.GetComponentInParent<InteractionLock>();
+                if (doorLock != null && doorLock.IsLocked)
+                    continue;
+            }
+
+            float distance = Vector3.Distance(transform.position, door.transform.position);
+            if (distance <= nearestDistance)
+            {
+                nearestDistance = distance;
+                nearest = door;
+            }
+        }
+
+        if (nearest == null)
+            return false;
+
+        // Appear at the door's arrival point (same spot the player would arrive).
+        WarpTo(nearest.Destination.position);
+        return true;
+    }
+
     public void FaceTowards(Vector3 worldPosition)
     {
         Vector3 direction = worldPosition - transform.position;
