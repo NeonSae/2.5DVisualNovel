@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 402380467}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 752796078}
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 1434332542}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 790925395}
@@ -3683,7 +3683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 46967715}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 2098738446}
@@ -6783,7 +6783,7 @@ Transform:
   m_GameObject: {fileID: 872881785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014299665, y: -0.01000002, z: -5.0449996}
+  m_LocalPosition: {x: -0, y: -0.01000002, z: -5.03}
   m_LocalScale: {x: 0.7062825, y: -0.0135916, z: 0.7554314}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10565,7 +10565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 931422522}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 369516279}
@@ -11244,7 +11244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 1053230358}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 1059394431}
@@ -11368,7 +11368,7 @@ Transform:
   m_GameObject: {fileID: 1434332541}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27, y: -12.7, z: 0.91}
+  m_LocalPosition: {x: -27, y: -12.7, z: 12.13}
   m_LocalScale: {x: 0.82718813, y: 0.5291376, z: 2.2062447}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12010,7 +12010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 79384917}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 280815820}
@@ -13319,7 +13319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 2033747784}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 790925395}
@@ -16214,7 +16214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53e8e341350f6945ae0985cd31295ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomDoor
-  prompt: Leave
+  prompt: Enter
   destination: {fileID: 1952303047}
   transitionManager: {fileID: 1844092458}
   roomCameraBounds: {fileID: 2139175497}
