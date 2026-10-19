@@ -88,6 +88,11 @@ public class PlayerInteractor : MonoBehaviour
             if (interactable == null)
                 continue;
 
+            // Locked = completely ignored (no prompt, no interaction).
+            InteractionLock interactionLock = hit.GetComponentInParent<InteractionLock>();
+            if (interactionLock != null && interactionLock.IsLocked)
+                continue;
+
             float distance = Vector3.Distance(
                 origin,
                 hit.ClosestPoint(origin)

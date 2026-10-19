@@ -50,6 +50,8 @@ public class RoomTransitionManager : MonoBehaviour
         // Fade out the current room.
         yield return screenFader.FadeToBlack();
 
+        Vector3 playerPositionBefore = player.position;
+
         // Temporarily disable the CharacterController while repositioning.
         characterController.enabled = false;
         player.SetPositionAndRotation(
@@ -57,6 +59,9 @@ public class RoomTransitionManager : MonoBehaviour
             destination.rotation
         );
         characterController.enabled = true;
+
+        // NPCs that follow the player through doors (companions now, chasers later).
+        MoveDoorTravelers(destination, playerPositionBefore);
 
         // Switch the camera to the new room's bounds.
         if (cameraConfiner != null && roomCameraBounds != null)
@@ -77,6 +82,35 @@ public class RoomTransitionManager : MonoBehaviour
 
         isTransitioning = false;
         activeTransitions--;
+    }
+
+    private void MoveDoorTravelers(Transform destination, Vector3 playerPositionBefore)
+    {
+        // Copy the list: travelers may be added/removed while we loop.
+        foreach (DoorTraveler traveler in DoorTraveler.All.ToArray())
+        {
+            if (traveler == null || !traveler.FollowPlayer)
+                continue;
+
+            // Keep the NPC's own height compared to the player (different pivots/sizes).
+            float heightOffset = traveler.transform.position.y - playerPositionBefore.y;
+
+            Vector3 arrival = destination.position + destination.rotation * traveler.ArrivalOffset;
+            arrival.y = destination.position.y + heightOffset;
+
+            if (traveler.ArrivalDelay <= 0f)
+                traveler.ArriveAt(arrival);
+            else
+                StartCoroutine(ArriveLater(traveler, arrival, traveler.ArrivalDelay));
+        }
+    }
+
+    private IEnumerator ArriveLater(DoorTraveler traveler, Vector3 arrival, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (traveler != null && traveler.FollowPlayer)
+            traveler.ArriveAt(arrival);
     }
 
     private void OnDestroy()

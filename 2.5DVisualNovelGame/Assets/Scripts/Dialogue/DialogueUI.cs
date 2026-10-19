@@ -30,7 +30,7 @@ public class DialogueUI : MonoBehaviour
     [Tooltip("Fade time when switching from one picture to another (fade out + fade in).")]
     [SerializeField] private float cutsceneFadeDuration = 0.4f;
     [Tooltip("Fade-out time of the last picture when the dialogue ends.")]
-    [SerializeField] private float cutsceneEndFadeDuration = 1.5f;
+    [SerializeField] private float cutsceneEndFadeDuration = 2.5f;
 
     [Header("Voice Blips")]
     [SerializeField] private AudioSource voiceSource;
@@ -67,6 +67,15 @@ public class DialogueUI : MonoBehaviour
         // The cutscene picture always starts hidden (it only shows during a cutscene line).
         if (cutsceneImage != null)
         {
+            // If the picture is inside the dialogue box, move it out and just BEHIND the box:
+            // otherwise it covers the box background, and hiding the box hides it instantly.
+            if (dialoguePanel != null && cutsceneImage.transform.IsChildOf(dialoguePanel.transform))
+            {
+                Transform panel = dialoguePanel.transform;
+                cutsceneImage.transform.SetParent(panel.parent, true);
+                cutsceneImage.transform.SetSiblingIndex(panel.GetSiblingIndex());
+            }
+
             cutsceneImage.gameObject.SetActive(false);
             cutsceneImage.sprite = null;
         }

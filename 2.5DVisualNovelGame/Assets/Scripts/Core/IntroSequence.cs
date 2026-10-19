@@ -45,6 +45,15 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private DialogueNode followUpDialogue;
     [SerializeField] private float followUpDelay = 8f;
 
+    [Header("6. After the follow-up dialogue")]
+    [Tooltip("Locked things that become usable once the follow-up dialogue is over (e.g. the corridor door).")]
+    [SerializeField] private InteractionLock[] unlockAfterFollowUp;
+    [Tooltip("NPC that walks somewhere after the follow-up dialogue (e.g. Stella).")]
+    [SerializeField] private NpcMovement npcToMove;
+    [SerializeField] private Transform npcDestination;
+    [Tooltip("NPCs that start following the player through doors.")]
+    [SerializeField] private DoorTraveler[] startFollowingPlayer;
+
     public bool IsPlaying { get; private set; }
 
     private void Awake()
@@ -107,6 +116,29 @@ public class IntroSequence : MonoBehaviour
                 !RoomTransitionManager.IsAnyTransitioning);
 
             dialogueManager.StartDialogue(followUpDialogue);
+            yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
+        }
+
+        // 6. The story moves on: door unlocks, Stella walks to it and follows us.
+        if (unlockAfterFollowUp != null)
+        {
+            foreach (InteractionLock interactionLock in unlockAfterFollowUp)
+            {
+                if (interactionLock != null)
+                    interactionLock.Unlock();
+            }
+        }
+
+        if (npcToMove != null && npcDestination != null)
+            npcToMove.MoveTo(npcDestination.position);
+
+        if (startFollowingPlayer != null)
+        {
+            foreach (DoorTraveler traveler in startFollowingPlayer)
+            {
+                if (traveler != null)
+                    traveler.FollowPlayer = true;
+            }
         }
     }
 
