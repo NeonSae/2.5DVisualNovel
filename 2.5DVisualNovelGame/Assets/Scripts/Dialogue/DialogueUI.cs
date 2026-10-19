@@ -61,11 +61,17 @@ public class DialogueUI : MonoBehaviour
 
     private void UpdatePortraits(DialogueNode node)
 {
-    leftPortrait.sprite = node.leftPortrait;
-    leftPortrait.gameObject.SetActive(node.leftPortrait != null);
+    if (leftPortrait != null)
+    {
+        leftPortrait.sprite = node.leftPortrait;
+        leftPortrait.gameObject.SetActive(node.leftPortrait != null);
+    }
 
-    rightPortrait.sprite = node.rightPortrait;
-    rightPortrait.gameObject.SetActive(node.rightPortrait != null);
+    if (rightPortrait != null)
+    {
+        rightPortrait.sprite = node.rightPortrait;
+        rightPortrait.gameObject.SetActive(node.rightPortrait != null);
+    }
 }
     public void Show()
     {

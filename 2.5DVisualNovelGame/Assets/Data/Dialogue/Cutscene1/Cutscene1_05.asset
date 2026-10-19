@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Cutscene1_05
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: '*She looks a lot happier now that she''s in college... almost radiant... I''m glad she found a place where she could be happier than this town...*'
+  text: '*She looks a lot happier now that she''s in college... almost radiant...
+    I''m glad she found a place where she could be happier than this town...*'
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
-  cutsceneImage: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: 71e1ec31c0aa83448ac0358e04de9286, type: 3}
   nextNode: {fileID: 11400000, guid: 3a59984983214d04b8ce12c3f6344b9d, type: 2}
   choices: []

@@ -22,6 +22,10 @@ public class RoomTransitionManager : MonoBehaviour
 
     public bool IsTransitioning => isTransitioning;
 
+    // True while ANY door transition is running (used to stop the player walking).
+    public static bool IsAnyTransitioning => activeTransitions > 0;
+    private static int activeTransitions;
+
     public void EnterRoom(Transform destination)
     {
         EnterRoom(destination, null);
@@ -38,6 +42,7 @@ public class RoomTransitionManager : MonoBehaviour
     private IEnumerator TransitionRoutine(Transform destination, Collider roomCameraBounds)
     {
         isTransitioning = true;
+        activeTransitions++;
 
         // Sound of leaving the current room.
         PlayTransitionSound(leaveRoomSound);
@@ -71,6 +76,20 @@ public class RoomTransitionManager : MonoBehaviour
         yield return screenFader.FadeFromBlack();
 
         isTransitioning = false;
+        activeTransitions--;
+    }
+
+    private void OnDestroy()
+    {
+        // Scene unloaded mid-transition: don't leave the player frozen.
+        if (isTransitioning)
+            activeTransitions--;
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        activeTransitions = 0;
     }
 
     private void PlayTransitionSound(AudioClip clip)

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cutscene1_04
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: 'Heh, easy there... I missed you too, Stella...'
+  text: Heh, easy there... I missed you too, Stella...
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
-  cutsceneImage: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: 71e1ec31c0aa83448ac0358e04de9286, type: 3}
   nextNode: {fileID: 11400000, guid: 82606e79cfb54ccab0bf2a0b4178f3af, type: 2}
   choices: []

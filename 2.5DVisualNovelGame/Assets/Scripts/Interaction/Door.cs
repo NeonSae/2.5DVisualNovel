@@ -33,16 +33,17 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
+    // Open = trigger: Nora can walk through, but can still find the door to close it.
     private void OpenDoor()
     {
-        doorCollider.enabled = false;
+        doorCollider.isTrigger = true;
 
         Debug.Log("Door opened!");
     }
 
     private void CloseDoor()
     {
-        doorCollider.enabled = true;
+        doorCollider.isTrigger = false;
 
         Debug.Log("Door closed!");
     }

@@ -11,10 +11,13 @@ public class DialogueManager : MonoBehaviour
 
     public bool IsDialogueActive => isDialogueActive;
 
+    // Frame the dialogue started on, so the same E press doesn't skip the first line.
+    private int startedFrame = -1;
+
 
     private void Update()
     {
-        if (!isDialogueActive)
+        if (!isDialogueActive || Time.frameCount == startedFrame)
             return;
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -29,6 +32,7 @@ public class DialogueManager : MonoBehaviour
             return;
 
         isDialogueActive = true;
+        startedFrame = Time.frameCount;
 
         ShowNode(startingNode);
     }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cutscene1_02
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: 'H-hey, Stella... long time no see. Thank you for the invitation-'
+  text: H-hey, Stella... long time no see. Thank you for the invitation-
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
-  cutsceneImage: {fileID: 21300000, guid: 78f9f3c174107104cbe2e610b3db88ca, type: 3}
+  cutsceneImage: {fileID: 21300000, guid: 3aaae1955ada47144ad2a0ac4ea890a0, type: 3}
   nextNode: {fileID: 11400000, guid: 76c1e3e1bca34c3f9c4c816d36f26815, type: 2}
   choices: []

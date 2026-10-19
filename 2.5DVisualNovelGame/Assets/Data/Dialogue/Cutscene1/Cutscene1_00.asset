@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
+  m_Name: Cutscene1_00
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speaker: Stella
+  text: I'm here...
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: 099e973da7d8e2640870af9cdf2da61d, type: 3}
+  nextNode: {fileID: 11400000, guid: 8d817e09db0447558d8cacddb3d5f20f, type: 2}
+  choices: []

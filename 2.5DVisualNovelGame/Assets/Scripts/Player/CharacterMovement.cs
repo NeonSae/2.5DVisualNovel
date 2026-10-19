@@ -47,8 +47,14 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (dialogueManager != null && dialogueManager.IsDialogueActive)
+        bool isBusy =
+            (dialogueManager != null && dialogueManager.IsDialogueActive) ||
+            InspectionUI.IsAnyOpen ||
+            RoomTransitionManager.IsAnyTransitioning;
+
+        if (isBusy)
         {
+            HandleFootsteps(false);
             PlayAnimation("Idle");
             return;
         }

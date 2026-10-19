@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cutscene1_07
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Stella
-  text: 'Come on in, we have a lot to catch up on!'
+  text: Come on in, we have a lot to catch up on!
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
-  cutsceneImage: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: 71e1ec31c0aa83448ac0358e04de9286, type: 3}
   nextNode: {fileID: 0}
   choices: []

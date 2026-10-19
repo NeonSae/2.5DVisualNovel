@@ -15,7 +15,10 @@ public class InteractionUI : MonoBehaviour
 
     public void Show(string interactionName)
     {
-        StopLockedMessage();
+        // Keep the "Room Locked" message on screen until its time is up.
+        if (messageCoroutine != null)
+            return;
+
         prompt.SetActive(true);
         interactionText.text = "[E] " + interactionName;
     }
