@@ -15,6 +15,9 @@ MonoBehaviour:
   speaker: Stella
   text: Nora? it's this way
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
+  rightPortrait: {fileID: 1032763451, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 11400000, guid: 1a85e3bd3a50f364c85230fd747396a1, type: 2}
   choices: []

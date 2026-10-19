@@ -17,6 +17,7 @@ MonoBehaviour:
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   cutsceneImage: {fileID: 21300000, guid: 71e1ec31c0aa83448ac0358e04de9286, type: 3}
-  startMusic: {fileID: 8300000, guid: 347bc004293b4b94c8c2133fc56d9f43, type: 3}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 11400000, guid: 536ad828379f4d9296d542bf5689bd2d, type: 2}
   choices: []

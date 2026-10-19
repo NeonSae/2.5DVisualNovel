@@ -15,6 +15,9 @@ MonoBehaviour:
   speaker: Nora
   text: O-oh! Right.. Coming!
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
+  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 0}
   choices: []

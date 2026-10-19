@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
   text: 
-  leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
+  leftPortrait: {fileID: 7160429211405778527, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 0}
   choices:
   - choiceText: '''Explore a little longer'''

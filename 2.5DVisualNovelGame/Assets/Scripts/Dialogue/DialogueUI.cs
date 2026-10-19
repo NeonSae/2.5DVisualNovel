@@ -220,7 +220,23 @@ public class DialogueUI : MonoBehaviour
             return;
 
         if (cutsceneFadeCoroutine != null)
+        {
             StopCoroutine(cutsceneFadeCoroutine);
+            cutsceneFadeCoroutine = null;
+        }
+
+        if (!node.fadeCutsceneImage)
+        {
+            // Instant cut, no fade.
+            cutsceneImage.sprite = node.cutsceneImage;
+            cutsceneImage.gameObject.SetActive(true);
+
+            Color color = cutsceneImage.color;
+            color.a = 1f;
+            cutsceneImage.color = color;
+            return;
+        }
+
         cutsceneFadeCoroutine = StartCoroutine(SwitchCutsceneImage(node.cutsceneImage));
     }
 
