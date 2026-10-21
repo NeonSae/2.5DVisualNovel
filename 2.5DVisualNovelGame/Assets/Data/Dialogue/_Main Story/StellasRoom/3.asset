@@ -15,6 +15,9 @@ MonoBehaviour:
   speaker: Stella
   text: I can give you a room tour if you want, Until it's time for dinner I guess!
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
+  rightPortrait: {fileID: -569978070, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 11400000, guid: b69cedaec20904f439dd6818dfe89a7c, type: 2}
   choices: []

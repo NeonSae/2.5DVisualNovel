@@ -22,6 +22,10 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        BlockedDoor blocker = GetComponentInParent<BlockedDoor>();
+        if (blocker != null && blocker.TryShowBlockedMessage())
+            return;
+
         if (inventory == null)
         {
             Debug.LogWarning("No Inventory assigned to " + gameObject.name);

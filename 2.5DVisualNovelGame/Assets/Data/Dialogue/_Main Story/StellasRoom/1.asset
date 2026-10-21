@@ -15,6 +15,9 @@ MonoBehaviour:
   speaker: Stella
   text: ' Welcome to my room! Feel free to put ur bags wherever.'
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 0}
+  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
   nextNode: {fileID: 11400000, guid: 9f9a6c5894e38984e957ccb45c3775dd, type: 2}
   choices: []

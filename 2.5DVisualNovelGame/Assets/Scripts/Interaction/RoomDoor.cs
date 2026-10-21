@@ -17,6 +17,10 @@ public class RoomDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        BlockedDoor blocker = GetComponentInParent<BlockedDoor>();
+        if (blocker != null && blocker.TryShowBlockedMessage())
+            return;
+
         if (destination == null || transitionManager == null)
         {
             Debug.LogWarning(

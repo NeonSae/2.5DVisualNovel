@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 10858253}
   - component: {fileID: 10858252}
   - component: {fileID: 10858251}
+  - component: {fileID: 10858254}
   m_Layer: 0
   m_Name: Table (3)
   m_TagString: Untagged
@@ -229,11 +230,11 @@ Transform:
   m_GameObject: {fileID: 10858249}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: 0.496, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: 0.49600002, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &10858251
 BoxCollider:
@@ -313,6 +314,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10858249}
   m_Mesh: {fileID: 4300000, guid: e016687862527d043ad4a48bac0f8f9a, type: 3}
+--- !u!114 &10858254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10858249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2ae706db3a2714f91776cb84730189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
+  interactionPrompt: Inspect
+  dialogue: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  onlyOnce: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &19447969
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,11 +802,11 @@ Transform:
   m_GameObject: {fileID: 52344277}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: -0.052, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: -0.052000016, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &52344279
 BoxCollider:
@@ -1617,11 +1637,11 @@ Transform:
   m_GameObject: {fileID: 89426036}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: -0.355, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: -0.355, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &89426038
 BoxCollider:
@@ -2423,7 +2443,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1844688299595128, guid: 761039d43a0ad194a992a57e88860f69, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1755125510}
   m_SourcePrefab: {fileID: 100100000, guid: 761039d43a0ad194a992a57e88860f69, type: 3}
 --- !u!1 &145830528
 GameObject:
@@ -4272,6 +4295,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7cfc0cd9be8c84f94674c2d508d7c2, type: 3}
+--- !u!1 &250380055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1467303485799534, guid: 49ab213413b7dee45a83319aec22571b, type: 3}
+  m_PrefabInstance: {fileID: 1511071799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &256623326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6926,6 +6954,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062679036308094, guid: 49ab213413b7dee45a83319aec22571b, type: 3}
   m_PrefabInstance: {fileID: 1511071799}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &362969327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250380055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2ae706db3a2714f91776cb84730189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
+  interactionPrompt: Inspect
+  dialogue: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  onlyOnce: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &368783931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4784469185970196, guid: afa4c08cadb993349986a93451a0e356, type: 3}
@@ -7600,11 +7647,11 @@ Transform:
   m_GameObject: {fileID: 393362374}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: 0.72, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: 0.72, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &393362376
 BoxCollider:
@@ -8162,6 +8209,7 @@ GameObject:
   - component: {fileID: 416164711}
   - component: {fileID: 416164710}
   - component: {fileID: 416164709}
+  - component: {fileID: 416164714}
   m_Layer: 0
   m_Name: Stella's room TO Corridor2
   m_TagString: Untagged
@@ -8280,6 +8328,21 @@ Transform:
   - {fileID: 1496902293}
   m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &416164714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416164708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cbae2c6ba07c1c468cb3872c271bbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockedDoor
+  blocked: 1
+  blockedDialogue: {fileID: 11400000, guid: 3a8bcc504e362434eb32eb1dc3b702cd, type: 2}
+  dialogueManager: {fileID: 0}
 --- !u!1 &418395509
 GameObject:
   m_ObjectHideFlags: 0
@@ -10939,11 +11002,11 @@ Transform:
   m_GameObject: {fileID: 563314753}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: 0.235, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: 0.23499998, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &563314755
 BoxCollider:
@@ -14468,6 +14531,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1384267852}
   m_LocalEulerAnglesHint: {x: 25.659, y: 33.69, z: 16.102}
+--- !u!1 &743360736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090938902150356, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
+  m_PrefabInstance: {fileID: 821425300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &743360740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743360736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2ae706db3a2714f91776cb84730189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
+  interactionPrompt: Inspect
+  dialogue: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  onlyOnce: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &752796076
 GameObject:
   m_ObjectHideFlags: 0
@@ -16044,17 +16131,23 @@ Transform:
   - {fileID: 2065880036}
   - {fileID: 1147470728}
   - {fileID: 416164713}
+  - {fileID: 10858250}
   - {fileID: 261867848}
-  - {fileID: 1268794357}
-  - {fileID: 711662906}
-  - {fileID: 537216632}
   - {fileID: 362969323}
   - {fileID: 226254964}
   - {fileID: 530721545}
+  - {fileID: 1268794357}
+  - {fileID: 711662906}
+  - {fileID: 537216632}
   - {fileID: 406752011}
   - {fileID: 1937598315}
   - {fileID: 2007804937}
   - {fileID: 1927198886}
+  - {fileID: 52344278}
+  - {fileID: 563314754}
+  - {fileID: 393362375}
+  - {fileID: 1884966569}
+  - {fileID: 89426037}
   - {fileID: 2052191583}
   - {fileID: 975595808}
   - {fileID: 641765152}
@@ -16340,7 +16433,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1090938902150356, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743360740}
   m_SourcePrefab: {fileID: 100100000, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
 --- !u!1 &829236593
 GameObject:
@@ -23707,12 +23803,6 @@ Transform:
   - {fileID: 4706895614735665}
   - {fileID: 4210037020337334}
   - {fileID: 4814954931424364}
-  - {fileID: 52344278}
-  - {fileID: 563314754}
-  - {fileID: 10858250}
-  - {fileID: 393362375}
-  - {fileID: 1884966569}
-  - {fileID: 89426037}
   - {fileID: 918707584}
   - {fileID: 1943369755}
   - {fileID: 276335767}
@@ -25318,7 +25408,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1090938902150356, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1697222821}
   m_SourcePrefab: {fileID: 100100000, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
 --- !u!1 &1296092163
 GameObject:
@@ -30306,7 +30399,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1467303485799534, guid: 49ab213413b7dee45a83319aec22571b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 362969327}
   m_SourcePrefab: {fileID: 100100000, guid: 49ab213413b7dee45a83319aec22571b, type: 3}
 --- !u!4 &1515971988 stripped
 Transform:
@@ -31172,6 +31268,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4665011646071402, guid: 582668fd9a389ab4ea3a556d40d9bbb9, type: 3}
   m_PrefabInstance: {fileID: 723179882}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1592949540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592949542}
+  - component: {fileID: 1592949541}
+  m_Layer: 0
+  m_Name: Stella Leaves & Returns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1592949541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592949540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38eec15df0ace1b4fb5c3d6bb7d96c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcLeaveAndReturn
+  npc: {fileID: 2062585952}
+  dialogueManager: {fileID: 0}
+  leavePoint: {fileID: 909255402}
+  exitDoor: {fileID: 416164709}
+  doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+  waitSeconds: 15
+  pauseDuringDialogue: 1
+  returnSpawn: {fileID: 1053230358}
+  waitPoint: {fileID: 909255402}
+  returnDialogue: {fileID: 11400000, guid: ac8c5d518191e52478de4d02fc47efe7, type: 2}
+  unblockDoors:
+  - {fileID: 416164714}
+  dialogueSwaps:
+  - target: {fileID: 362969327}
+    newDialogue: {fileID: 0}
+  - target: {fileID: 1697222821}
+    newDialogue: {fileID: 0}
+  - target: {fileID: 743360740}
+    newDialogue: {fileID: 0}
+  - target: {fileID: 10858254}
+    newDialogue: {fileID: 0}
+  - target: {fileID: 1755125510}
+    newDialogue: {fileID: 0}
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1592949542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592949540}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1600799873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32234,6 +32400,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 90082297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1697222817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090938902150356, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
+  m_PrefabInstance: {fileID: 1293003643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1697222821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697222817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2ae706db3a2714f91776cb84730189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
+  interactionPrompt: Inspect
+  dialogue: {fileID: 11400000, guid: 73f6b46ae1933a34e8b62aa23f8e5226, type: 2}
+  dialogueManager: {fileID: 1167567028}
+  onlyOnce: 1
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1705026050
 GameObject:
   m_ObjectHideFlags: 0
@@ -33202,6 +33392,30 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1755125509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1844688299595128, guid: 761039d43a0ad194a992a57e88860f69, type: 3}
+  m_PrefabInstance: {fileID: 121343736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1755125510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755125509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2ae706db3a2714f91776cb84730189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
+  interactionPrompt: Inspect
+  dialogue: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  onlyOnce: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1759318356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35704,11 +35918,11 @@ Transform:
   m_GameObject: {fileID: 1884966568}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0.000000022351742, z: -0.000000052154064, w: 0.70710677}
-  m_LocalPosition: {x: 91.47, y: 0.96, z: 2.72}
-  m_LocalScale: {x: 35.756252, y: 27.355885, z: 45.122025}
+  m_LocalPosition: {x: 3.8428605, y: 0.96000004, z: 4.5333323}
+  m_LocalScale: {x: 51.080357, y: 45.59314, z: 45.12202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1198885586}
+  m_Father: {fileID: 811408743}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!65 &1884966570
 BoxCollider:
@@ -40204,9 +40418,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NpcMovement
   moveSpeed: 2.5
   stopDistance: 0.1
-  doorArrivalOffset: {x: 0.8, y: 0, z: 0}
+  usePathfinding: 1
   snapToGround: 1
-  groundCheckHeight: 2
+  stepHeight: 0.3
+  arrivalStepHeight: 1
   spriteRenderer: {fileID: 1434882978}
   framesPerSecond: 8
   lookAtPlayerWhenIdle: 1
@@ -40331,46 +40546,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - note: 'Back: leave Stella''s room'
-    waitForPlayerWithin: 0
-    waitBeforeWalking: 0.5
-    walkTo: {fileID: 909255402}
-    door: {fileID: 416164709}
-    waitBeforeDoor: 1
-    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
-    onArrived:
-      m_PersistentCalls:
-        m_Calls: []
-  - note: 'Back: Corridor 2'
-    waitForPlayerWithin: 6
-    waitBeforeWalking: 0.5
-    walkTo: {fileID: 927687722}
-    door: {fileID: 119805579}
-    waitBeforeDoor: 1
-    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
-    onArrived:
-      m_PersistentCalls:
-        m_Calls: []
-  - note: 'Back: Corridor 1'
-    waitForPlayerWithin: 6
-    waitBeforeWalking: 0.5
-    walkTo: {fileID: 423686818}
-    door: {fileID: 467547354}
-    waitBeforeDoor: 1
-    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
-    onArrived:
-      m_PersistentCalls:
-        m_Calls: []
-  - note: Kitchen (end)
-    waitForPlayerWithin: 6
-    waitBeforeWalking: 0.5
-    walkTo: {fileID: 1837418630}
-    door: {fileID: 0}
-    waitBeforeDoor: 1
-    doorSound: {fileID: 0}
-    onArrived:
-      m_PersistentCalls:
-        m_Calls: []
+  stepOutDistance: 1.2
 --- !u!114 &2062585956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40384,15 +40560,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactionPrompt: Talk
-  startingNode: {fileID: 11400000, guid: cdf20e6beb18db84fb9e6fd0b4f3822c, type: 2}
+  startingNode: {fileID: 11400000, guid: 06f62caccfcfa49419cbb371f5a91927, type: 2}
   dialogueManager: {fileID: 0}
   talkOnlyOnce: 1
   onDialogueFinished:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2062585955}
-        m_TargetAssemblyTypeName: NpcGuide, Assembly-CSharp
-        m_MethodName: ContinueRoute
+      - m_Target: {fileID: 1592949541}
+        m_TargetAssemblyTypeName: NpcLeaveAndReturn, Assembly-CSharp
+        m_MethodName: Begin
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -46506,3 +46682,4 @@ SceneRoots:
   - {fileID: 1063322473}
   - {fileID: 783078342}
   - {fileID: 2023647094}
+  - {fileID: 1592949542}
