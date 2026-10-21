@@ -28,6 +28,11 @@ public class NpcMovement : MonoBehaviour
     [Header("Sprite")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float framesPerSecond = 8f;
+    [Tooltip("When standing still, turn to face the player.")]
+    [SerializeField] private bool lookAtPlayerWhenIdle;
+
+    private Transform lookTarget;
+    private float lookTimer;
 
     [Header("Walk frames (Front = facing the camera)")]
     [SerializeField] private Sprite[] walkFront;
@@ -179,7 +184,10 @@ public class NpcMovement : MonoBehaviour
     private void Update()
     {
         if (!hasTarget)
+        {
+            LookAtPlayer();
             return;
+        }
 
         Vector3 toTarget = target - transform.position;
         toTarget.y = 0f;
@@ -202,6 +210,34 @@ public class NpcMovement : MonoBehaviour
 
         UpdateFacing(direction);
         AnimateWalk();
+    }
+
+    private void LookAtPlayer()
+    {
+        if (!lookAtPlayerWhenIdle)
+            return;
+
+        lookTimer -= Time.deltaTime;
+        if (lookTimer > 0f)
+            return;
+        lookTimer = 0.25f;
+
+        if (lookTarget == null)
+        {
+            CharacterMovement player = FindFirstObjectByType<CharacterMovement>();
+            if (player == null)
+                return;
+            lookTarget = player.transform;
+        }
+
+        FaceTowards(lookTarget.position);
+    }
+
+    // For UnityEvents: teleport to a point.
+    public void WarpToPoint(Transform point)
+    {
+        if (point != null)
+            WarpTo(point.position);
     }
 
     private void UpdateFacing(Vector3 direction)

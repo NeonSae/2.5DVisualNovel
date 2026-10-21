@@ -1028,6 +1028,10 @@ MonoBehaviour:
   interactionPrompt: Talk
   startingNode: {fileID: 11400000, guid: a07aa971d010a3840b5582d46b64b463, type: 2}
   dialogueManager: {fileID: 1167567028}
+  talkOnlyOnce: 0
+  onDialogueFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &77215572
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3777,7 +3781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224520724}
   m_Layer: 0
-  m_Name: === === DIALOGUES === ===
+  m_Name: === === DIALOGUES & EVENTS === ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8474,6 +8478,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee5193e7bd710d6419dfd56d2f440b55, type: 3}
+--- !u!1 &423686817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423686818}
+  m_Layer: 0
+  m_Name: StellaPoint_Corridor1_ToKitchen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423686818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423686817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.939, y: 0.5626133, z: 2.771}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &424073875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4402212891775128, guid: ae542f9f1099f6940bb7c70d88c2a158, type: 3}
@@ -18675,6 +18710,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905692655}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &909255401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909255402}
+  m_Layer: 0
+  m_Name: StellaPoint_StellasRoom_Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &909255402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909255401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.532, y: 0.3999998, z: 1.312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &916540464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4524322512791346, guid: ee5193e7bd710d6419dfd56d2f440b55, type: 3}
@@ -18792,6 +18858,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918707583}
   m_Mesh: {fileID: 4300000, guid: e016687862527d043ad4a48bac0f8f9a, type: 3}
+--- !u!1 &927687721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927687722}
+  m_Layer: 0
+  m_Name: StellaPoint_Corridor2_ToCorridor1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &927687722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927687721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.97, y: 0.50795025, z: -0.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930839190
 GameObject:
   m_ObjectHideFlags: 0
@@ -31631,7 +31728,7 @@ Transform:
   m_GameObject: {fileID: 1643636386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.27705, y: 0.3999998, z: 2.5906346}
+  m_LocalPosition: {x: 87.718, y: 0.432, z: 2.675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34390,6 +34487,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834666296}
   m_CullTransparentMesh: 1
+--- !u!1 &1837418629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837418630}
+  m_Layer: 0
+  m_Name: StellaPoint_Kitchen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1837418630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837418629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 57.402, y: 0.6900539, z: 2.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844092457
 GameObject:
   m_ObjectHideFlags: 0
@@ -36430,6 +36558,10 @@ MonoBehaviour:
   interactionPrompt: Talk
   startingNode: {fileID: 11400000, guid: df158f1a2c85f1244a4a433291510dc2, type: 2}
   dialogueManager: {fileID: 1167567028}
+  talkOnlyOnce: 0
+  onDialogueFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &1914476422
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -40034,6 +40166,8 @@ GameObject:
   - component: {fileID: 2062585951}
   - component: {fileID: 2062585954}
   - component: {fileID: 2062585955}
+  - component: {fileID: 2062585957}
+  - component: {fileID: 2062585956}
   m_Layer: 0
   m_Name: Stella
   m_TagString: Untagged
@@ -40075,6 +40209,7 @@ MonoBehaviour:
   groundCheckHeight: 2
   spriteRenderer: {fileID: 1434882978}
   framesPerSecond: 8
+  lookAtPlayerWhenIdle: 1
   walkFront:
   - {fileID: 21300000, guid: ee459967968ff6e40a6743d9471569c4, type: 3}
   - {fileID: 21300000, guid: 156fd9c34b64b664f8d13503bd72f5cd, type: 3}
@@ -40161,6 +40296,9 @@ MonoBehaviour:
     door: {fileID: 1510866234}
     waitBeforeDoor: 0.5
     doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
   - note: Corridor 2
     waitForPlayerWithin: 6
     waitBeforeWalking: 0.5
@@ -40168,6 +40306,9 @@ MonoBehaviour:
     door: {fileID: 1414896571}
     waitBeforeDoor: 0.5
     doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
   - note: Stella's room (end)
     waitForPlayerWithin: 6
     waitBeforeWalking: 0.5
@@ -40175,6 +40316,105 @@ MonoBehaviour:
     door: {fileID: 0}
     waitBeforeDoor: 1
     doorSound: {fileID: 0}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2062585957}
+          m_TargetAssemblyTypeName: InteractionLock, Assembly-CSharp
+          m_MethodName: Unlock
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - note: 'Back: leave Stella''s room'
+    waitForPlayerWithin: 0
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 909255402}
+    door: {fileID: 416164709}
+    waitBeforeDoor: 1
+    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
+  - note: 'Back: Corridor 2'
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 927687722}
+    door: {fileID: 119805579}
+    waitBeforeDoor: 1
+    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
+  - note: 'Back: Corridor 1'
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 423686818}
+    door: {fileID: 467547354}
+    waitBeforeDoor: 1
+    doorSound: {fileID: 8300000, guid: 40cd69781a7c80f46b684d069ab090e2, type: 3}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
+  - note: Kitchen (end)
+    waitForPlayerWithin: 6
+    waitBeforeWalking: 0.5
+    walkTo: {fileID: 1837418630}
+    door: {fileID: 0}
+    waitBeforeDoor: 1
+    doorSound: {fileID: 0}
+    onArrived:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &2062585956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062585950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e8e8f8f36a2604ba14b1e84f87abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
+  interactionPrompt: Talk
+  startingNode: {fileID: 11400000, guid: cdf20e6beb18db84fb9e6fd0b4f3822c, type: 2}
+  dialogueManager: {fileID: 0}
+  talkOnlyOnce: 1
+  onDialogueFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2062585955}
+        m_TargetAssemblyTypeName: NpcGuide, Assembly-CSharp
+        m_MethodName: ContinueRoute
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2062585957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062585950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25530f0c925d294984844a9c6c10f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionLock
+  lockedAtStart: 1
 --- !u!1 &2065744089
 GameObject:
   m_ObjectHideFlags: 0
@@ -46241,6 +46481,10 @@ SceneRoots:
   - {fileID: 1899879941}
   - {fileID: 710348840}
   - {fileID: 1643636387}
+  - {fileID: 909255402}
+  - {fileID: 927687722}
+  - {fileID: 423686818}
+  - {fileID: 1837418630}
   - {fileID: 409048448}
   - {fileID: 1137522895}
   - {fileID: 1134455678}

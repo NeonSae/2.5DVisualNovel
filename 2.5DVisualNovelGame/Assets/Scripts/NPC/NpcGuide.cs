@@ -25,6 +25,9 @@ public class NpcGuide : MonoBehaviour
         public RoomDoor door;
         public float waitBeforeDoor = 1f;
         public AudioClip doorSound;
+
+        [Tooltip("Runs when the NPC reaches 'Walk To' (e.g. unlock talking to her).")]
+        public UnityEngine.Events.UnityEvent onArrived;
     }
 
     [SerializeField] private GuideStep[] steps;
@@ -52,6 +55,12 @@ public class NpcGuide : MonoBehaviour
     private void OnDisable()
     {
         npc.ArrivedThroughDoor -= OnArrivedThroughDoor;
+    }
+
+    // Starts the next step right now (e.g. after a dialogue, from a UnityEvent).
+    public void ContinueRoute()
+    {
+        arrivedPending = true;
     }
 
     private void OnArrivedThroughDoor()
@@ -96,6 +105,8 @@ public class NpcGuide : MonoBehaviour
             npc.MoveTo(step.walkTo.position, () => arrived = true);
             yield return new WaitUntil(() => arrived);
         }
+
+        step.onArrived?.Invoke();
 
         // 3. Go through the door (this starts the next step on the other side).
         if (step.door != null)
