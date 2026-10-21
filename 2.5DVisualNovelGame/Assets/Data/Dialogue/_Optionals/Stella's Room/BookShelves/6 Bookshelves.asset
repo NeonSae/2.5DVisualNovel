@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 6
+  m_Name: 6 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
   text: Hmph, The Stella I know wouldn't miss any chance to put her nose in the first

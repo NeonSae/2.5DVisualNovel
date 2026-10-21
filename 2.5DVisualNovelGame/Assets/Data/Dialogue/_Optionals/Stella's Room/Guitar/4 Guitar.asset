@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 7
+  m_Name: 4 Guitar
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
-  text: ... (flabbergasted)
-  leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 993475445, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  nextNode: {fileID: 11400000, guid: cd4081e5984717443b6f5abb388e050a, type: 2}
+  speaker: Nora
+  text: What song? how come I don't remember that!
+  leftPortrait: {fileID: 1452943393, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  rightPortrait: {fileID: 0}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 0c2a23ce42a32ff4ba7cf2fdd81616f9, type: 2}
   choices: []

@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 2
+  m_Name: 4 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
-  text: Thanks! It used to be in the living room but no one really uses it that much
-    anymore, so I brought it to my room.
-  leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 9204437402664373759, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  nextNode: {fileID: 11400000, guid: d0888b2cd9f3ac14cb1067ad203a34ac, type: 2}
+  speaker: Nora
+  text: Whaaat? Don't tell me you didn't read it.. it's "tender is the flesh
+  leftPortrait: {fileID: 1590028463, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  rightPortrait: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: c9fa324eb30c8c448b176aa27f062c78, type: 2}
   choices: []

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 1
+  m_Name: 10 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: Wow, that's quite a huge flatscreen.
-  leftPortrait: {fileID: 1590028463, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  text: '... You know I''m joking right? im not rly upset or anything '
+  leftPortrait: {fileID: -1575137907, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: b1b14296dd6c5b54e8c331522238ed99, type: 2}
+  nextNode: {fileID: 11400000, guid: 32392e34132dd4542b6cd5d623cb48a0, type: 2}
   choices: []

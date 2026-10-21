@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Stella
-  text: Trust me it is, it's the reason why I used to skip so many classes...
+  text: 'Trust me it is.
+
+    It''s actually the reason why I used to skip so many
+    classes at school...'
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 9204437402664373759, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: d0888b2cd9f3ac14cb1067ad203a34ac, type: 2}
+  nextNode: {fileID: 11400000, guid: 69b1ad96971389d47bffc9503d647a67, type: 2}
   choices: []

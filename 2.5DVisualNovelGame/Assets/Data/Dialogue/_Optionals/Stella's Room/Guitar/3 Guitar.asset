@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 9
+  m_Name: 3 Guitar
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Stella
-  text: ...
+  text: And I've got a lot better since last time I played for you that one song!
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: -569978070, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  nextNode: {fileID: 11400000, guid: 25745d8c7c1572c48a80d0d44d59e061, type: 2}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 364bbdf09a69c1a43906f86704e3675b, type: 2}
   choices: []

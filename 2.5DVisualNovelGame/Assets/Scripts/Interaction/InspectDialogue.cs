@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static Iinteractable;
@@ -7,12 +8,23 @@ using static Iinteractable;
 // "[E] Inspect" opens a normal dialogue box with the dialogue you choose.
 public class InspectDialogue : MonoBehaviour, IInteractable
 {
+    public enum RepeatMode
+    {
+        [InspectorName("Auto: once if someone else talks")] AutoOnceIfSomeoneElseTalks,
+        [InspectorName("Always repeatable")] Repeatable,
+        [InspectorName("Only once")] OnlyOnce
+    }
+
     [SerializeField] private string interactionPrompt = "Inspect";
     [SerializeField] private DialogueNode dialogue;
     [Tooltip("Leave empty to find it automatically.")]
     [SerializeField] private DialogueManager dialogueManager;
-    [Tooltip("Only works once (then the [E] prompt disappears).")]
-    [SerializeField] private bool onlyOnce;
+
+    [Tooltip("Auto = repeatable if only the player talks (Nora alone), only once if anyone else talks (e.g. Stella).")]
+    [SerializeField] private RepeatMode repeat = RepeatMode.AutoOnceIfSomeoneElseTalks;
+    [Tooltip("The player's speaker name (lines from this speaker don't count as 'someone else').")]
+    [SerializeField] private string playerSpeakerName = "Nora";
+
     [Tooltip("Runs when the dialogue is over (optional).")]
     [SerializeField] private UnityEvent onFinished;
 
@@ -43,13 +55,15 @@ public class InspectDialogue : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (dialogue == null || dialogueManager == null || (onlyOnce && used))
+        bool once = IsOnceOnly();
+
+        if (dialogue == null || dialogueManager == null || (once && used))
             return;
 
         used = true;
         dialogueManager.StartDialogue(dialogue);
 
-        if (onlyOnce)
+        if (once)
         {
             InteractionLock interactionLock = GetComponent<InteractionLock>();
             if (interactionLock == null)
@@ -58,6 +72,43 @@ public class InspectDialogue : MonoBehaviour, IInteractable
         }
 
         StartCoroutine(WaitForEnd());
+    }
+
+    private bool IsOnceOnly()
+    {
+        switch (repeat)
+        {
+            case RepeatMode.Repeatable: return false;
+            case RepeatMode.OnlyOnce: return true;
+            default: return SomeoneElseTalks(dialogue);
+        }
+    }
+
+    // Looks through the whole dialogue (next lines and choices) for another speaker.
+    private bool SomeoneElseTalks(DialogueNode start)
+    {
+        var visited = new HashSet<DialogueNode>();
+        var toCheck = new Stack<DialogueNode>();
+        if (start != null) toCheck.Push(start);
+
+        while (toCheck.Count > 0)
+        {
+            DialogueNode node = toCheck.Pop();
+            if (node == null || !visited.Add(node))
+                continue;
+
+            string speaker = node.speaker != null ? node.speaker.Trim() : "";
+            if (speaker.Length > 0 &&
+                !string.Equals(speaker, playerSpeakerName.Trim(), System.StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (node.nextNode != null) toCheck.Push(node.nextNode);
+            if (node.choices != null)
+                foreach (DialogueChoice choice in node.choices)
+                    if (choice != null && choice.nextNode != null) toCheck.Push(choice.nextNode);
+        }
+
+        return false;
     }
 
     private IEnumerator WaitForEnd()

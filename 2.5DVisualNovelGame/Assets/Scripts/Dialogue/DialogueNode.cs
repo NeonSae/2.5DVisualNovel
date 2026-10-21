@@ -27,8 +27,20 @@ public class DialogueNode : ScriptableObject
     [Tooltip("Music that starts when this line appears. Leave empty to keep the current music.")]
     public AudioClip startMusic;
 
+    [Tooltip("Pause the music when this line appears.")]
+    public bool pauseMusic;
+    [Tooltip("When the paused music starts again.")]
+    public MusicResumeMode resumeMusic = MusicResumeMode.WhenDialogueEnds;
+
     [Header("Dialogue Flow")]
     public DialogueNode nextNode;
 
     public DialogueChoice[] choices;
+}
+
+public enum MusicResumeMode
+{
+    [InspectorName("When going through a door")] WhenGoingThroughADoor,
+    [InspectorName("When this line ends")] WhenThisLineEnds,
+    [InspectorName("When the whole dialogue ends")] WhenDialogueEnds
 }

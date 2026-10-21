@@ -19,5 +19,5 @@ MonoBehaviour:
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: b1b14296dd6c5b54e8c331522238ed99, type: 2}
+  nextNode: {fileID: 11400000, guid: 853ee885585d7674cb6c98466d0fb8e1, type: 2}
   choices: []

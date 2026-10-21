@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 8
+  m_Name: 2 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: ' ...'
-  leftPortrait: {fileID: -1575137907, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  text: Hey Stella, Do You still have the book I gave you on your birthday? You never
+    told me what you thought of it.
+  leftPortrait: {fileID: 7160429211405778527, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: fe9df97433fffac4b8e0e5da207371c7, type: 2}
+  nextNode: {fileID: 11400000, guid: 22d83681a0bfbe946b01fea0af135b27, type: 2}
   choices: []

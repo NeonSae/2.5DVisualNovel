@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 10
+  m_Name: 3 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Nora
-  text: '... You know I''m joking right? im not rly upset or anything '
-  leftPortrait: {fileID: -1575137907, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
-  rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 32392e34132dd4542b6cd5d623cb48a0, type: 2}
+  speaker: Stella
+  text: Hm? Book..? Ah, right.. What was its name again?
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 442794418, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  nextNode: {fileID: 11400000, guid: 844a177ec5dcf1c4691afebb578aeb3c, type: 2}
   choices: []

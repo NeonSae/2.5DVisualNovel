@@ -39,10 +39,21 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowNode(DialogueNode node)
     {
+        // The previous line paused the music "until it ends": bring it back.
+        if (pausedByLine && pauseResumeMode == MusicResumeMode.WhenThisLineEnds)
+            ResumePausedMusic();
+
         currentNode = node;
 
         if (node.startMusic != null && AudioManager.Instance != null)
             AudioManager.Instance.PlayMusic(node.startMusic);
+
+        if (node.pauseMusic && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PauseMusic();
+            pausedByLine = true;
+            pauseResumeMode = node.resumeMusic;
+        }
 
         dialogueUI.Show();
 
@@ -105,7 +116,34 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         currentNode = null;
 
+        // Music paused by a line in this dialogue.
+        if (pausedByLine)
+        {
+            if (pauseResumeMode == MusicResumeMode.WhenGoingThroughADoor)
+            {
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.ResumeMusicOnNextDoor();
+                pausedByLine = false;
+            }
+            else
+            {
+                ResumePausedMusic();
+            }
+        }
+
         dialogueUI.Hide();
+    }
+
+    // ---------- Music paused by a dialogue line ----------
+
+    private bool pausedByLine;
+    private MusicResumeMode pauseResumeMode;
+
+    private void ResumePausedMusic()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.ResumeMusic();
+        pausedByLine = false;
     }
 
     private void SelectChoice(DialogueChoice choice)

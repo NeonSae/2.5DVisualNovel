@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 1
+  m_Name: 2 Guitar
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Nora
-  text: Stell had allways been such a nerd..
-  leftPortrait: {fileID: -714086116, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
-  rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: eac6dc154c4bbd74cb9caba515733b6a, type: 2}
+  speaker: Stella
+  text: Yup! Been playing since a while now.
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 9204437402664373759, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: a3a19201e3a94e34dafecf15d726c20a, type: 2}
   choices: []

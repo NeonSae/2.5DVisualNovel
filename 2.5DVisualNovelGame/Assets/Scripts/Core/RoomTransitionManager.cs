@@ -77,6 +77,10 @@ public class RoomTransitionManager : MonoBehaviour
         // Sound of arriving in the destination room.
         PlayTransitionSound(enterRoomSound);
 
+        // Music paused by a dialogue line ("when going through a door") comes back now.
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.OnPlayerChangedRoom();
+
         // Reveal the destination room.
         yield return screenFader.FadeFromBlack();
 

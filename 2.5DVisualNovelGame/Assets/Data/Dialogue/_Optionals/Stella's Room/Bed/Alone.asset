@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 3
+  m_Name: Alone
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: Cool!
-  leftPortrait: {fileID: 1590028463, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
+  text: '*Her bed is nice*'
+  leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1

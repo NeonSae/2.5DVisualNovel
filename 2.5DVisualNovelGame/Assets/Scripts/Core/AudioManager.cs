@@ -75,6 +75,45 @@ public class AudioManager : MonoBehaviour
         if (musicSource != null)
             musicSource.Stop();
     }
+
+    // ---------- Pause / resume (used by dialogue lines) ----------
+
+    private bool musicPaused;
+    private bool resumeOnNextDoor;
+
+    public void PauseMusic()
+    {
+        if (musicSource == null || !musicSource.isPlaying)
+            return;
+
+        musicSource.Pause();
+        musicPaused = true;
+        resumeOnNextDoor = false;
+    }
+
+    public void ResumeMusic()
+    {
+        if (musicSource == null || !musicPaused)
+            return;
+
+        musicSource.UnPause();
+        musicPaused = false;
+        resumeOnNextDoor = false;
+    }
+
+    // The music comes back the next time the player goes through a door.
+    public void ResumeMusicOnNextDoor()
+    {
+        if (musicPaused)
+            resumeOnNextDoor = true;
+    }
+
+    // Called by the RoomTransitionManager when the player changes room.
+    public void OnPlayerChangedRoom()
+    {
+        if (resumeOnNextDoor)
+            ResumeMusic();
+    }
     private void Start()
     {
         if (playMusicOnStart && startingMusic != null)
