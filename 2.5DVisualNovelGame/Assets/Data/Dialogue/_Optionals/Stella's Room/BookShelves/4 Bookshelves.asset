@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: 4 Bookshelves
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Nora
-  text: Whaaat? Don't tell me you didn't read it.. it's "tender is the flesh
+  text: Whaaat? Don't tell me you didn't read it.. it's "tender is the flesh"
   leftPortrait: {fileID: 1590028463, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
+  pauseMusic: 0
+  resumeMusic: 2
   nextNode: {fileID: 11400000, guid: c9fa324eb30c8c448b176aa27f062c78, type: 2}
   choices: []

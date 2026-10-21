@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 4
+  m_Name: 1 Computer
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
-  text: Yea! Right! Thanks for that again.
-  leftPortrait: {fileID: 993475445, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  speaker: Nora
+  text: Oh, new computer ?
+  leftPortrait: {fileID: 1590028463, guid: c0f9937dfa7113a4b89c5ffb6ca97245, type: 3}
   rightPortrait: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 3151b58deae15224a9a3090310a8f83f, type: 2}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 0}
+  pauseMusic: 0
+  resumeMusic: 2
+  nextNode: {fileID: 11400000, guid: 899a3b93a3c5eb049864ddbe4bc202d8, type: 2}
   choices: []

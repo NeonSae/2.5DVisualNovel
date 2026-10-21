@@ -7,6 +7,12 @@ using UnityEngine.Serialization;
 // -> 4. door closes, fade into the house -> 5. after a while, a follow-up dialogue.
 public class IntroSequence : MonoBehaviour
 {
+    [Header("Testing")]
+    [Tooltip("Skip the whole intro (narration, cutscene, first talks): start directly with Stella going to the corridor door.")]
+    [SerializeField] private bool skipIntro;
+    [Tooltip("Music to play when the intro is skipped (e.g. Door Loop). Empty = no change.")]
+    [SerializeField] private AudioClip musicWhenSkipping;
+
     [Header("References")]
     [SerializeField] private ScreenFader screenFader;
     [SerializeField] private DialogueManager dialogueManager;
@@ -58,6 +64,9 @@ public class IntroSequence : MonoBehaviour
 
     private void Awake()
     {
+        if (skipIntro)
+            return;
+
         // Black from the very first frame.
         if (screenFader != null)
             screenFader.SetBlack();
@@ -68,6 +77,18 @@ public class IntroSequence : MonoBehaviour
 
     private void Start()
     {
+        if (skipIntro)
+        {
+            // Straight into the game: the player can move, Stella heads to the corridor door.
+            AudioClip music = musicWhenSkipping != null ? musicWhenSkipping
+                            : introMusic != null ? introMusic
+                            : FindStartMusic(cutsceneDialogue);   // e.g. Door Loop from the cutscene
+            if (music != null && AudioManager.Instance != null)
+                AudioManager.Instance.PlayMusic(music);
+            AfterFollowUp();
+            return;
+        }
+
         StartCoroutine(PlayIntro());
     }
 
@@ -119,7 +140,12 @@ public class IntroSequence : MonoBehaviour
             yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
         }
 
-        // 6. The story moves on: door unlocks, Stella walks to it and follows us.
+        AfterFollowUp();
+    }
+
+    // 6. The story moves on: door unlocks, Stella walks to it and follows us.
+    private void AfterFollowUp()
+    {
         if (unlockAfterFollowUp != null)
         {
             foreach (InteractionLock interactionLock in unlockAfterFollowUp)
@@ -140,6 +166,20 @@ public class IntroSequence : MonoBehaviour
                     traveler.FollowNextDoorOnly();
             }
         }
+    }
+
+    // The last music a dialogue would start (so skipping keeps the same music).
+    private static AudioClip FindStartMusic(DialogueNode node)
+    {
+        AudioClip found = null;
+        int guard = 0;
+        while (node != null && guard++ < 100)
+        {
+            if (node.startMusic != null)
+                found = node.startMusic;
+            node = node.nextNode;
+        }
+        return found;
     }
 
     private IEnumerator PlayDialogue(DialogueNode startNode)

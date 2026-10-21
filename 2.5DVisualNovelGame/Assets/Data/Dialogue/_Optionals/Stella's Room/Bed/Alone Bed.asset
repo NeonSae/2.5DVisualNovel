@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 2_Dad
+  m_Name: Alone Bed
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Mr. Lockbell
-  text: Stella, I'm back! Dinner is ready!
+  speaker: Nora
+  text: '*Her bed is nice*'
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 1143dcfbf412414488dc05bedcfdcfae, type: 2}
+  nextNode: {fileID: 0}
   choices: []
