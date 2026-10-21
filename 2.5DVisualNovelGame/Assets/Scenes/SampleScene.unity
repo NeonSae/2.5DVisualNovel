@@ -31313,7 +31313,7 @@ MonoBehaviour:
   - target: {fileID: 362969327}
     newDialogue: {fileID: 0}
   - target: {fileID: 1697222821}
-    newDialogue: {fileID: 0}
+    newDialogue: {fileID: 11400000, guid: 73f6b46ae1933a34e8b62aa23f8e5226, type: 2}
   - target: {fileID: 743360740}
     newDialogue: {fileID: 0}
   - target: {fileID: 10858254}
@@ -33410,7 +33410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectDialogue
   interactionPrompt: Inspect
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 4829c0843f25227409d86a22e9300388, type: 2}
   dialogueManager: {fileID: 0}
   onlyOnce: 0
   onFinished:
@@ -35428,59 +35428,6 @@ Transform:
   - {fileID: 1154801221}
   m_Father: {fileID: 1384267852}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &1860961737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1860961739}
-  - component: {fileID: 1860961738}
-  m_Layer: 0
-  m_Name: Trigger_Corridor1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!65 &1860961738
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860961737}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1860961739
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860961737}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.73, y: 0.4, z: -0.32}
-  m_LocalScale: {x: 3.3695874, y: 1.5745, z: 1.5745}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1865633331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46653,10 +46600,10 @@ SceneRoots:
   - {fileID: 224520724}
   - {fileID: 849615167}
   - {fileID: 19447971}
-  - {fileID: 1860961739}
   - {fileID: 1899879941}
   - {fileID: 710348840}
   - {fileID: 1643636387}
+  - {fileID: 1592949542}
   - {fileID: 909255402}
   - {fileID: 927687722}
   - {fileID: 423686818}
@@ -46682,4 +46629,3 @@ SceneRoots:
   - {fileID: 1063322473}
   - {fileID: 783078342}
   - {fileID: 2023647094}
-  - {fileID: 1592949542}
