@@ -95,7 +95,10 @@ public class RoomTransitionManager : MonoBehaviour
             // Keep the NPC's own height compared to the player (different pivots/sizes).
             float heightOffset = traveler.transform.position.y - playerPositionBefore.y;
 
-            Vector3 arrival = destination.position + destination.rotation * traveler.ArrivalOffset;
+            // Guided NPCs (NpcGuide) arrive on the spawn point and step into the room themselves;
+            // others use their offset so they don't land inside the player.
+            Vector3 offset = traveler.GetComponent<NpcGuide>() != null ? Vector3.zero : traveler.ArrivalOffset;
+            Vector3 arrival = destination.position + destination.rotation * offset;
             arrival.y = destination.position.y + heightOffset;
 
             if (traveler.ArrivalDelay <= 0f)

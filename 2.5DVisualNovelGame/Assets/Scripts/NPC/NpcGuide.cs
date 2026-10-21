@@ -31,6 +31,8 @@ public class NpcGuide : MonoBehaviour
     }
 
     [SerializeField] private GuideStep[] steps;
+    [Tooltip("After coming out of a door, walk this far into the room first.")]
+    [SerializeField] private float stepOutDistance = 1.2f;
 
     private NpcMovement npc;
     private Transform player;
@@ -88,6 +90,22 @@ public class NpcGuide : MonoBehaviour
 
     private IEnumerator RunStep(GuideStep step)
     {
+        // 0. Step out of the doorway into the room (toward where she's going),
+        //    so she never stands inside the door or on the player's arrival spot.
+        if (step.walkTo != null)
+        {
+            Vector3 dir = step.walkTo.position - transform.position;
+            dir.y = 0f;
+            if (dir.sqrMagnitude > 0.01f)
+            {
+                bool cleared = false;
+                Vector3 clearPoint = transform.position + dir.normalized * Mathf.Min(stepOutDistance, dir.magnitude);
+                npc.MoveTo(clearPoint, () => cleared = true);
+                float timeout = 2f;
+                while (!cleared && timeout > 0f) { timeout -= Time.deltaTime; yield return null; }
+            }
+        }
+
         // 1. Wait for the player to catch up.
         if (step.waitForPlayerWithin > 0f && player != null)
         {

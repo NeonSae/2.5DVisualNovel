@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 // Moves an NPC and animates its sprite in 5 directions (left side = mirrored).
 // Walking cycles through the frames; standing still shows the first frame (no idle animation).
@@ -9,8 +10,12 @@ public class NpcMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2.5f;
     [SerializeField] private float stopDistance = 0.1f;
-    [Tooltip("When going through a door, appear this far from the player's arrival spot.")]
-    [SerializeField] private Vector3 doorArrivalOffset = new Vector3(0.8f, 0f, 0f);
+    [Tooltip("Walk around walls and furniture (NavMesh). Off = straight line.")]
+    [SerializeField] private bool usePathfinding = true;
+
+    private NavMeshAgent agent;
+    private bool movingWithAgent;
+    private float stuckTimer;
 
     // Fired every time this NPC comes out of a door (used by NpcGuide).
     public event Action ArrivedThroughDoor;
@@ -18,8 +23,10 @@ public class NpcMovement : MonoBehaviour
     [Header("Ground")]
     [Tooltip("Keep the NPC standing on the floor (fixes floating / sinking after doors).")]
     [SerializeField] private bool snapToGround = true;
-    [Tooltip("How high above the NPC we start looking for the floor.")]
-    [SerializeField] private float groundCheckHeight = 2f;
+    [Tooltip("Highest step the NPC can walk up while walking. Anything taller (beds, tables, door frames) is ignored, never climbed.")]
+    [SerializeField] private float stepHeight = 0.3f;
+    [Tooltip("After a door/teleport, how far up we accept the floor to be (fixes arriving a bit under the floor).")]
+    [SerializeField] private float arrivalStepHeight = 1f;
 
     // Height of the NPC above the floor, measured where it was placed in the scene.
     private float groundOffset;
@@ -52,10 +59,42 @@ public class NpcMovement : MonoBehaviour
 
     public bool IsMoving => hasTarget;
 
+    private void Awake()
+    {
+        if (usePathfinding)
+            RuntimeNavMesh.EnsureBuilt();
+    }
+
+    // The NavMeshAgent is added once the NavMesh is ready (built at scene start).
+    private bool TryGetAgent()
+    {
+        if (!usePathfinding || !RuntimeNavMesh.IsReady)
+            return false;
+
+        if (agent == null)
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+            agent.updateRotation = false;      // it's a sprite, we handle facing ourselves
+            agent.radius = 0.2f;
+            agent.height = 1f;
+            agent.baseOffset = 0f;
+            agent.speed = moveSpeed;
+            agent.acceleration = 30f;
+            agent.angularSpeed = 720f;
+            agent.stoppingDistance = 0.05f;
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        }
+
+        if (!agent.isOnNavMesh)
+            agent.Warp(transform.position);
+
+        return agent.isOnNavMesh;
+    }
+
     private void Start()
     {
         // Remember how high above the floor the NPC was placed (like Nora's feet).
-        if (TryGetGroundY(transform.position, out float groundY))
+        if (TryGetGroundY(transform.position.y, 0.5f, out float groundY))
         {
             groundOffset = transform.position.y - groundY;
             hasGroundOffset = true;
@@ -64,12 +103,13 @@ public class NpcMovement : MonoBehaviour
         ShowIdleFrame();
     }
 
-    private void SnapToGround()
+    private void SnapToGround(float maxStepUp)
     {
         if (!snapToGround || !hasGroundOffset)
             return;
 
-        if (TryGetGroundY(transform.position, out float groundY))
+        float feetY = transform.position.y - groundOffset;
+        if (TryGetGroundY(feetY + groundOffset, maxStepUp, out float groundY))
         {
             Vector3 position = transform.position;
             position.y = groundY + groundOffset;
@@ -77,28 +117,32 @@ public class NpcMovement : MonoBehaviour
         }
     }
 
-    // Finds the floor under a point (ignores triggers, the player and this NPC).
-    private bool TryGetGroundY(Vector3 position, out float groundY)
+    // Finds the floor under the NPC: the highest surface that is at most
+    // maxStepUp above its feet. Taller things (beds, tables, door frames) are ignored.
+    private bool TryGetGroundY(float rootY, float maxStepUp, out float groundY)
     {
         groundY = 0f;
-        Vector3 origin = position + Vector3.up * groundCheckHeight;
+        float feetY = rootY - groundOffset;
+        Vector3 origin = new Vector3(transform.position.x, feetY + 3f, transform.position.z);
 
-        RaycastHit[] hits = Physics.RaycastAll(origin, Vector3.down, groundCheckHeight + 20f, ~0, QueryTriggerInteraction.Ignore);
-        float closest = float.MaxValue;
+        RaycastHit[] hits = Physics.RaycastAll(origin, Vector3.down, 30f, ~0, QueryTriggerInteraction.Ignore);
+        bool found = false;
 
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider is CharacterController || hit.transform.IsChildOf(transform))
                 continue;
+            if (hit.point.y > feetY + maxStepUp)
+                continue;
 
-            if (hit.distance < closest)
+            if (!found || hit.point.y > groundY)
             {
-                closest = hit.distance;
                 groundY = hit.point.y;
+                found = true;
             }
         }
 
-        return closest < float.MaxValue;
+        return found;
     }
 
     // Walk to a point (keeps its own height). onArrived is called when it gets there.
@@ -108,6 +152,16 @@ public class NpcMovement : MonoBehaviour
         target.y = transform.position.y;
         onArrived = arrived;
         hasTarget = true;
+        stuckTimer = 0f;
+
+        // Pathfinding: walk around walls and furniture.
+        movingWithAgent = TryGetAgent();
+        if (movingWithAgent)
+        {
+            agent.isStopped = false;
+            agent.speed = moveSpeed;
+            agent.SetDestination(worldPosition);
+        }
     }
 
     // Instantly place the NPC somewhere (used by doors).
@@ -115,9 +169,52 @@ public class NpcMovement : MonoBehaviour
     {
         hasTarget = false;
         onArrived = null;
-        transform.position = worldPosition;
-        SnapToGround();
+        movingWithAgent = false;
+
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.ResetPath();
+            agent.Warp(worldPosition);   // lands on the walkable floor
+        }
+        else
+        {
+            transform.position = worldPosition;
+            SnapToGround(arrivalStepHeight);
+        }
+
         ShowIdleFrame();
+    }
+
+    private void UpdateAgentMove()
+    {
+        bool closeEnough = !agent.pathPending && agent.remainingDistance <= Mathf.Max(stopDistance, agent.stoppingDistance);
+
+        // Can't get any closer (blocked or no path)? Count it as arrived after a moment.
+        if (!agent.pathPending && agent.velocity.sqrMagnitude < 0.01f)
+            stuckTimer += Time.deltaTime;
+        else
+            stuckTimer = 0f;
+
+        if (closeEnough || stuckTimer > 1f || agent.pathStatus == NavMeshPathStatus.PathInvalid)
+        {
+            agent.ResetPath();
+            hasTarget = false;
+            movingWithAgent = false;
+            ShowIdleFrame();
+
+            Action callback = onArrived;
+            onArrived = null;
+            callback?.Invoke();
+            return;
+        }
+
+        Vector3 velocity = agent.velocity;
+        velocity.y = 0f;
+        if (velocity.sqrMagnitude > 0.01f)
+        {
+            UpdateFacing(velocity.normalized);
+            AnimateWalk();
+        }
     }
 
     // Goes through the closest door (within maxDistance) and appears where it leads.
@@ -161,7 +258,7 @@ public class NpcMovement : MonoBehaviour
             return false;
 
         Transform destination = door.Destination;
-        ArriveThroughDoor(destination.position + destination.rotation * doorArrivalOffset);
+        ArriveThroughDoor(destination.position);
         return true;
     }
 
@@ -189,6 +286,12 @@ public class NpcMovement : MonoBehaviour
             return;
         }
 
+        if (movingWithAgent && agent != null && agent.isOnNavMesh)
+        {
+            UpdateAgentMove();
+            return;
+        }
+
         Vector3 toTarget = target - transform.position;
         toTarget.y = 0f;
 
@@ -206,7 +309,7 @@ public class NpcMovement : MonoBehaviour
         Vector3 direction = toTarget.normalized;
         float step = Mathf.Min(moveSpeed * Time.deltaTime, toTarget.magnitude);
         transform.position += direction * step;
-        SnapToGround();
+        SnapToGround(stepHeight);
 
         UpdateFacing(direction);
         AnimateWalk();
