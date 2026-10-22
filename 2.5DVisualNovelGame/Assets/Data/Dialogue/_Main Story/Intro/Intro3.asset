@@ -18,6 +18,9 @@ MonoBehaviour:
   leftPortrait: {fileID: 0}
   rightPortrait: {fileID: 0}
   cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
   startMusic: {fileID: 0}
+  pauseMusic: 0
+  resumeMusic: 2
   nextNode: {fileID: 0}
   choices: []

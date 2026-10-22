@@ -74,6 +74,10 @@ public class AudioManager : MonoBehaviour
     {
         if (musicSource != null)
             musicSource.Stop();
+
+        // A paused track must not come back later.
+        musicPaused = false;
+        resumeOnNextDoor = false;
     }
 
     // ---------- Pause / resume (used by dialogue lines) ----------

@@ -26,6 +26,9 @@ public class RoomTransitionManager : MonoBehaviour
     public static bool IsAnyTransitioning => activeTransitions > 0;
     private static int activeTransitions;
 
+    // The player was just moved to this door destination (screen still black).
+    public static event System.Action<Transform> PlayerArrived;
+
     public void EnterRoom(Transform destination)
     {
         EnterRoom(destination, null);
@@ -62,6 +65,8 @@ public class RoomTransitionManager : MonoBehaviour
 
         // NPCs that follow the player through doors (companions now, chasers later).
         MoveDoorTravelers(destination, playerPositionBefore);
+
+        PlayerArrived?.Invoke(destination);
 
         // Switch the camera to the new room's bounds.
         if (cameraConfiner != null && roomCameraBounds != null)

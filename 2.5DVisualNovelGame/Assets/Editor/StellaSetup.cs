@@ -164,11 +164,53 @@ public static class StellaSetup
     // Returns frames[1..20] (index 0 = first available frame), fixing import settings on the way.
     private static Sprite[] LoadStellaFrames(List<string> report)
     {
-        var result = new Sprite[21];
-        var regex = new Regex(@"^stella walk(\d+)$", RegexOptions.IgnoreCase);
-        int found = 0;
+        // "stella walk14" or "stella_walk14".
+        Sprite[] frames = LoadFrames("Assets/Art/Characters/Stella", @"^stella[ _]walk(\d+)$", true, out int found);
+        report.Add("Stella frames found: " + found + "/20 (pixel-art import settings fixed).");
+        return frames;
+    }
 
-        foreach (string guid in AssetDatabase.FindAssets("stella walk t:Texture2D"))
+    // Tools > Sleepover > Refresh Stella Walk Frames: only re-reads her 20 frames (e.g. a new walk14).
+    [MenuItem("Tools/Sleepover/Refresh Stella Walk Frames")]
+    public static void RefreshStellaFrames()
+    {
+        NpcMovement stella = null;
+        foreach (NpcMovement npc in Object.FindObjectsByType<NpcMovement>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (npc.name == "Stella") stella = npc;
+        if (stella == null)
+        {
+            EditorUtility.DisplayDialog("Stella frames", "No 'Stella' in the open scene.", "OK");
+            return;
+        }
+
+        var report = new List<string>();
+        AssignWalkFrames(stella, LoadStellaFrames(report));
+        EditorSceneManager.MarkSceneDirty(stella.gameObject.scene);
+        EditorSceneManager.SaveScene(stella.gameObject.scene);
+        EditorUtility.DisplayDialog("Stella frames", string.Join("\n", report) + "\nScene saved.", "OK");
+    }
+
+    // Frames 1-4 front, 5-8 front-right, 9-12 right, 13-16 back-right, 17-20 back.
+    public static void AssignWalkFrames(NpcMovement npc, Sprite[] frames)
+    {
+        var so = new SerializedObject(npc);
+        SetFrames(so.FindProperty("walkFront"), frames, 1);
+        SetFrames(so.FindProperty("walkFrontRight"), frames, 5);
+        SetFrames(so.FindProperty("walkRight"), frames, 9);
+        SetFrames(so.FindProperty("walkBackRight"), frames, 13);
+        SetFrames(so.FindProperty("walkBack"), frames, 17);
+        so.ApplyModifiedProperties();
+    }
+
+    // Returns frames[1..20] from a folder (index 0 = first available frame).
+    // fixImport: set pixel-art import + bottom pivot (don't use on sprites other things already rely on).
+    public static Sprite[] LoadFrames(string folder, string namePattern, bool fixImport, out int found)
+    {
+        var result = new Sprite[21];
+        var regex = new Regex(namePattern, RegexOptions.IgnoreCase);
+        found = 0;
+
+        foreach (string guid in AssetDatabase.FindAssets("t:Texture2D", new[] { folder }))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
             Match match = regex.Match(System.IO.Path.GetFileNameWithoutExtension(path));
@@ -179,7 +221,7 @@ public static class StellaSetup
             if (number < 1 || number > 20)
                 continue;
 
-            var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            var importer = fixImport ? AssetImporter.GetAtPath(path) as TextureImporter : null;
             if (importer != null)
             {
                 var settings = new TextureImporterSettings();
@@ -219,7 +261,6 @@ public static class StellaSetup
             if (result[i] != null) { result[0] = result[i]; break; }
         }
 
-        report.Add("Stella frames found: " + found + "/20 (pixel-art import settings fixed).");
         return result;
     }
 

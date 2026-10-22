@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
+  m_Name: Kitchen 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speaker: Stella's Dad
+  text: Oh, welcome Nora!
+  leftPortrait: {fileID: 0}
+  rightPortrait: {fileID: 2335413334521252836, guid: 0fcbb5392e6df0942b14649c9ec99b77, type: 3}
+  cutsceneImage: {fileID: 0}
+  fadeCutsceneImage: 1
+  startMusic: {fileID: 8300000, guid: 347bc004293b4b94c8c2133fc56d9f43, type: 3}
+  pauseMusic: 0
+  resumeMusic: 2
+  nextNode: {fileID: 11400000, guid: a10ba3de9526d0e41af3722d523f47cc, type: 2}
+  choices: []

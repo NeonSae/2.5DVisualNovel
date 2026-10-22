@@ -19,10 +19,12 @@ MonoBehaviour:
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
+  pauseMusic: 0
+  resumeMusic: 2
   nextNode: {fileID: 0}
   choices:
   - choiceText: '''Explore a little longer'''
-    nextNode: {fileID: 11400000, guid: 18f4623495422c54ea71e58b5a2fe98a, type: 2}
+    nextNode: {fileID: 0}
     conditionMode: 0
     conditions: []
     effects: []

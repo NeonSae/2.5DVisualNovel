@@ -30,6 +30,17 @@ public class NPC : MonoBehaviour, IInteractable
             dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 
+    // Give the NPC something new to say (and make them talkable again).
+    public void SetDialogue(DialogueNode newDialogue)
+    {
+        startingNode = newDialogue;
+        hasTalked = false;
+
+        InteractionLock interactionLock = GetComponent<InteractionLock>();
+        if (interactionLock != null)
+            interactionLock.Unlock();
+    }
+
     public void Interact()
     {
         if (talkOnlyOnce && hasTalked)

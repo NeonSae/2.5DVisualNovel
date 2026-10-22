@@ -24,6 +24,44 @@ public static class IntroSetup
     private const string DoorClosed = "04ea5494919ee4a4c9eb87bd5e74c87f";
     private const string DoorLoop = "347bc004293b4b94c8c2133fc56d9f43";
 
+    private const string ItsThisWay = "18f4623495422c54ea71e58b5a2fe98a"; // RPGMODE1/InteractWDoor
+
+    // "Explore a little longer" ends the talk; 15s later Stella says "Nora? it's this way".
+    [MenuItem("Tools/Sleepover/Setup Explore Reminder (Living Room)")]
+    public static void SetupExploreReminder()
+    {
+        IntroSequence intro = Object.FindFirstObjectByType<IntroSequence>(FindObjectsInactive.Include);
+        DialogueNode choice = Load<DialogueNode>(RpgChoice);
+        if (intro == null || choice == null || choice.choices == null || choice.choices.Length == 0)
+        {
+            EditorUtility.DisplayDialog("Setup", "Need the Intro Sequence in the scene and RPGMODE1/Choice with its choices.", "OK");
+            return;
+        }
+
+        // The "explore" choice now just closes the dialogue.
+        Undo.RecordObject(choice, "Explore choice");
+        choice.choices[0].nextNode = null;
+        EditorUtility.SetDirty(choice);
+        AssetDatabase.SaveAssets();
+
+        ChoiceReminder reminder = intro.GetComponent<ChoiceReminder>();
+        if (reminder == null) reminder = Undo.AddComponent<ChoiceReminder>(intro.gameObject);
+        var so = new SerializedObject(reminder);
+        so.FindProperty("dialogueWithChoice").objectReferenceValue = Load<DialogueNode>(Rpg1);
+        so.FindProperty("button").intValue = 0;
+        so.FindProperty("delay").floatValue = 15f;
+        so.FindProperty("reminderDialogue").objectReferenceValue = Load<DialogueNode>(ItsThisWay);
+        so.ApplyModifiedProperties();
+
+        Selection.activeGameObject = intro.gameObject;
+        EditorSceneManager.MarkSceneDirty(intro.gameObject.scene);
+        EditorSceneManager.SaveScene(intro.gameObject.scene);
+        EditorUtility.DisplayDialog("Setup",
+            "Done!\n\n- 'Explore a little longer' now just closes the dialogue.\n" +
+            "- 15s later (paused while reading), Stella says 'Nora? it's this way'.\n" +
+            "- Settings: 'Choice Reminder' on the Intro Sequence object.\n- Scene saved.", "OK");
+    }
+
     [MenuItem("Tools/Sleepover/Setup Intro")]
     public static void Setup()
     {

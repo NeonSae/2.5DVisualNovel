@@ -41,6 +41,12 @@ public class NpcMovement : MonoBehaviour
     private Transform lookTarget;
     private float lookTimer;
 
+    public bool LookAtPlayerWhenIdle
+    {
+        get => lookAtPlayerWhenIdle;
+        set => lookAtPlayerWhenIdle = value;
+    }
+
     [Header("Walk frames (Front = facing the camera)")]
     [SerializeField] private Sprite[] walkFront;
     [SerializeField] private Sprite[] walkFrontRight;
@@ -162,6 +168,17 @@ public class NpcMovement : MonoBehaviour
             agent.speed = moveSpeed;
             agent.SetDestination(worldPosition);
         }
+    }
+
+    // Stop walking right where it is.
+    public void Stop()
+    {
+        hasTarget = false;
+        onArrived = null;
+        movingWithAgent = false;
+        if (agent != null && agent.isOnNavMesh)
+            agent.ResetPath();
+        ShowIdleFrame();
     }
 
     // Instantly place the NPC somewhere (used by doors).

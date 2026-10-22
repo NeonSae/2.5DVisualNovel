@@ -11,6 +11,12 @@ public class DialogueManager : MonoBehaviour
 
     public bool IsDialogueActive => isDialogueActive;
 
+    // First line of the dialogue that's playing (to know which conversation a choice belongs to).
+    public DialogueNode StartNode { get; private set; }
+
+    // Runs when the player clicks a choice: (the question line, the index of the button clicked).
+    public event System.Action<DialogueNode, int> ChoiceSelected;
+
     // Frame the dialogue started on, so the same E press doesn't skip the first line.
     private int startedFrame = -1;
 
@@ -33,6 +39,7 @@ public class DialogueManager : MonoBehaviour
 
         isDialogueActive = true;
         startedFrame = Time.frameCount;
+        StartNode = startingNode;
 
         ShowNode(startingNode);
     }
@@ -149,6 +156,9 @@ public class DialogueManager : MonoBehaviour
     private void SelectChoice(DialogueChoice choice)
     {
         ApplyEffects(choice.effects);
+
+        if (currentNode != null && currentNode.choices != null)
+            ChoiceSelected?.Invoke(currentNode, System.Array.IndexOf(currentNode.choices, choice));
 
         if (choice.nextNode != null)
         {

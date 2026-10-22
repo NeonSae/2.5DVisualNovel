@@ -12,6 +12,13 @@ public class BlockedDoor : MonoBehaviour
 
     public bool IsBlocked => blocked;
 
+    // What pressing E says while blocked (can be swapped during the story).
+    public DialogueNode Dialogue
+    {
+        get => blockedDialogue;
+        set => blockedDialogue = value;
+    }
+
     public void Block() => blocked = true;
     public void Unblock() => blocked = false;
 

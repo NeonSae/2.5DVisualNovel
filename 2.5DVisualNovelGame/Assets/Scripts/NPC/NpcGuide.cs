@@ -88,6 +88,17 @@ public class NpcGuide : MonoBehaviour
         nextStep++;
     }
 
+    // True if the player already went through this step's door
+    // (they're closer to where it leads than to the NPC).
+    private bool PlayerWentAhead(GuideStep step)
+    {
+        if (player == null || step.door == null || step.door.Destination == null || RoomTransitionManager.IsAnyTransitioning)
+            return false;
+
+        float toOtherSide = Vector3.Distance(player.position, step.door.Destination.position);
+        return toOtherSide < 8f && toOtherSide < Vector3.Distance(player.position, transform.position);
+    }
+
     private IEnumerator RunStep(GuideStep step)
     {
         // 0. Step out of the doorway into the room (toward where she's going),
@@ -106,25 +117,43 @@ public class NpcGuide : MonoBehaviour
             }
         }
 
-        // 1. Wait for the player to catch up.
+        // 1. Wait for the player to catch up (or stop waiting if they already went ahead).
         if (step.waitForPlayerWithin > 0f && player != null)
         {
             yield return new WaitUntil(() =>
-                Vector3.Distance(player.position, transform.position) <= step.waitForPlayerWithin &&
+                (Vector3.Distance(player.position, transform.position) <= step.waitForPlayerWithin ||
+                 PlayerWentAhead(step)) &&
                 !RoomTransitionManager.IsAnyTransitioning);
         }
 
-        yield return new WaitForSeconds(step.waitBeforeWalking);
+        // The player is already in the next room: skip the walk, come through the door now.
+        bool hurry = PlayerWentAhead(step);
 
-        // 2. Walk to the spot.
-        if (step.walkTo != null)
+        if (!hurry)
         {
-            bool arrived = false;
-            npc.MoveTo(step.walkTo.position, () => arrived = true);
-            yield return new WaitUntil(() => arrived);
+            yield return new WaitForSeconds(step.waitBeforeWalking);
+
+            // 2. Walk to the spot.
+            if (step.walkTo != null)
+            {
+                bool arrived = false;
+                npc.MoveTo(step.walkTo.position, () => arrived = true);
+                yield return new WaitUntil(() => arrived || PlayerWentAhead(step));
+                hurry = !arrived;
+            }
         }
 
         step.onArrived?.Invoke();
+
+        if (hurry && step.door != null)
+        {
+            if (step.doorSound != null && AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(step.doorSound);
+
+            running = null;
+            npc.UseDoor(step.door);
+            yield break;
+        }
 
         // 3. Go through the door (this starts the next step on the other side).
         if (step.door != null)
