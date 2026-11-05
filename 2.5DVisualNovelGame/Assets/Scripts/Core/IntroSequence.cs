@@ -209,7 +209,10 @@ public class IntroSequence : MonoBehaviour
         }
     }
 
-    private void DrawDialogueAboveFade()
+    private void DrawDialogueAboveFade() => DrawDialogueAboveFade(screenFader, dialogueCanvas);
+
+    // Makes the dialogue box show on top of the black screen (also used by the dinner cutscene).
+    public static void DrawDialogueAboveFade(ScreenFader screenFader, Canvas dialogueCanvas)
     {
         if (dialogueCanvas == null || screenFader == null || screenFader.FadeCanvas == null)
             return;

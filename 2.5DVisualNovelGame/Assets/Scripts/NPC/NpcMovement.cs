@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // Moves an NPC and animates its sprite in 5 directions (left side = mirrored).
-// Walking cycles through the frames; standing still shows the first frame (no idle animation).
+// Walking cycles through the walk frames; standing still plays the idle frames (or shows the first walk frame).
 // Works without an Animator: just drop the frames into the arrays.
 public class NpcMovement : MonoBehaviour
 {
@@ -53,6 +53,14 @@ public class NpcMovement : MonoBehaviour
     [SerializeField] private Sprite[] walkRight;
     [SerializeField] private Sprite[] walkBackRight;
     [SerializeField] private Sprite[] walkBack;
+
+    [Header("Idle frames (optional, played when standing still)")]
+    [SerializeField] private float idleFramesPerSecond = 4f;
+    [SerializeField] private Sprite[] idleFront;
+    [SerializeField] private Sprite[] idleFrontRight;
+    [SerializeField] private Sprite[] idleRight;
+    [SerializeField] private Sprite[] idleBackRight;
+    [SerializeField] private Sprite[] idleBack;
 
     private bool hasTarget;
     private Vector3 target;
@@ -159,6 +167,7 @@ public class NpcMovement : MonoBehaviour
         onArrived = arrived;
         hasTarget = true;
         stuckTimer = 0f;
+        GetUp();
 
         // Pathfinding: walk around walls and furniture.
         movingWithAgent = TryGetAgent();
@@ -167,6 +176,42 @@ public class NpcMovement : MonoBehaviour
             agent.isStopped = false;
             agent.speed = moveSpeed;
             agent.SetDestination(worldPosition);
+        }
+    }
+
+    // Little hop onto a seat (couch, chair), then face something (e.g. the TV) and stay there.
+    // Walking again (MoveTo / WarpTo) gets the NPC back up.
+    public void SitOn(Transform seat, Vector3 lookAt, float hopTime = 0.35f, float hopHeight = 0.25f)
+    {
+        if (seat == null)
+            return;
+
+        Stop();
+        lookAtPlayerWhenIdle = false;
+        if (agent != null)
+            agent.enabled = false;   // the seat is off the walkable floor
+        StartCoroutine(Hop(seat.position, lookAt, hopTime, hopHeight));
+    }
+
+    private System.Collections.IEnumerator Hop(Vector3 seat, Vector3 lookAt, float duration, float height)
+    {
+        Vector3 start = transform.position;
+        FaceTowards(seat);
+        for (float t = 0f; t < 1f; t += Time.deltaTime / Mathf.Max(0.01f, duration))
+        {
+            transform.position = Vector3.Lerp(start, seat, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * height;
+            yield return null;
+        }
+        transform.position = seat;
+        FaceTowards(lookAt);
+    }
+
+    private void GetUp()
+    {
+        if (agent != null && !agent.enabled)
+        {
+            agent.enabled = true;
+            agent.Warp(transform.position);
         }
     }
 
@@ -187,6 +232,7 @@ public class NpcMovement : MonoBehaviour
         hasTarget = false;
         onArrived = null;
         movingWithAgent = false;
+        GetUp();
 
         if (agent != null && agent.isOnNavMesh)
         {
@@ -230,7 +276,7 @@ public class NpcMovement : MonoBehaviour
         if (velocity.sqrMagnitude > 0.01f)
         {
             UpdateFacing(velocity.normalized);
-            AnimateWalk();
+            Animate(GetFrames(false), framesPerSecond);
         }
     }
 
@@ -300,6 +346,7 @@ public class NpcMovement : MonoBehaviour
         if (!hasTarget)
         {
             LookAtPlayer();
+            Animate(GetIdleFrames(), idleFramesPerSecond);   // nothing to play if there are no idle frames
             return;
         }
 
@@ -329,7 +376,7 @@ public class NpcMovement : MonoBehaviour
         SnapToGround(stepHeight);
 
         UpdateFacing(direction);
-        AnimateWalk();
+        Animate(GetFrames(false), framesPerSecond);
     }
 
     private void LookAtPlayer()
@@ -382,14 +429,13 @@ public class NpcMovement : MonoBehaviour
             spriteRenderer.flipX = facing >= 1 && facing <= 3 && angle < 0f;
     }
 
-    private void AnimateWalk()
+    private void Animate(Sprite[] frames, float fps)
     {
-        Sprite[] frames = GetFrames();
         if (frames == null || frames.Length == 0 || spriteRenderer == null)
             return;
 
         frameTimer += Time.deltaTime;
-        float frameTime = 1f / Mathf.Max(0.01f, framesPerSecond);
+        float frameTime = 1f / Mathf.Max(0.01f, fps);
 
         if (frameTimer >= frameTime)
         {
@@ -414,7 +460,7 @@ public class NpcMovement : MonoBehaviour
         frameIndex = 0;
         frameTimer = 0f;
 
-        Sprite[] frames = GetFrames();
+        Sprite[] frames = GetFrames(true);
         if (frames == null || spriteRenderer == null)
             return;
 
@@ -428,8 +474,21 @@ public class NpcMovement : MonoBehaviour
         }
     }
 
-    private Sprite[] GetFrames()
+    // Idle frames if there are any for this direction, else the walk frames.
+    private Sprite[] GetFrames(bool idle)
     {
+        if (idle)
+        {
+            Sprite[] idleFrames = GetIdleFrames();
+            if (idleFrames != null && System.Array.Exists(idleFrames, f => f != null))
+                return idleFrames;
+
+            // No idle animation: stand on the first walk frame.
+            Sprite[] walk = GetFrames(false);
+            Sprite first = walk != null ? System.Array.Find(walk, f => f != null) : null;
+            return first != null ? new[] { first } : walk;
+        }
+
         switch (facing)
         {
             case 1: return walkFrontRight;
@@ -437,6 +496,18 @@ public class NpcMovement : MonoBehaviour
             case 3: return walkBackRight;
             case 4: return walkBack;
             default: return walkFront;
+        }
+    }
+
+    private Sprite[] GetIdleFrames()
+    {
+        switch (facing)
+        {
+            case 1: return idleFrontRight;
+            case 2: return idleRight;
+            case 3: return idleBackRight;
+            case 4: return idleBack;
+            default: return idleFront;
         }
     }
 }

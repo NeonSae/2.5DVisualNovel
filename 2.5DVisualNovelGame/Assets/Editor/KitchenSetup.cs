@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Tools > Sleepover > Setup Kitchen Scene (Dad)
-// - creates "Dad" in the kitchen (placeholder look: Nora's frames, tinted) setting the table
+// - creates "Dad" in the kitchen (frames from Art/Characters/Father/Run) setting the table
 // - Stella waits next to the kitchen door
 // - when Nora enters: she can't move, Dad turns to her for a second, then talks
 // Safe to run again: Dad and points you moved are kept.
 public static class KitchenSetup
 {
     private const string DadName = "Dad";
-    private const string NoraWalkFolder = "Assets/Art/Characters/Nora/Walk";
+    private const string DadWalkFolder = "Assets/Art/Characters/Father/Run";
 
     [MenuItem("Tools/Sleepover/Setup Kitchen Scene (Dad)")]
     public static void Setup()
@@ -80,15 +80,8 @@ public static class KitchenSetup
         {
             dadMove = Undo.AddComponent<NpcMovement>(dad);
             EditorUtility.CopySerialized(stella, dadMove);   // same speed / ground settings
-            Sprite[] frames = StellaSetup.LoadFrames(NoraWalkFolder, @"walk(?: nora)?(\d+)$", false, out int found);
-            StellaSetup.AssignWalkFrames(dadMove, frames);
-            if (renderer != null)
-            {
-                renderer.sprite = frames[0];
-                renderer.color = new Color(0.75f, 0.85f, 1f);   // placeholder tint, so he doesn't look like Nora
-            }
-            report.Add("Dad uses Nora's walk frames as a placeholder (" + found + "/20 found, tinted blue).");
         }
+        report.Add(ApplyDadFrames(dadMove, renderer));
         var moveSO = new SerializedObject(dadMove);
         moveSO.FindProperty("spriteRenderer").objectReferenceValue = renderer;
         moveSO.FindProperty("lookAtPlayerWhenIdle").boolValue = false;
@@ -130,6 +123,46 @@ public static class KitchenSetup
         report.Add("Scene saved.");
 
         EditorUtility.DisplayDialog("Setup", "Done!\n\n- " + string.Join("\n- ", report), "OK");
+    }
+
+    // Tools > Sleepover > Apply Dad Sprites: puts "dad Walk1-20" on Dad (e.g. after updating the art).
+    [MenuItem("Tools/Sleepover/Apply Dad Sprites")]
+    public static void ApplyDadSprites()
+    {
+        GameObject dad = FindInScene(DadName);
+        NpcMovement dadMove = dad != null ? dad.GetComponent<NpcMovement>() : null;
+        if (dadMove == null)
+        {
+            EditorUtility.DisplayDialog("Dad sprites", "No 'Dad' in the scene. Run 'Setup Kitchen Scene (Dad)' first.", "OK");
+            return;
+        }
+
+        Transform visual = dad.transform.Find("Visual");
+        SpriteRenderer renderer = visual != null ? visual.GetComponent<SpriteRenderer>() : dad.GetComponentInChildren<SpriteRenderer>();
+        string result = ApplyDadFrames(dadMove, renderer);
+
+        EditorSceneManager.MarkSceneDirty(dad.scene);
+        EditorSceneManager.SaveScene(dad.scene);
+        EditorUtility.DisplayDialog("Dad sprites", result + "\nScene saved.", "OK");
+    }
+
+    // Frames 1-4 front, 5-8 front-right, 9-12 right, 13-16 back-right, 17-20 back (same as Stella).
+    private static string ApplyDadFrames(NpcMovement dadMove, SpriteRenderer renderer)
+    {
+        Sprite[] frames = StellaSetup.LoadFrames(DadWalkFolder, @"^dad[ _]walk(\d+)$", true, out int found);
+        if (found == 0)
+            return "! No dad walk frames found in " + DadWalkFolder;
+
+        StellaSetup.AssignWalkFrames(dadMove, frames);
+        StellaSetup.ClearIdleFrames(dadMove);   // like Stella: stands on his first walk frame, no idle animation
+
+        if (renderer != null)
+        {
+            Undo.RecordObject(renderer, "Dad sprite");
+            renderer.sprite = frames[0];
+            renderer.color = Color.white;   // remove the old placeholder tint
+        }
+        return "Dad walk frames: " + found + "/20 (pixel-art import + feet pivot fixed). No idle animation.";
     }
 
     // Tools > Sleepover > Setup Camera Moves

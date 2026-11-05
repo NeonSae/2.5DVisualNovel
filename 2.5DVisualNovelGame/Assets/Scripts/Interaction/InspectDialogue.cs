@@ -32,6 +32,7 @@ public class InspectDialogue : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => interactionPrompt;
     public bool HasBeenInspected => used;
+    public bool HasDialogue => dialogue != null;
 
     private void Awake()
     {

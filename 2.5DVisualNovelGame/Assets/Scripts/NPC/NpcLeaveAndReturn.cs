@@ -57,6 +57,12 @@ public class NpcLeaveAndReturn : MonoBehaviour
     [Tooltip("After YES, the NPC leads the way with this route (next steps of her NpcGuide).")]
     [SerializeField] private NpcGuide routeAfterYes;
 
+    [Header("See everything first (optional)")]
+    [Tooltip("The Ready Question is only asked once ALL of these have been inspected (after the NPC came back).")]
+    [SerializeField] private InspectDialogue[] inspectAllFirst;
+    [Tooltip("Said when talking to the NPC before that (e.g. 'You didn't see everything yet!'). Every time.")]
+    [SerializeField] private DialogueNode notReadyDialogue;
+
     [Header("After YES (or after the return dialogue if there's no question)")]
     [Tooltip("With a route: these doors open only once the NPC has gone through a door.")]
     [SerializeField] private BlockedDoor[] unblockDoors;
@@ -78,6 +84,17 @@ public class NpcLeaveAndReturn : MonoBehaviour
 
         started = true;
         StartCoroutine(Run());
+    }
+
+    private bool SeenEverything()
+    {
+        if (inspectAllFirst == null)
+            return true;
+
+        foreach (InspectDialogue item in inspectAllFirst)
+            if (item != null && item.isActiveAndEnabled && item.HasDialogue && !item.HasBeenInspected)   // empty / hidden ones don't count
+                return false;
+        return true;
     }
 
     private bool PlayerIsBusy()
@@ -150,21 +167,22 @@ public class NpcLeaveAndReturn : MonoBehaviour
             };
             dialogueManager.ChoiceSelected += onChoice;
 
-            // The blocked doors ask the question instead of "No need to leave now".
             var oldDoorLines = new DialogueNode[unblockDoors != null ? unblockDoors.Length : 0];
             for (int i = 0; i < oldDoorLines.Length; i++)
-            {
-                if (unblockDoors[i] == null) continue;
-                oldDoorLines[i] = unblockDoors[i].Dialogue;
-                unblockDoors[i].Dialogue = readyQuestion;
-            }
+                if (unblockDoors[i] != null) oldDoorLines[i] = unblockDoors[i].Dialogue;
 
             NPC talk = npc.GetComponent<NPC>();
             while (!saidYes)
             {
-                // Talkable again with the same question, until the player says yes.
+                // Everything seen: she asks the question (and so do the blocked doors).
+                // Not yet: "You didn't see everything yet!", doors keep their usual line.
+                bool ready = SeenEverything() || notReadyDialogue == null;
                 if (talk != null)
-                    talk.SetDialogue(readyQuestion);
+                    talk.SetDialogue(ready ? readyQuestion : notReadyDialogue);
+                for (int i = 0; i < oldDoorLines.Length; i++)
+                    if (unblockDoors[i] != null) unblockDoors[i].Dialogue = ready ? readyQuestion : oldDoorLines[i];
+
+                // Check again after every dialogue / inspection.
                 yield return new WaitUntil(() => dialogueManager.IsDialogueActive);
                 yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
             }

@@ -13,6 +13,8 @@ public class RoomEntranceScene : MonoBehaviour
     [SerializeField] private bool onlyOnce = true;
     [Tooltip("Player scripts turned off during the scene (CharacterMovement, PlayerInteractor).")]
     [SerializeField] private MonoBehaviour[] disableDuringScene;
+    [Tooltip("Not interactable from the moment the player comes in until the dialogue ends (e.g. the kitchen door).")]
+    [SerializeField] private InteractionLock[] lockDuringScene;
 
     [Header("The busy NPC")]
     [SerializeField] private NpcMovement npc;
@@ -104,6 +106,7 @@ public class RoomEntranceScene : MonoBehaviour
         playing = true;
         played = true;
         SetScriptsEnabled(false);
+        SetLocked(true);
 
         // Silence while the screen is still black.
         if (stopMusicOnEnter && AudioManager.Instance != null)
@@ -142,8 +145,22 @@ public class RoomEntranceScene : MonoBehaviour
             npc.LookAtPlayerWhenIdle = npcLooksAtPlayerAfter;
 
         SetScriptsEnabled(true);
+        SetLocked(false);
         playing = false;
         onFinished?.Invoke();
+    }
+
+    private void SetLocked(bool locked)
+    {
+        if (lockDuringScene == null)
+            return;
+
+        foreach (InteractionLock interactionLock in lockDuringScene)
+        {
+            if (interactionLock == null) continue;
+            if (locked) interactionLock.Lock();
+            else interactionLock.Unlock();
+        }
     }
 
     private void SetScriptsEnabled(bool enabled)

@@ -106,6 +106,40 @@ public static class StellasRoomSetup
             count + " door(s) now say 'No need to leave now.'\n(Select the door objects or their parents.)\nThen Ctrl+S.", "OK");
     }
 
+    // After Stella comes back: talking to her says "You didn't see everything yet" until every
+    // inspectable object in her room has been looked at, then she asks the Ready Question.
+    [MenuItem("Tools/Sleepover/Setup See Everything First (Stella's Room)")]
+    public static void SetupSeeEverythingFirst()
+    {
+        NpcLeaveAndReturn sequence = Object.FindFirstObjectByType<NpcLeaveAndReturn>(FindObjectsInactive.Include);
+        if (sequence == null)
+        {
+            EditorUtility.DisplayDialog("Setup", "Run 'Setup Stella Leaves & Returns' first.", "OK");
+            return;
+        }
+
+        var items = new List<InspectDialogue>();
+        foreach (InspectDialogue inspect in Object.FindObjectsByType<InspectDialogue>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            for (Transform t = inspect.transform; t != null; t = t.parent)
+                if (t.name == "StellasRoom") { items.Add(inspect); break; }
+        }
+
+        var so = new SerializedObject(sequence);
+        SerializedProperty list = so.FindProperty("inspectAllFirst");
+        list.arraySize = items.Count;
+        for (int i = 0; i < items.Count; i++)
+            list.GetArrayElementAtIndex(i).objectReferenceValue = items[i];
+        so.ApplyModifiedProperties();
+
+        var report = new List<string> { items.Count + " object(s) in Stella's room must be inspected before 'How does dinner sound?'." };
+        if (so.FindProperty("notReadyDialogue").objectReferenceValue == null)
+            report.Add("TO DO: drag your 'You didn't see everything yet!' line into 'Not Ready Dialogue' (selected object).");
+
+        Selection.activeGameObject = sequence.gameObject;
+        Save(sequence.gameObject, report);
+    }
+
     [MenuItem("Tools/Sleepover/Setup Stella Leaves & Returns")]
     public static void SetupLeaveAndReturn()
     {

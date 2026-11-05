@@ -191,14 +191,28 @@ public static class StellaSetup
     }
 
     // Frames 1-4 front, 5-8 front-right, 9-12 right, 13-16 back-right, 17-20 back.
-    public static void AssignWalkFrames(NpcMovement npc, Sprite[] frames)
+    public static void AssignWalkFrames(NpcMovement npc, Sprite[] frames) => AssignFrames(npc, frames, "walk");
+
+    // Same layout, into the idle arrays.
+    public static void AssignIdleFrames(NpcMovement npc, Sprite[] frames) => AssignFrames(npc, frames, "idle");
+
+    // No idle animation (stands on the first walk frame).
+    public static void ClearIdleFrames(NpcMovement npc)
     {
         var so = new SerializedObject(npc);
-        SetFrames(so.FindProperty("walkFront"), frames, 1);
-        SetFrames(so.FindProperty("walkFrontRight"), frames, 5);
-        SetFrames(so.FindProperty("walkRight"), frames, 9);
-        SetFrames(so.FindProperty("walkBackRight"), frames, 13);
-        SetFrames(so.FindProperty("walkBack"), frames, 17);
+        foreach (string dir in new[] { "Front", "FrontRight", "Right", "BackRight", "Back" })
+            so.FindProperty("idle" + dir).arraySize = 0;
+        so.ApplyModifiedProperties();
+    }
+
+    private static void AssignFrames(NpcMovement npc, Sprite[] frames, string prefix)
+    {
+        var so = new SerializedObject(npc);
+        SetFrames(so.FindProperty(prefix + "Front"), frames, 1);
+        SetFrames(so.FindProperty(prefix + "FrontRight"), frames, 5);
+        SetFrames(so.FindProperty(prefix + "Right"), frames, 9);
+        SetFrames(so.FindProperty(prefix + "BackRight"), frames, 13);
+        SetFrames(so.FindProperty(prefix + "Back"), frames, 17);
         so.ApplyModifiedProperties();
     }
 
