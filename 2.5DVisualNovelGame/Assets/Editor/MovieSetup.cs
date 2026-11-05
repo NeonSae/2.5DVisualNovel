@@ -108,12 +108,18 @@ public static class MovieSetup
         SetArray(so.FindProperty("nightObjects"), nightLights);
         SetArray(so.FindProperty("dayObjects"), dayLights);
 
-        // Stella is gone when Nora wakes up.
+        // Stella stays on the bed watching TV, and can be talked to at night.
         NpcMovement stella = dinnerSO.FindProperty("stella").objectReferenceValue as NpcMovement;
         if (stella != null)
         {
-            SetArray(so.FindProperty("goneAtNight"), stella.gameObject);
-            report.Add("Stella disappears while the screen is black.");
+            SerializedProperty gone = so.FindProperty("goneAtNight");
+            for (int i = gone.arraySize - 1; i >= 0; i--)
+                if (gone.GetArrayElementAtIndex(i).objectReferenceValue == stella.gameObject)
+                    gone.DeleteArrayElementAtIndex(i);
+            so.FindProperty("stellaTalk").objectReferenceValue = stella.GetComponent<NPC>();
+            report.Add(so.FindProperty("stellaNightDialogue").objectReferenceValue == null
+                ? "TO DO: Stella stays on the bed: drag her night line into 'Stella Night Dialogue'."
+                : "Stella stays on the bed and says her night line.");
         }
         if (so.FindProperty("wakeUpDialogue").objectReferenceValue == null)
         {

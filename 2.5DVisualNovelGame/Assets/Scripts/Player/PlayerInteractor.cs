@@ -10,7 +10,14 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private InspectionUI inspectionUI;
 
+    [Header("Prompt")]
+    [Tooltip("The 'E' icon shown above the object in the world.")]
+    [SerializeField] private InteractionIcon worldIcon;
+    [Tooltip("Also show the '[E] Interact' text at the bottom of the screen.")]
+    [SerializeField] private bool showTextPrompt;
+
     private IInteractable currentInteractable;
+    private Collider currentCollider;
     private bool waitingForERelease;
     private bool inspectionWasOpen;
 
@@ -20,7 +27,7 @@ public class PlayerInteractor : MonoBehaviour
         if (inspectionUI != null && inspectionUI.IsOpen)
         {
             currentInteractable = null;
-            interactionUI.Hide();
+            HidePrompt();
 
             inspectionWasOpen = true;
             waitingForERelease = true;
@@ -39,7 +46,7 @@ public class PlayerInteractor : MonoBehaviour
             dialogueManager.IsDialogueActive)
         {
             currentInteractable = null;
-            interactionUI.Hide();
+            HidePrompt();
 
             waitingForERelease = true;
             return;
@@ -68,6 +75,7 @@ public class PlayerInteractor : MonoBehaviour
     private void FindInteractable()
     {
         currentInteractable = null;
+        currentCollider = null;
 
         Vector3 origin = interactionPoint != null
             ? interactionPoint.position
@@ -102,18 +110,33 @@ public class PlayerInteractor : MonoBehaviour
             {
                 closestDistance = distance;
                 currentInteractable = interactable;
+                currentCollider = hit;
             }
         }
 
         if (currentInteractable != null)
         {
-            interactionUI.Show(
-                currentInteractable.InteractionPrompt
-            );
+            if (showTextPrompt && interactionUI != null)
+                interactionUI.Show(currentInteractable.InteractionPrompt);
+            if (worldIcon != null)
+                worldIcon.Show(currentCollider, transform, currentInteractable.InteractionPrompt);
         }
         else
         {
-            interactionUI.Hide();
+            HidePrompt();
         }
+    }
+
+    private void HidePrompt()
+    {
+        if (interactionUI != null) interactionUI.Hide();
+        if (worldIcon != null) worldIcon.Hide();
+    }
+
+    // Turned off (cutscene, sitting...): no prompt left on screen.
+    private void OnDisable()
+    {
+        currentInteractable = null;
+        HidePrompt();
     }
 }

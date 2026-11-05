@@ -37,8 +37,21 @@ public class MovieSequence : MonoBehaviour
     [SerializeField] private GameObject[] nightObjects;
     [Tooltip("Turned OFF when the screen comes back (e.g. DayLights).")]
     [SerializeField] private GameObject[] dayObjects;
-    [Tooltip("Gone from the house when Nora wakes up (e.g. Stella).")]
+    [System.Serializable]
+    public class LightChange
+    {
+        public Light light;
+        [Tooltip("Intensity at night (e.g. Nora's light 0.7 -> 0.22).")]
+        public float nightIntensity = 0.22f;
+    }
+
+    [Tooltip("Lights that get dimmer (or brighter) at night, e.g. Nora's light.")]
+    [SerializeField] private LightChange[] nightLightChanges;
+    [Tooltip("Gone from the house when Nora wakes up (optional).")]
     [SerializeField] private GameObject[] goneAtNight;
+    [Tooltip("Stella (still on the bed, watching TV) says this when Nora talks to her at night.")]
+    [SerializeField] private NPC stellaTalk;
+    [SerializeField] private DialogueNode stellaNightDialogue;
     [SerializeField] private float fadeInTime = 2f;
 
     [Header("Nora wakes up")]
@@ -123,6 +136,10 @@ public class MovieSequence : MonoBehaviour
         SetActive(dayObjects, false);
         SetActive(nightObjects, true);
         SetActive(goneAtNight, false);
+
+        if (nightLightChanges != null)
+            foreach (LightChange change in nightLightChanges)
+                if (change != null && change.light != null) change.light.intensity = change.nightIntensity;
     }
 
     private void OpenHouse()
@@ -132,6 +149,9 @@ public class MovieSequence : MonoBehaviour
                 if (l != null) l.Unlock();
         StoryPhases.SetPhase(phaseAfter);
         waitingForMusicDoor = musicDoor != null && nightMusic != null;
+
+        if (stellaTalk != null && stellaNightDialogue != null)
+            stellaTalk.SetDialogue(stellaNightDialogue);   // talkable again
     }
 
     // Testing: start the game right after the movie (night, Stella gone, house open).

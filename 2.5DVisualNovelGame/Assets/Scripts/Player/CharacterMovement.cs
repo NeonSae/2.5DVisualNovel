@@ -44,6 +44,12 @@ public class CharacterMovement : MonoBehaviour
 
     }
 
+    // Turned off mid-walk (sitting, cutscenes): stop the footstep sound so it doesn't keep looping.
+    private void OnDisable()
+    {
+        HandleFootsteps(false);
+    }
+
     // Update is called once per frame
     private void Update()
     {

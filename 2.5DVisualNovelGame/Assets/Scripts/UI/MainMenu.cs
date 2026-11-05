@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Scene")]
     [Tooltip("Name of the game scene to load when pressing Play.")]
-    [SerializeField] private string gameSceneName = "SampleScene";
+    [SerializeField] private string gameSceneName = "Level Scene";
 
     [Header("Panels")]
     [SerializeField] private GameObject mainPanel;

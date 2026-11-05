@@ -3209,7 +3209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03939959da15ba4e8cd99b77068526c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  gameSceneName: SampleScene
+  gameSceneName: Level Scene
   mainPanel: {fileID: 1434952780}
   settingsPanel: {fileID: 801357793}
   playButton: {fileID: 1707126727}
