@@ -17544,7 +17544,7 @@ MonoBehaviour:
   stellasRoomDoor: {fileID: 1414896571}
   kitchenMusic: {fileID: 8300000, guid: 61b73f6608672464db1df7ba922e2283, type: 3}
   movieMusic: {fileID: 8300000, guid: 61b73f6608672464db1df7ba922e2283, type: 3}
-  nightMusic: {fileID: 0}
+  nightMusic: {fileID: 8300000, guid: cc0cb429ccc7db0468d4f39c94d3d80e, type: 3}
 --- !u!1 &817655808
 GameObject:
   m_ObjectHideFlags: 0
