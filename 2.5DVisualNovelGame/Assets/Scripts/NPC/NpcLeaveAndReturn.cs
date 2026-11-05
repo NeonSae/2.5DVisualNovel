@@ -88,6 +88,34 @@ public class NpcLeaveAndReturn : MonoBehaviour
         StartCoroutine(Run());
     }
 
+    // Testing: start the game after this part (doors open, room objects have their new lines).
+    public void SkipToEnd()
+    {
+        started = true;
+
+        if (unblockDoors != null)
+            foreach (BlockedDoor door in unblockDoors)
+                if (door != null) door.Unblock();
+        if (showDoors != null)
+            foreach (InteractionLock door in showDoors)
+                if (door != null) door.Unlock();
+        if (dialogueSwaps != null)
+            foreach (DialogueSwap swap in dialogueSwaps)
+                if (swap != null && swap.target != null) swap.target.SetDialogue(swap.newDialogue);
+
+        InteractionLock talkLock = npc != null ? npc.GetComponent<InteractionLock>() : null;
+        if (talkLock != null) talkLock.Lock();
+        if (routeAfterYes != null) routeAfterYes.enabled = true;
+    }
+
+    private static bool HasChoices(DialogueNode node)
+    {
+        for (int guard = 0; node != null && guard < 100; guard++, node = node.nextNode)
+            if (node.choices != null && node.choices.Length > 0)
+                return true;
+        return false;
+    }
+
     private bool SeenEverything()
     {
         if (inspectAllFirst == null)
@@ -187,6 +215,10 @@ public class NpcLeaveAndReturn : MonoBehaviour
                 // Check again after every dialogue / inspection.
                 yield return new WaitUntil(() => dialogueManager.IsDialogueActive);
                 yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
+
+                // A question without Yes/No buttons: hearing it to the end means yes.
+                if (dialogueManager.StartNode == readyQuestion && !HasChoices(readyQuestion))
+                    saidYes = true;
             }
             dialogueManager.ChoiceSelected -= onChoice;
 

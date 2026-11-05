@@ -62,6 +62,17 @@ public class IntroSequence : MonoBehaviour
 
     public bool IsPlaying { get; private set; }
 
+    // Set by PhaseCheckpoints when the game starts at a later phase: no intro, no first walk.
+    private bool skipEverything;
+
+    public void SkipIntroForTesting() => skipIntro = true;
+
+    public void SkipEverythingForTesting()
+    {
+        skipIntro = true;
+        skipEverything = true;
+    }
+
     private void Awake()
     {
         if (skipIntro)
@@ -77,6 +88,14 @@ public class IntroSequence : MonoBehaviour
 
     private void Start()
     {
+        if (skipEverything)
+        {
+            // Only what the rest of the game expects to be done already.
+            foreach (InteractionLock interactionLock in unlockAfterFollowUp ?? new InteractionLock[0])
+                if (interactionLock != null) interactionLock.Unlock();
+            return;
+        }
+
         if (skipIntro)
         {
             // Straight into the game: the player can move, Stella heads to the corridor door.

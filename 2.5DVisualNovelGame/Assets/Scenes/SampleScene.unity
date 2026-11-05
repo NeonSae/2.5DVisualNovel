@@ -1421,10 +1421,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseDoor
   closedFrom: 0
-  openedFrom: 99
+  openedFrom: 4
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &83078942
 MonoBehaviour:
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   openedFrom: 99
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &119805585
 MonoBehaviour:
@@ -4440,6 +4440,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1654861928}
   m_SourcePrefab: {fileID: 100100000, guid: ae542f9f1099f6940bb7c70d88c2a158, type: 3}
+--- !u!1 &229976679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229976680}
+  m_Layer: 0
+  m_Name: NoraPoint_BedStand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229976680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229976679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 87.41, y: 0.463, z: 3.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &235128124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9690,7 +9721,7 @@ MonoBehaviour:
   openedFrom: 2
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &467547360
 MonoBehaviour:
@@ -14570,6 +14601,85 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a37a5c4f5bf6c4ea5718d42b41527e, type: 3}
+--- !u!1 &706191264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706191266}
+  - component: {fileID: 706191265}
+  m_Layer: 0
+  m_Name: Movie Sequence === EVENT ===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &706191265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706191264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1b4972060230e4eae898bb3140be99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovieSequence
+  tvRenderer: {fileID: 1697222823}
+  screenMaterialSlot: 1
+  tvOnMaterial: {fileID: 2100000, guid: c18a6039df0ac3c41a93dc5f377b7684, type: 2}
+  tvOnTexture: {fileID: 2800000, guid: a2012d0c62dcc4849a0991ace3e430d8, type: 3}
+  tvDelay: 1
+  screenFader: {fileID: 1896639110}
+  dialogueCanvas: {fileID: 1137522894}
+  dialogueManager: {fileID: 1167567028}
+  fadeToBlackTime: 4
+  delayBeforeMusicFade: 2
+  musicFadeTime: 3
+  silenceBeforeDialogue: 0.5
+  movieDialogue: {fileID: 11400000, guid: 3e864bf89988cbd4a8a4a109f4a14ced, type: 2}
+  nightObjects:
+  - {fileID: 2115422283}
+  dayObjects:
+  - {fileID: 1060211180}
+  goneAtNight:
+  - {fileID: 2062585950}
+  fadeInTime: 2
+  playerScripts:
+  - {fileID: 2022470193}
+  - {fileID: 2022470194}
+  lookTime: 0.6
+  wakeUpDialogue: {fileID: 11400000, guid: 446ec1d94af4c094ea5a3aafa186a8d7, type: 2}
+  standPoint: {fileID: 229976680}
+  hopTime: 0.35
+  unlock:
+  - {fileID: 416164715}
+  phaseAfter: 4
+  musicDoor: {fileID: 416164709}
+  nightMusic: {fileID: 8300000, guid: cc0cb429ccc7db0468d4f39c94d3d80e, type: 3}
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &706191266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706191264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &706264360
 GameObject:
   m_ObjectHideFlags: 0
@@ -17366,6 +17476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816040335}
   - component: {fileID: 816040334}
+  - component: {fileID: 816040336}
   m_Layer: 0
   m_Name: Story Phases
   m_TagString: Untagged
@@ -17408,6 +17519,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816040336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816040333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439e8ac51829f614998be2c84929e99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhaseCheckpoints
+  storyPhases: {fileID: 816040334}
+  intro: {fileID: 19447970}
+  stella: {fileID: 2062585952}
+  stellaGuide: {fileID: 2062585955}
+  stellaLeavesAndReturns: {fileID: 1592949541}
+  kitchenEntrance: {fileID: 1107560162}
+  dinner: {fileID: 1441957451}
+  movie: {fileID: 706191265}
+  stellaKitchenSpot: {fileID: 1837418630}
+  kitchenDoor: {fileID: 467547354}
+  stellasRoomDoor: {fileID: 1414896571}
+  kitchenMusic: {fileID: 8300000, guid: 61b73f6608672464db1df7ba922e2283, type: 3}
+  movieMusic: {fileID: 8300000, guid: 61b73f6608672464db1df7ba922e2283, type: 3}
+  nightMusic: {fileID: 0}
 --- !u!1 &817655808
 GameObject:
   m_ObjectHideFlags: 0
@@ -28715,10 +28852,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseDoor
   closedFrom: 0
-  openedFrom: 99
+  openedFrom: 4
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &1333046061
 MonoBehaviour:
@@ -31380,7 +31517,19 @@ MonoBehaviour:
   hopTime: 0.35
   onPlayerSat:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 706191265}
+        m_TargetAssemblyTypeName: MovieSequence, Assembly-CSharp
+        m_MethodName: Begin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -35408,6 +35557,11 @@ MonoBehaviour:
   onFinished:
     m_PersistentCalls:
       m_Calls: []
+--- !u!23 &1697222823 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23110450531601960, guid: 4cf11b10fe9d6ba43bab2f0e2948ce60, type: 3}
+  m_PrefabInstance: {fileID: 1293003643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705026050
 GameObject:
   m_ObjectHideFlags: 0
@@ -40326,7 +40480,7 @@ MonoBehaviour:
   openedFrom: 99
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &1929131384
 MonoBehaviour:
@@ -43389,10 +43543,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseDoor
   closedFrom: 0
-  openedFrom: 99
+  openedFrom: 4
   moreClosedTimes:
   - closedFrom: 3
-    openedFrom: 99
+    openedFrom: 4
     message: {fileID: 11400000, guid: 268d0654f58225f429a2b9d4ea5c81d5, type: 2}
 --- !u!114 &2060266208
 MonoBehaviour:
@@ -49815,6 +49969,10 @@ SceneRoots:
   - {fileID: 1128249166}
   - {fileID: 1562090326}
   - {fileID: 1878416958}
+  - {fileID: 706191266}
+  - {fileID: 395051954}
+  - {fileID: 1584308370}
+  - {fileID: 229976680}
   - {fileID: 409048448}
   - {fileID: 1137522895}
   - {fileID: 1134455678}
@@ -49836,5 +49994,3 @@ SceneRoots:
   - {fileID: 1063322473}
   - {fileID: 783078342}
   - {fileID: 2023647094}
-  - {fileID: 395051954}
-  - {fileID: 1584308370}

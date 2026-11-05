@@ -212,6 +212,38 @@ public class DinnerSequence : MonoBehaviour
             movieSitLock.Unlock();
     }
 
+    // Testing: start the game after dinner, Stella already sitting in her room.
+    // sittingToo = Nora is past the "Sit" part as well (e.g. starting at night).
+    public void SkipToMovie(bool sittingToo)
+    {
+        begun = sat = true;
+        sittingForMovie = sittingToo;
+        SetLocked(lockedUntilStellaLeaves, false);
+        if (sitLock != null) sitLock.Lock();
+
+        if (dad != null)
+        {
+            dad.LookAtPlayerWhenIdle = false;
+            if (dadCleaningPoint != null) dad.WarpTo(dadCleaningPoint.position);
+            if (dadCleaningLookAt != null) dad.FaceTowards(dadCleaningLookAt.position);
+        }
+        if (dadTalk != null && dadTalkDialogue != null)
+            dadTalk.SetDialogue(dadTalkDialogue);
+
+        SetLocked(hideWhileWatching, true);
+        if (stella != null && couchSeat != null)
+        {
+            stella.WarpTo(couchFront != null ? couchFront.position : couchSeat.position);
+            stella.SitOn(couchSeat, tv != null ? tv.position : couchSeat.position + Vector3.forward, 0.01f, 0f);
+        }
+
+        if (movieSitLock != null)
+        {
+            if (sittingToo) movieSitLock.Lock();
+            else movieSitLock.Unlock();
+        }
+    }
+
     // Called by the bed's "[E] Sit": Nora hops next to Stella and faces the TV.
     public void SitNextToStella()
     {

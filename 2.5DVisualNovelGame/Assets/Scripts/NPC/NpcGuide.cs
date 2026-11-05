@@ -65,6 +65,15 @@ public class NpcGuide : MonoBehaviour
         arrivedPending = true;
     }
 
+    // Testing: the whole route is already done.
+    public void SkipAllSteps()
+    {
+        if (running != null) StopCoroutine(running);
+        running = null;
+        arrivedPending = false;
+        nextStep = steps != null ? steps.Length : 0;
+    }
+
     private void OnArrivedThroughDoor()
     {
         // Handled in Update so we never restart a step from inside itself.

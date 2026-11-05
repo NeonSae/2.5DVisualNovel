@@ -7,6 +7,7 @@ public enum StoryPhase
     [InspectorName("Phase 1: Stella's room")] StellasRoom = 1,
     [InspectorName("Phase 2: Kitchen")] Kitchen = 2,
     [InspectorName("Phase 3: Movie")] Movie = 3,
+    [InspectorName("Phase 4: Night")] Night = 4,
     [InspectorName("Never (stays closed)")] Never = 99
 }
 
@@ -23,11 +24,12 @@ public class StoryPhases : MonoBehaviour
         public StoryPhase phase;
     }
 
-    [Tooltip("For testing: the phase the game starts in.")]
+    [Tooltip("TESTING: start the game at this point (Phase Checkpoints skips everything before). Keep 'Start of the game' for the real game!")]
     [SerializeField] private StoryPhase startingPhase = StoryPhase.StartOfGame;
     [SerializeField] private PhaseStart[] phaseStarts;
 
     public static StoryPhase Current { get; private set; }
+    public StoryPhase StartingPhase => startingPhase;
     public static event Action<StoryPhase> Changed;
 
     private void Awake()

@@ -70,6 +70,27 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    // Slowly lowers the music to silence over 'seconds', then stops it.
+    public void FadeOutMusic(float seconds)
+    {
+        if (musicSource == null || !musicSource.isPlaying)
+            return;
+
+        StartCoroutine(FadeOut(seconds));
+    }
+
+    private System.Collections.IEnumerator FadeOut(float seconds)
+    {
+        float start = musicSource.volume;
+        for (float t = 0f; t < 1f; t += Time.deltaTime / Mathf.Max(0.01f, seconds))
+        {
+            musicSource.volume = Mathf.Lerp(start, 0f, t);
+            yield return null;
+        }
+        StopMusic();
+        ApplyVolumes();   // back to normal for the next track
+    }
+
     public void StopMusic()
     {
         if (musicSource != null)

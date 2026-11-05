@@ -15,6 +15,13 @@ public class RoomDoor : MonoBehaviour, IInteractable
     // Where this door leads (also used by NPCs going through doors).
     public Transform Destination => destination;
 
+    // Takes the player through, even if the door is closed (used to start the game at a later phase).
+    public void ForcePlayerThrough()
+    {
+        if (destination != null && transitionManager != null)
+            transitionManager.EnterRoom(destination, roomCameraBounds);
+    }
+
     public void Interact()
     {
         BlockedDoor blocker = GetComponentInParent<BlockedDoor>();

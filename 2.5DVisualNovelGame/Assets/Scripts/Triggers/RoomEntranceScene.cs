@@ -66,10 +66,23 @@ public class RoomEntranceScene : MonoBehaviour
 
     private void Start()
     {
-        if (npc != null)
+        if (npc != null && !played)   // (played = skipped for testing)
         {
             npc.LookAtPlayerWhenIdle = false;
             busy = StartCoroutine(BeBusy());
+        }
+    }
+
+    // Testing: start the game after this scene (it won't play when entering).
+    public void SkipForTesting()
+    {
+        played = true;
+        if (busy != null) StopCoroutine(busy);
+        busy = null;
+        if (npc != null)
+        {
+            npc.Stop();
+            npc.LookAtPlayerWhenIdle = npcLooksAtPlayerAfter;
         }
     }
 
