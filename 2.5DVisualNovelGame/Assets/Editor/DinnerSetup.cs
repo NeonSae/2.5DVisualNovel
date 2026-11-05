@@ -64,6 +64,7 @@ public static class DinnerSetup
 
         var entranceSO = new SerializedObject(entrance);
         SetArray(entranceSO.FindProperty("lockDuringScene"), doorLock);
+        SetArray(entranceSO.FindProperty("watchers"), stella);   // Stella looks at Dad, not Nora
         entranceSO.ApplyModifiedProperties();
         AddListenerOnce(GetEvent(entrance, "onFinished"), dinner, "Begin", dinner.Begin);
         report.Add("Kitchen door: locked when you come in, opens once Stella has left after dinner.");
@@ -98,6 +99,7 @@ public static class DinnerSetup
         Transform stellaSeat = GetOrCreatePoint("DinnerSeat_Stella", new Vector3(tableBounds.min.x - 0.4f, kitchenFloor, c.z), report);
         Transform dadSeat = GetOrCreatePoint("DinnerSeat_Dad", new Vector3(tableBounds.max.x + 0.4f, kitchenFloor, c.z), report);
         Transform dadCleaning = GetOrCreatePoint("DadPoint_Cleaning", new Vector3(tableBounds.max.x + 1.5f, kitchenFloor, tableBounds.max.z + 0.5f), report);
+        Transform dadCleaningLookAt = GetOrCreatePoint("DadLookAt_Cleaning", dadCleaning.position + Vector3.forward, report);
 
         Transform stellaExit = GetOrCreatePoint("StellaPoint_KitchenExit",
             NearDoor(kitchenExit, intoKitchen.Destination.position, kitchenFloor), report);
@@ -133,6 +135,51 @@ public static class DinnerSetup
         // The old living room stop isn't used anymore.
         GameObject oldPoint = GameObject.Find("StellaPoint_Corridor1_ToLivingRoom");
         if (oldPoint != null) Undo.DestroyObjectImmediate(oldPoint);
+
+        // ---------- Movie: Nora sits next to Stella ----------
+        Vector3 along = couch != null && couchBounds.extents.z > couchBounds.extents.x ? Vector3.forward : Vector3.right;
+        Transform noraSeat = GetOrCreatePoint("NoraPoint_MovieSeat", couchSeat.position + along * 0.5f, report);
+
+        // A separate "[E] Sit" spot (not on the bed itself, so the bed's Inspect keeps working).
+        GameObject sitSpot = GameObject.Find("MovieSitSpot");
+        if (sitSpot == null)
+        {
+            sitSpot = new GameObject("MovieSitSpot");
+            Undo.RegisterCreatedObjectUndo(sitSpot, "Create sit spot");
+            sitSpot.transform.position = noraSeat.position;
+            BoxCollider trigger = sitSpot.AddComponent<BoxCollider>();
+            trigger.isTrigger = true;
+            trigger.size = new Vector3(1.2f, 1f, 1.2f);
+            report.Add("Created 'MovieSitSpot' ([E] Sit next to Stella, check its position).");
+        }
+        SitDown movieSit = sitSpot.GetComponent<SitDown>();
+        if (movieSit == null)
+        {
+            movieSit = Undo.AddComponent<SitDown>(sitSpot);
+            var sitSO = new SerializedObject(movieSit);
+            sitSO.FindProperty("interactionPrompt").stringValue = "Sit";
+            sitSO.ApplyModifiedProperties();
+        }
+        InteractionLock movieSitLock = sitSpot.GetComponent<InteractionLock>();
+        if (movieSitLock == null) movieSitLock = Undo.AddComponent<InteractionLock>(sitSpot);   // hidden until Stella sits
+        AddListenerOnce(GetEvent(movieSit, "onSit"), dinner, "SitNextToStella", dinner.SitNextToStella);
+
+        // Stella's room exit: hidden until it's time to leave (after "Yes"), hidden again during the movie.
+        RoomDoor stellaRoomExit = FindDoor("Stella's room TO Corridor2");
+        InteractionLock stellaExitLock = null;
+        if (stellaRoomExit != null)
+        {
+            stellaExitLock = stellaRoomExit.GetComponent<InteractionLock>();
+            if (stellaExitLock == null) stellaExitLock = Undo.AddComponent<InteractionLock>(stellaRoomExit.gameObject);   // hidden at start
+            NpcLeaveAndReturn leave = Object.FindFirstObjectByType<NpcLeaveAndReturn>(FindObjectsInactive.Include);
+            if (leave != null)
+            {
+                var leaveSO = new SerializedObject(leave);
+                SetArray(leaveSO.FindProperty("showDoors"), stellaExitLock);
+                leaveSO.ApplyModifiedProperties();
+            }
+            report.Add("Stella's room exit: no prompt until you say Yes to dinner, and none during the movie.");
+        }
 
         // ---------- Dad: talkable after dinner ----------
         if (dad.GetComponent<Collider>() == null)
@@ -182,11 +229,15 @@ public static class DinnerSetup
         SetStep(route.GetArrayElementAtIndex(2), c2Point, c2ToStella);
         so.FindProperty("couchFront").objectReferenceValue = couchFront;
         so.FindProperty("couchSeat").objectReferenceValue = couchSeat;
+        so.FindProperty("movieSitLock").objectReferenceValue = movieSitLock;
+        so.FindProperty("playerMovieSeat").objectReferenceValue = noraSeat;
+        if (stellaExitLock != null) SetArray(so.FindProperty("hideWhileWatching"), stellaExitLock);
         if (tv != null) so.FindProperty("tv").objectReferenceValue = tv;
         so.FindProperty("doorSound").objectReferenceValue =
             AssetDatabase.LoadAssetAtPath<AudioClip>(AssetDatabase.GUIDToAssetPath(DoorOpeningGuid));
 
         so.FindProperty("dadCleaningPoint").objectReferenceValue = dadCleaning;
+        so.FindProperty("dadCleaningLookAt").objectReferenceValue = dadCleaningLookAt;
         so.FindProperty("dadTalk").objectReferenceValue = dadTalk;
         so.ApplyModifiedProperties();
 

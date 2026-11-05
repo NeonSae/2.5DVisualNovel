@@ -159,6 +159,18 @@ public class CharacterMovement : MonoBehaviour
         hasMoveTarget = false;
     }
 
+    // Turn toward a point and stand idle (e.g. sitting in front of the TV).
+    public void FaceTowards(Vector3 worldPosition)
+    {
+        Vector3 direction = worldPosition - transform.position;
+        direction.y = 0f;
+        if (direction.sqrMagnitude < 0.0001f || cameraTransform == null)
+            return;
+
+        UpdateFacing(direction.normalized);
+        PlayAnimation("Idle");
+    }
+
     private void UpdateFacing(Vector3 movement)
     {
         //Express movement relative to the camera.

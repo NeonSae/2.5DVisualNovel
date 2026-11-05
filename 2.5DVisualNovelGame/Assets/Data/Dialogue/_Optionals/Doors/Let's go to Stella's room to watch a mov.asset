@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: Lasagna (S)
+  m_Name: Let's go to Stella's room to watch a mov
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
-  text: How does dinner sound now? My dad made us lasagna.
+  speaker: Nora
+  text: Let's go to Stella's room to watch a movie.
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: -1799747249, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
+  rightPortrait: {fileID: 0}
   cutsceneImage: {fileID: 0}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
   pauseMusic: 0
   resumeMusic: 2
-  nextNode: {fileID: 11400000, guid: 238945e3b4dcf944b8313d5e2cbe185f, type: 2}
+  nextNode: {fileID: 0}
   choices: []

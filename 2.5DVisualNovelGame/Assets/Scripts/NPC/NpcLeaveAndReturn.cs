@@ -66,6 +66,8 @@ public class NpcLeaveAndReturn : MonoBehaviour
     [Header("After YES (or after the return dialogue if there's no question)")]
     [Tooltip("With a route: these doors open only once the NPC has gone through a door.")]
     [SerializeField] private BlockedDoor[] unblockDoors;
+    [Tooltip("Hidden doors (no prompt) that appear at the same moment (e.g. Stella's room exit).")]
+    [SerializeField] private InteractionLock[] showDoors;
     [SerializeField] private DialogueSwap[] dialogueSwaps;
     [SerializeField] private UnityEvent onFinished;
 
@@ -213,6 +215,10 @@ public class NpcLeaveAndReturn : MonoBehaviour
         if (unblockDoors != null)
             foreach (BlockedDoor door in unblockDoors)
                 if (door != null) door.Unblock();
+
+        if (showDoors != null)
+            foreach (InteractionLock door in showDoors)
+                if (door != null) door.Unlock();
 
         onFinished?.Invoke();
     }

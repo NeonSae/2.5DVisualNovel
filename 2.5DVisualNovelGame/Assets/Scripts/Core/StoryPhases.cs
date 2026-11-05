@@ -6,6 +6,7 @@ public enum StoryPhase
     [InspectorName("Start of the game")] StartOfGame = 0,
     [InspectorName("Phase 1: Stella's room")] StellasRoom = 1,
     [InspectorName("Phase 2: Kitchen")] Kitchen = 2,
+    [InspectorName("Phase 3: Movie")] Movie = 3,
     [InspectorName("Never (stays closed)")] Never = 99
 }
 

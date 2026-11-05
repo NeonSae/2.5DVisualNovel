@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: 1
+  m_Name: Lasagna (S)
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speaker: Stella
   text: How does dinner sound now? My dad made us lasagna.
@@ -23,12 +23,12 @@ MonoBehaviour:
   resumeMusic: 2
   nextNode: {fileID: 0}
   choices:
-  - choiceText: Yes, let's go!
-    nextNode: {fileID: 0}
+  - choiceText: Yes.
+    nextNode: {fileID: 11400000, guid: 238945e3b4dcf944b8313d5e2cbe185f, type: 2}
     conditionMode: 0
     conditions: []
     effects: []
-  - choiceText: No, wait a minute.
+  - choiceText: Wait a moment.
     nextNode: {fileID: 0}
     conditionMode: 0
     conditions: []

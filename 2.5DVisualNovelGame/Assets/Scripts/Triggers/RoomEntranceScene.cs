@@ -23,6 +23,8 @@ public class RoomEntranceScene : MonoBehaviour
     [Tooltip("What the NPC looks at while busy (e.g. the table).")]
     [SerializeField] private Transform busyLookAt;
     [SerializeField] private float pauseAtEachPoint = 1.2f;
+    [Tooltip("Other NPCs that look at the busy NPC (not the player) during the scene, and keep facing him after (e.g. Stella).")]
+    [SerializeField] private NpcMovement[] watchers;
 
     [Header("Scene")]
     [Tooltip("The music stops when the player comes in (start new music from the dialogue's 'Start Music').")]
@@ -107,6 +109,7 @@ public class RoomEntranceScene : MonoBehaviour
         played = true;
         SetScriptsEnabled(false);
         SetLocked(true);
+        Coroutine watching = StartCoroutine(Watch());
 
         // Silence while the screen is still black.
         if (stopMusicOnEnter && AudioManager.Instance != null)
@@ -144,10 +147,30 @@ public class RoomEntranceScene : MonoBehaviour
         if (npc != null)
             npc.LookAtPlayerWhenIdle = npcLooksAtPlayerAfter;
 
+        StopCoroutine(watching);
         SetScriptsEnabled(true);
         SetLocked(false);
         playing = false;
         onFinished?.Invoke();
+    }
+
+    // Watchers keep turning toward the busy NPC (he moves around the table).
+    private IEnumerator Watch()
+    {
+        if (watchers == null || npc == null)
+            yield break;
+
+        while (true)
+        {
+            foreach (NpcMovement watcher in watchers)
+            {
+                if (watcher == null) continue;
+                watcher.LookAtPlayerWhenIdle = false;
+                if (!watcher.IsMoving)
+                    watcher.FaceTowards(npc.transform.position);
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
     private void SetLocked(bool locked)

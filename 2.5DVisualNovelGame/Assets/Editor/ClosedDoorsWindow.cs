@@ -15,6 +15,7 @@ public class ClosedDoorsWindow : EditorWindow
     private StoryPhase openedFrom = StoryPhase.Kitchen;
     private DialogueNode message;
     private string newLine = "";
+    private bool addAsExtra;
 
     [MenuItem("Tools/Sleepover/Closed Doors...")]
     public static void Open()
@@ -51,6 +52,11 @@ public class ClosedDoorsWindow : EditorWindow
         EditorGUILayout.LabelField("(Empty = keep the door's current message.)", EditorStyles.miniLabel);
 
         EditorGUILayout.Space();
+        addAsExtra = EditorGUILayout.ToggleLeft(
+            new GUIContent("Add as an EXTRA closed time (keeps what the door already has)",
+                "On: the door gets one more closed time with this line. Off: replaces the door's main closed time."), addAsExtra);
+
+        EditorGUILayout.Space();
         using (new EditorGUI.DisabledScope(doors.Count == 0 || openedFrom <= closedFrom))
         {
             if (GUILayout.Button("Apply to selected doors", GUILayout.Height(30)))
@@ -75,20 +81,7 @@ public class ClosedDoorsWindow : EditorWindow
                 continue;
             }
 
-            BlockedDoor blocker = existing != null ? existing : Undo.AddComponent<BlockedDoor>(door);
-            if (line != null)
-            {
-                var blockSO = new SerializedObject(blocker);
-                blockSO.FindProperty("blockedDialogue").objectReferenceValue = line;
-                blockSO.ApplyModifiedProperties();
-            }
-
-            PhaseDoor phaseDoor = door.GetComponent<PhaseDoor>();
-            if (phaseDoor == null) phaseDoor = Undo.AddComponent<PhaseDoor>(door);
-            var so = new SerializedObject(phaseDoor);
-            so.FindProperty("closedFrom").enumValueIndex = System.Array.IndexOf(System.Enum.GetValues(typeof(StoryPhase)), closedFrom);
-            so.FindProperty("openedFrom").enumValueIndex = System.Array.IndexOf(System.Enum.GetValues(typeof(StoryPhase)), openedFrom);
-            so.ApplyModifiedProperties();
+            SetClosed(door, closedFrom, openedFrom, line, addAsExtra);
             done++;
         }
 
@@ -100,10 +93,142 @@ public class ClosedDoorsWindow : EditorWindow
             EditorSceneManager.SaveScene(doors[0].scene);
         }
 
-        string text = done + " door(s) set: closed from '" + closedFrom + "', open from '" + openedFrom + "'.\nScene saved.";
+        string text = done + " door(s) set: closed from '" + closedFrom + "', open from '" + openedFrom + "'" +
+                      (addAsExtra ? " (extra closed time)" : "") + ".\nScene saved.";
         if (skipped.Count > 0) text += "\n\nSkipped:\n- " + string.Join("\n- ", skipped);
         EditorUtility.DisplayDialog("Closed Doors", text, "OK");
         newLine = "";
+    }
+
+    // Phase 3 (Movie) starts when leaving the kitchen after dinner: only the way to
+    // Stella's room is open, every other corridor door says "Let's go to Stella's room...".
+    [MenuItem("Tools/Sleepover/Setup Movie Phase Doors")]
+    public static void SetupMoviePhase()
+    {
+        var report = new List<string>();
+        EnsureStoryPhases();
+
+        // Leaving the kitchen -> Phase 3.
+        StoryPhases phases = Object.FindFirstObjectByType<StoryPhases>(FindObjectsInactive.Include);
+        RoomDoor kitchenExit = FindDoor("Kitchen TO Corridor1");
+        if (phases != null && kitchenExit != null)
+        {
+            var so = new SerializedObject(phases);
+            SerializedProperty starts = so.FindProperty("phaseStarts");
+            bool listed = false;
+            for (int i = 0; i < starts.arraySize; i++)
+                if (starts.GetArrayElementAtIndex(i).FindPropertyRelative("door").objectReferenceValue == kitchenExit) listed = true;
+            if (!listed)
+            {
+                starts.arraySize++;
+                SerializedProperty start = starts.GetArrayElementAtIndex(starts.arraySize - 1);
+                start.FindPropertyRelative("door").objectReferenceValue = kitchenExit;
+                SetPhase(start.FindPropertyRelative("phase"), StoryPhase.Movie);
+                so.ApplyModifiedProperties();
+            }
+            report.Add("Phase 3: Movie starts when you leave the kitchen.");
+        }
+
+        // The line for the closed doors (made once).
+        const string text = "Let's go to Stella's room to watch a movie.";
+        DialogueNode line = null;
+        foreach (string guid in AssetDatabase.FindAssets("t:DialogueNode", new[] { DoorsFolder }))
+        {
+            var node = AssetDatabase.LoadAssetAtPath<DialogueNode>(AssetDatabase.GUIDToAssetPath(guid));
+            if (node != null && node.text == text) line = node;
+        }
+        if (line == null) line = CreateLine(text);
+
+        string[] closed =
+        {
+            "Corridor1 TO Bathroom", "Corridor1 TO Kitchen", "Corridor1 TO Living room",
+            "Corridor2 TO Corridor1", "Corridor2 TO Guests' room", "Corridor2 TO Parents' room"
+        };
+        foreach (string name in closed)
+        {
+            RoomDoor door = FindDoor(name);
+            if (door == null) { report.Add("! Not found: " + name); continue; }
+            SetClosed(door.gameObject, StoryPhase.Movie, StoryPhase.Never, line, true);
+        }
+        report.Add("Closed in Phase 3 (\"" + text + "\"): " + string.Join(", ", closed) + ".");
+
+        // The way to her room is open in Phase 3.
+        RoomDoor toStella = FindDoor("Corridor2 TO Stella's room");
+        PhaseDoor toStellaPhase = toStella != null ? toStella.GetComponent<PhaseDoor>() : null;
+        if (toStellaPhase != null)
+        {
+            var so = new SerializedObject(toStellaPhase);
+            if (so.FindProperty("openedFrom").intValue > (int)StoryPhase.Movie)
+                SetPhase(so.FindProperty("openedFrom"), StoryPhase.Movie);
+            so.ApplyModifiedProperties();
+        }
+        report.Add("Open in Phase 3: Corridor1 TO Corridor2, Corridor2 TO Stella's room.");
+
+        if (phases != null)
+        {
+            EditorSceneManager.MarkSceneDirty(phases.gameObject.scene);
+            EditorSceneManager.SaveScene(phases.gameObject.scene);
+            report.Add("Scene saved.");
+        }
+        EditorUtility.DisplayDialog("Movie phase", "Done!\n\n- " + string.Join("\n- ", report), "OK");
+    }
+
+    // main = the door's main closed time (message on the Blocked Door);
+    // extra = one more closed time with its own line (replaces an extra time with the same phases).
+    public static void SetClosed(GameObject door, StoryPhase from, StoryPhase until, DialogueNode line, bool extra)
+    {
+        BlockedDoor blocker = door.GetComponent<BlockedDoor>();
+        bool newBlocker = blocker == null;
+        if (newBlocker) blocker = Undo.AddComponent<BlockedDoor>(door);
+
+        PhaseDoor phaseDoor = door.GetComponent<PhaseDoor>();
+        bool newPhaseDoor = phaseDoor == null;
+        if (newPhaseDoor) phaseDoor = Undo.AddComponent<PhaseDoor>(door);
+        var so = new SerializedObject(phaseDoor);
+
+        if (extra)
+        {
+            // A door that had no phases yet: its main time does nothing.
+            if (newPhaseDoor)
+            {
+                SetPhase(so.FindProperty("closedFrom"), StoryPhase.Never);
+                SetPhase(so.FindProperty("openedFrom"), StoryPhase.Never);
+            }
+
+            SerializedProperty times = so.FindProperty("moreClosedTimes");
+            SerializedProperty time = null;
+            for (int i = 0; i < times.arraySize && time == null; i++)
+            {
+                SerializedProperty t = times.GetArrayElementAtIndex(i);
+                if (t.FindPropertyRelative("closedFrom").intValue == (int)from && t.FindPropertyRelative("openedFrom").intValue == (int)until)
+                    time = t;
+            }
+            if (time == null)
+            {
+                times.arraySize++;
+                time = times.GetArrayElementAtIndex(times.arraySize - 1);
+            }
+            SetPhase(time.FindPropertyRelative("closedFrom"), from);
+            SetPhase(time.FindPropertyRelative("openedFrom"), until);
+            if (line != null) time.FindPropertyRelative("message").objectReferenceValue = line;
+        }
+        else
+        {
+            SetPhase(so.FindProperty("closedFrom"), from);
+            SetPhase(so.FindProperty("openedFrom"), until);
+            if (line != null)
+            {
+                var blockSO = new SerializedObject(blocker);
+                blockSO.FindProperty("blockedDialogue").objectReferenceValue = line;
+                blockSO.ApplyModifiedProperties();
+            }
+        }
+        so.ApplyModifiedProperties();
+    }
+
+    private static void SetPhase(SerializedProperty prop, StoryPhase phase)
+    {
+        prop.enumValueIndex = System.Array.IndexOf(System.Enum.GetValues(typeof(StoryPhase)), phase);
     }
 
     // The scene object that changes phase when the player goes through the right doors.
@@ -140,7 +265,7 @@ public class ClosedDoorsWindow : EditorWindow
         return false;
     }
 
-    private static DialogueNode CreateLine(string text)
+    public static DialogueNode CreateLine(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
             return null;
@@ -182,7 +307,7 @@ public class ClosedDoorsWindow : EditorWindow
         return door.name;
     }
 
-    private static RoomDoor FindDoor(string doorObjectName)
+    public static RoomDoor FindDoor(string doorObjectName)
     {
         foreach (RoomDoor door in Object.FindObjectsByType<RoomDoor>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {

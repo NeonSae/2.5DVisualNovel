@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c461320c8793fdf44b204043d1f305f8, type: 3}
-  m_Name: Not Ready
+  m_Name: Eating 1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speaker: Stella
-  text: You didn't finish checking my room!
+  speaker: Nora
+  text: Thank you Mr Lockbell, the lasagna is absolutely delicious!
   leftPortrait: {fileID: 0}
-  rightPortrait: {fileID: 442794418, guid: 719a4a1eb340761499e07048c675cbbf, type: 3}
-  cutsceneImage: {fileID: 0}
+  rightPortrait: {fileID: 0}
+  cutsceneImage: {fileID: 21300000, guid: ffd4fa9830290c3428b9b963e408bda8, type: 3}
   fadeCutsceneImage: 1
   startMusic: {fileID: 0}
   pauseMusic: 0
   resumeMusic: 2
-  nextNode: {fileID: 11400000, guid: 238945e3b4dcf944b8313d5e2cbe185f, type: 2}
+  nextNode: {fileID: 11400000, guid: cdf77370808aa8542be204235156cc11, type: 2}
   choices: []

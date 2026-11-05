@@ -67,14 +67,28 @@ public class DinnerSequence : MonoBehaviour
     [Header("Dad after dinner")]
     [Tooltip("Where Dad goes to clean up (e.g. the sink).")]
     [SerializeField] private Transform dadCleaningPoint;
+    [Tooltip("What Dad faces while cleaning (e.g. the sink). He doesn't look at Nora.")]
+    [SerializeField] private Transform dadCleaningLookAt;
     [Tooltip("Dad's 'Talk' (NPC component): its dialogue is set here and it becomes talkable.")]
     [SerializeField] private NPC dadTalk;
     [SerializeField] private DialogueNode dadTalkDialogue;
+
+    [Header("Watching the movie")]
+    [Tooltip("Hidden (no prompt) from when Stella heads to her room (e.g. her room's exit door).")]
+    [SerializeField] private InteractionLock[] hideWhileWatching;
+    [Tooltip("The '[E] Sit' next to Stella (on the bed): shown once she's sitting.")]
+    [SerializeField] private InteractionLock movieSitLock;
+    [Tooltip("Where Nora sits, next to Stella.")]
+    [SerializeField] private Transform playerMovieSeat;
+    [SerializeField] private float hopTime = 0.35f;
+    [Tooltip("Runs when Nora is sitting (the movie part starts here).")]
+    [SerializeField] private UnityEvent onPlayerSat;
 
     [SerializeField] private UnityEvent onFinished;
 
     private bool begun;
     private bool sat;
+    private bool sittingForMovie;
 
     private void Awake()
     {
@@ -127,12 +141,15 @@ public class DinnerSequence : MonoBehaviour
         SetScriptsEnabled(true);
 
         // 4. Dad goes cleaning and can be talked to.
-        if (dad != null)
+        // He's busy: he faces what he's cleaning, not Nora.
+        if (dad != null && dadCleaningPoint != null)
         {
-            if (dadCleaningPoint != null)
-                dad.MoveTo(dadCleaningPoint.position, () => dad.LookAtPlayerWhenIdle = true);
-            else
-                dad.LookAtPlayerWhenIdle = true;
+            dad.LookAtPlayerWhenIdle = false;
+            dad.MoveTo(dadCleaningPoint.position, () =>
+            {
+                if (dadCleaningLookAt != null)
+                    dad.FaceTowards(dadCleaningLookAt.position);
+            });
         }
         if (dadTalk != null && dadTalkDialogue != null)
             dadTalk.SetDialogue(dadTalkDialogue);
@@ -151,6 +168,7 @@ public class DinnerSequence : MonoBehaviour
         }
 
         stella.LookAtPlayerWhenIdle = false;
+        SetLocked(hideWhileWatching, true);
 
         bool first = true;
         if (stellaRoute != null)
@@ -184,7 +202,49 @@ public class DinnerSequence : MonoBehaviour
             yield return WalkTo(stella, couchFront.position);
 
         if (couchSeat != null)
+        {
             stella.SitOn(couchSeat, tv != null ? tv.position : couchSeat.position + Vector3.forward);
+            yield return new WaitForSeconds(0.5f);   // let her land first
+        }
+
+        // Nora can sit next to her now.
+        if (movieSitLock != null)
+            movieSitLock.Unlock();
+    }
+
+    // Called by the bed's "[E] Sit": Nora hops next to Stella and faces the TV.
+    public void SitNextToStella()
+    {
+        if (sittingForMovie) return;
+        sittingForMovie = true;
+        StartCoroutine(SitForMovie());
+    }
+
+    private IEnumerator SitForMovie()
+    {
+        CharacterMovement player = FindFirstObjectByType<CharacterMovement>();
+        if (player == null || playerMovieSeat == null)
+            yield break;
+
+        SetScriptsEnabled(false);   // stays seated (the movie part takes over)
+
+        CharacterController controller = player.GetComponent<CharacterController>();
+        if (controller != null) controller.enabled = false;
+
+        Vector3 start = player.transform.position;
+        Vector3 seat = playerMovieSeat.position;
+        player.FaceTowards(seat);
+        for (float t = 0f; t < 1f; t += Time.deltaTime / Mathf.Max(0.01f, hopTime))
+        {
+            player.transform.position = Vector3.Lerp(start, seat, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * 0.25f;
+            yield return null;
+        }
+        player.transform.position = seat;
+
+        if (tv != null)
+            player.FaceTowards(tv.position);
+
+        onPlayerSat?.Invoke();
     }
 
     private void PlacePlayer()
