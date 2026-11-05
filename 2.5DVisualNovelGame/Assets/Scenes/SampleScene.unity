@@ -4465,7 +4465,7 @@ Transform:
   m_GameObject: {fileID: 229976679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.41, y: 0.463, z: 3.39}
+  m_LocalPosition: {x: 90.223, y: 0.463, z: 2.894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17496,7 +17496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb1d759dc2107544878543c22872bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoryPhases
-  startingPhase: 0
+  startingPhase: 2
   phaseStarts:
   - door: {fileID: 1733034802}
     phase: 1
@@ -49941,8 +49941,8 @@ SceneRoots:
   - {fileID: 1844092459}
   - {fileID: 1542913464}
   - {fileID: 1053898652}
-  - {fileID: 816040335}
   - {fileID: 224520724}
+  - {fileID: 816040335}
   - {fileID: 19447971}
   - {fileID: 849615167}
   - {fileID: 1899879941}
