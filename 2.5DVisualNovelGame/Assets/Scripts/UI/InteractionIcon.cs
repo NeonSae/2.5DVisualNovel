@@ -27,6 +27,16 @@ public class InteractionIcon : MonoBehaviour
     [Tooltip("Text above the E showing what E does (Inspect, Enter, Talk...). Optional.")]
     [SerializeField] private TMP_Text label;
 
+    [Header("Locked doors")]
+    [Tooltip("The 'E' letter object (hidden when the door is locked).")]
+    [SerializeField] private GameObject letter;
+    [Tooltip("Shown instead of the 'E' after trying a locked door (e.g. a black key).")]
+    [SerializeField] private GameObject lockedIcon;
+    [SerializeField] private string lockedText = "Door locked";
+
+    public static InteractionIcon Current { get; private set; }
+    private Collider lockedTarget;
+
     private Collider target;
     private bool targetIsDoor;
     private Transform player;
@@ -40,6 +50,7 @@ public class InteractionIcon : MonoBehaviour
 
     private void Awake()
     {
+        Current = this;
         baseScale = transform.localScale;
         renderers = GetComponentsInChildren<Renderer>(true);
         texts = GetComponentsInChildren<TMP_Text>(true);
@@ -50,21 +61,33 @@ public class InteractionIcon : MonoBehaviour
     public void Show(Collider newTarget, Transform nora, string prompt = null)
     {
         if (newTarget == null) { Hide(); return; }
-        if (label != null) label.text = prompt ?? "";
         if (newTarget != target)
         {
+            lockedTarget = null;
             target = newTarget;
             targetIsDoor = newTarget.GetComponentInParent<RoomDoor>() != null ||
                            newTarget.GetComponentInParent<LockedRoomDoor>() != null;
             if (visible <= 0.01f) visible = 0f;   // pop in from nothing
         }
         player = nora;
+
+        bool locked = lockedTarget != null && lockedTarget == target;
+        if (label != null) label.text = locked ? lockedText : prompt ?? "";
+        if (letter != null && letter.activeSelf == locked) letter.SetActive(!locked);
+        if (lockedIcon != null && lockedIcon.activeSelf != locked) lockedIcon.SetActive(locked);
+    }
+
+    // Tried a locked door: "Door locked" + key icon until Nora leaves it.
+    public void ShowLocked()
+    {
+        lockedTarget = target;
     }
 
     // Fades out where it is.
     public void Hide()
     {
         target = null;
+        lockedTarget = null;
     }
 
     private void LateUpdate()

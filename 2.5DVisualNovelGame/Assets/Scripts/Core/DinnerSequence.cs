@@ -45,6 +45,8 @@ public class DinnerSequence : MonoBehaviour
     [Header("After dinner")]
     [Tooltip("Back in the kitchen: Dad will clean up, Stella invites Nora to watch a movie.")]
     [SerializeField] private DialogueNode afterDinnerDialogue;
+    [Tooltip("Shown (unlocked) once dinner is over, e.g. the table's 'Inspect'.")]
+    [SerializeField] private InteractionLock[] unlockAfterDinner;
 
     [System.Serializable]
     public class RouteStep
@@ -138,6 +140,7 @@ public class DinnerSequence : MonoBehaviour
             yield return screenFader.FadeFromBlack(fadeInTime);
 
         yield return PlayDialogue(afterDinnerDialogue);
+        SetLocked(unlockAfterDinner, false);
         SetScriptsEnabled(true);
 
         // 4. Dad goes cleaning and can be talked to.
@@ -220,6 +223,7 @@ public class DinnerSequence : MonoBehaviour
         sittingForMovie = sittingToo;
         SetLocked(lockedUntilStellaLeaves, false);
         if (sitLock != null) sitLock.Lock();
+        SetLocked(unlockAfterDinner, false);
 
         if (dad != null)
         {

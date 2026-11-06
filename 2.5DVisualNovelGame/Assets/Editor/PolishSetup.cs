@@ -150,7 +150,7 @@ public static class PolishSetup
         Material borderMat = MakeMaterial(BorderMaterialPath, new Color(0.08f, 0.08f, 0.12f, 1f));
 
         GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
-        foreach (string old in new[] { "Border", "Key", "Label" })
+        foreach (string old in new[] { "Border", "Key", "Label", "Key Icon" })
         {
             Transform t = root.transform.Find(old);
             if (t != null) Object.DestroyImmediate(t.gameObject);
@@ -164,7 +164,17 @@ public static class PolishSetup
         {
             letter.localPosition = new Vector3(0f, 0f, -0.002f);
             letter.GetComponent<MeshRenderer>().sortingOrder = 102;
+            letter.gameObject.SetActive(true);
         }
+
+        // Black key shown instead of the 'E' after trying a locked door.
+        var keyIcon = new GameObject("Key Icon");
+        keyIcon.transform.SetParent(root.transform, false);
+        keyIcon.transform.localPosition = new Vector3(0f, 0f, -0.002f);
+        var keySr = keyIcon.AddComponent<SpriteRenderer>();
+        keySr.sprite = ImportPixelSprite(LockedKeyPath, 16f / 0.28f);
+        keySr.sortingOrder = 102;
+        keyIcon.SetActive(false);
 
         // "Inspect", "Enter"... above the key, 1.5x the key's width.
         var labelGO = new GameObject("Label");
@@ -185,6 +195,8 @@ public static class PolishSetup
 
         var iconSO = new SerializedObject(root.GetComponent<InteractionIcon>());
         iconSO.FindProperty("label").objectReferenceValue = label;
+        iconSO.FindProperty("letter").objectReferenceValue = letter != null ? letter.gameObject : null;
+        iconSO.FindProperty("lockedIcon").objectReferenceValue = keyIcon;
         iconSO.ApplyModifiedPropertiesWithoutUndo();
 
         PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
@@ -194,13 +206,29 @@ public static class PolishSetup
         AssetDatabase.DeleteAsset(KeycapPath);
         AssetDatabase.SaveAssets();
 
-        EditorUtility.DisplayDialog("E Icon", "Done!\n\n- Quad background behind the 'E'.\n- Text above it (Inspect, Enter...) in Alagard, " +
+        EditorUtility.DisplayDialog("E Icon", "Done!\n\n- Quad background behind the 'E'.\n- Black key + 'Door locked' after trying a locked door.\n- Text above it (Inspect, Enter...) in Alagard, " +
             "1.5x the key's width.\n\nEdit it: double-click " + PrefabPath, "OK");
     }
 
     private const float KeySize = 0.36f;
     private const string KeycapPath = "Assets/Art/UI/InteractIcon_Key.png";
     private const string OutlineMatPath = PrefabFolder + "/alagard SDF Outline.mat";
+    private const string LockedKeyPath = "Assets/Art/UI/LockedKey.png";
+
+    private static Sprite ImportPixelSprite(string path, float pixelsPerUnit)
+    {
+        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+        var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+        importer.textureType = TextureImporterType.Sprite;
+        importer.spriteImportMode = SpriteImportMode.Single;
+        importer.filterMode = FilterMode.Point;
+        importer.textureCompression = TextureImporterCompression.Uncompressed;
+        importer.mipmapEnabled = false;
+        importer.alphaIsTransparency = true;
+        importer.spritePixelsPerUnit = pixelsPerUnit;
+        importer.SaveAndReimport();
+        return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+    }
 
     private static GameObject MakeQuad(string name, Transform parent, Material mat, float size, float z, int order)
     {

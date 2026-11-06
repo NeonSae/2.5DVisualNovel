@@ -35,7 +35,9 @@ public class LockedRoomDoor : MonoBehaviour, IInteractable
         {
             Debug.Log(lockedMessage);
 
-            if (interactionUI != null)
+            if (InteractionIcon.Current != null)
+                InteractionIcon.Current.ShowLocked();   // "Door locked" + key above the door
+            else if (interactionUI != null)
                 interactionUI.ShowLockedMessage();
 
             return;
